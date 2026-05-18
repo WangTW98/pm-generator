@@ -1,0 +1,7 @@
+interface:
+  display_name: "PM 01 Analysis"
+  short_description: "Analyze docs into Product Overview"
+  default_prompt: "Use $pm-01-analysis to create or update product/Product Overview.md from docs and my product notes."
+
+policy:
+  allow_implicit_invocation: true

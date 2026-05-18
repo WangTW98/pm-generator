@@ -1,0 +1,32 @@
+{
+  "meta": { "name": "ant-design-admin-consistency-rules", "version": "1.0.0" },
+  "profileResolution": {
+    "root": "product/style-profiles/<layoutKey>/",
+    "layoutProfile": "layout-profile.json",
+    "intentProfile": "intent-<pageIntentKey>-profile.json",
+    "stateGroupProfile": "state-<stateGroupKey>-profile.json"
+  },
+  "precedence": ["designSpec", "layoutProfile", "intentProfile", "stateGroupProfile", "pageOverrides"],
+  "lockedProperties": {
+    "layoutProfile": ["canvas", "topbar", "footer", "pageContainer", "contentPadding"],
+    "intentProfile": ["authShell", "authCard", "methodSwitch", "primaryAction"],
+    "stateGroupProfile": ["credentialArea", "authCardWidth", "controlHeight", "qrSize", "auxiliaryLinks"]
+  },
+  "allowedOverrides": {
+    "auth": ["inputLabels", "placeholderText", "helperText", "activeMethod", "qrInstruction"]
+  },
+  "fingerprintRules": {
+    "canonicalize": true,
+    "excludeFields": ["updatedAt", "notes", "sourcePageId"],
+    "hashFields": ["canvas", "shell", "authCard", "methodSwitch", "credentialArea", "primaryAction"]
+  },
+  "driftPolicy": {
+    "missingProfile": "warning",
+    "lockedPropertyChanged": "failed",
+    "allowedOverrideChanged": "pass"
+  },
+  "qaRules": {
+    "reportFields": ["profileRefs", "styleFingerprint", "lockedPropertiesApplied", "driftCheck"],
+    "requireForBatch": true
+  }
+}

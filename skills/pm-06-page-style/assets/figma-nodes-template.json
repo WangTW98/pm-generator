@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "documentType": "pm-06-figma-nodes",
+    "version": "1.0.0",
+    "generatedAt": "{{YYYY-MM-DD}}",
+    "pageId": "{{PAGE-ID}}",
+    "pageName": "{{页面名称}}",
+    "sourceLayoutFile": "product/pages/**/layout.md",
+    "sourceSitemapFile": "product/layout/**-sitemap.md",
+    "usedLayout": "{{使用Layout}}",
+    "designSpecDir": "design/{{设计规范目录名}}"
+  },
+  "designRefs": {
+    "designSpec": "design/{{设计规范目录名}}/design-spec.md",
+    "tokens": "design/{{设计规范目录名}}/tokens.json",
+    "figmaTokens": "design/{{设计规范目录名}}/figma-tokens.json",
+    "componentRules": "design/{{设计规范目录名}}/component-rules.json",
+    "componentBlueprints": "design/{{设计规范目录名}}/component-blueprints.json",
+    "figmaRenderRules": "design/{{设计规范目录名}}/figma-render-rules.json",
+    "aiGenerationRules": "design/{{设计规范目录名}}/ai-generation-rules.json"
+  },
+  "sourcePage": {
+    "layoutFile": "product/pages/**/layout.md",
+    "pageId": "{{PAGE-ID}}",
+    "pageName": "{{页面名称}}",
+    "stateGroup": "",
+    "usedLayout": "{{使用Layout}}",
+    "sourceSections": {
+      "status": "0.文档状态",
+      "goal": "1.1.页面目标与范围",
+      "layoutState": "1.2.使用的layout与状态",
+      "defaultContent": "1.3.1.默认状态页面结构",
+      "defaultElementDetails": "1.3.2.默认状态元素细节",
+      "stateListReferenceOnly": "1.3.3.状态清单",
+      "stateDeltaReferenceOnly": "1.3.4.状态差异说明",
+      "structure": "1.4.默认状态页面结构图",
+      "elementList": "1.5.页面元素清单",
+      "mockData": "2.Mock数据"
+    },
+    "stateGenerationPolicy": "default-state-only"
+  },
+  "sourceSitemap": {
+    "file": "product/layout/**-sitemap.md",
+    "productEndAndShape": "{{产品端与形态}}",
+    "layoutSectionsRead": [
+      "0.文档状态",
+      "1.layout布局方式",
+      "1.2.区域、分组与元素",
+      "2.1.sitemap思维导图",
+      "2.2.页面清单"
+    ],
+    "pageParentChain": []
+  },
+  "pageIntent": {
+    "primary": "{{allowed-intent}}",
+    "confidence": "{{low|medium|high}}",
+    "evidence": [],
+    "selectedPattern": "component-rules.semanticPatterns.{{allowed-intent}}",
+    "strategy": "ai-generation-rules.pageIntentStrategies.{{allowed-intent}}"
+  },
+  "semanticValidation": {
+    "status": "{{pass|warning|failed}}",
+    "conflicts": [],
+    "warnings": [],
+    "criticalMissing": [],
+    "autoFixes": []
+  },
+  "layoutShell": {
+    "source": "sourceSitemap",
+    "usedLayout": "{{使用Layout}}",
+    "nodes": []
+  },
+  "pageContent": {
+    "source": "sourcePage",
+    "defaultStateNodes": [],
+    "elementMappings": []
+  },
+  "consistency": {
+    "layoutKey": "{{normalized-使用Layout}}",
+    "pageIntentKey": "{{allowed-intent}}",
+    "stateGroupKey": "{{状态组-or-empty}}",
+    "designSpecKey": "{{设计规范目录名}}",
+    "profileRefs": {
+      "layoutProfile": "product/style-profiles/{{layoutKey}}/layout-profile.json",
+      "intentProfile": "product/style-profiles/{{layoutKey}}/intent-{{allowed-intent}}-profile.json",
+      "stateGroupProfile": "product/style-profiles/{{layoutKey}}/state-{{状态组}}-profile.json"
+    },
+    "profileStatus": {
+      "layoutProfile": "{{created|reused|updated}}",
+      "intentProfile": "{{created|reused|updated}}",
+      "stateGroupProfile": "{{created|reused|updated|not-applicable}}"
+    },
+    "styleFingerprint": {
+      "layoutHash": "{{stable-layout-hash}}",
+      "intentHash": "{{stable-intent-hash}}",
+      "stateGroupHash": "{{stable-state-group-hash-or-empty}}"
+    },
+    "lockedPropertiesApplied": [],
+    "allowedPageOverrides": [],
+    "driftCheck": {
+      "status": "{{pass|warning|failed}}",
+      "warnings": []
+    }
+  },
+  "renderSpec": {
+    "renderer": {
+      "sourceTree": "figmaDocument.children",
+      "requiresComponentAdapters": true,
+      "requiresTwoPassLayout": true,
+      "preferredRenderRules": "design/{{设计规范目录名}}/figma-render-rules.json"
+    },
+    "canvas": {
+      "primaryFrameId": "frame-primary",
+      "device": "{{primary-device}}",
+      "width": 1440,
+      "minHeight": 900,
+      "layoutMode": "VERTICAL"
+    },
+    "layoutSafety": {
+      "noOverlap": true,
+      "noTextOverflow": true,
+      "avoidClipping": true,
+      "minClickableTarget": 32
+    },
+    "componentInstances": [
+      {
+        "sourceNodeId": "{{component-node-id}}",
+        "component": "{{Button|Input|Table|Card|Navigation|...}}",
+        "adapter": "componentBlueprints.componentBlueprints.{{component}}",
+        "variant": "{{variant}}",
+        "props": {},
+        "slots": {},
+        "sizing": {
+          "widthMode": "{{fixed|fill|hug}}",
+          "heightMode": "{{fixed|hug}}",
+          "minWidth": 0,
+          "minHeight": 0
+        },
+        "textPolicy": "{{text-policy-id}}"
+      }
+    ],
+    "textPolicies": [
+      {
+        "sourceNodeId": "{{text-node-id}}",
+        "wrap": true,
+        "maxLines": null,
+        "overflow": "grow-parent",
+        "minWidth": 0
+      }
+    ],
+    "constraints": [
+      {
+        "sourceNodeId": "{{frame-or-component-node-id}}",
+        "widthMode": "{{fixed|fill|hug}}",
+        "heightMode": "{{fixed|hug}}",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "spacing/4",
+        "paddingToken": "spacing/6",
+        "alignment": "{{start|center|stretch}}"
+      }
+    ],
+    "qaExpectations": {
+      "keyRegions": [],
+      "forbiddenRegions": [],
+      "consistencyChecks": [
+        "layout-profile-applied",
+        "intent-profile-applied",
+        "state-group-profile-applied-when-present",
+        "style-fingerprint-recorded"
+      ],
+      "screenshotRequired": true,
+      "structuralChecks": [
+        "no-overlap",
+        "no-text-overflow",
+        "semantic-key-regions-present"
+      ]
+    }
+  },
+  "figmaDocument": {
+    "type": "DOCUMENT",
+    "name": "{{页面名称}} Figma Nodes",
+    "children": [
+      {
+        "id": "page-root",
+        "name": "Page/{{PAGE-ID}}-{{页面名称}}",
+        "type": "PAGE",
+        "children": [
+          {
+            "id": "frame-primary",
+            "name": "Frame/Primary/{{使用Layout}}",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "tokens": {
+              "fill": "color/background"
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "responsiveVariants": {
+    "primary": {
+      "device": "{{primary-device}}",
+      "frameWidth": 1440,
+      "strategy": "{{primary-layout-strategy}}"
+    },
+    "fallbacks": []
+  },
+  "excludedStates": [
+    {
+      "stateId": "STATE-VIEW-002",
+      "stateName": "空状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    }
+  ],
+  "assumptions": [],
+  "qualityChecklist": []
+}

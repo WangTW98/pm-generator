@@ -1,0 +1,27 @@
+name: pm-08-md2figma
+display_name: PM 08 MD to Figma
+description: Restore a product page figma-nodes.json into editable Figma nodes with token resolution, consistency profiles, component adapters, and QA.
+default_prompt: >-
+  Use pm-08-md2figma to restore the specified product/pages/**/figma-nodes.json into the specified Figma link.
+  Load figma:figma-use before any Figma write operation, build a RenderPlan from figmaDocument.children, merge renderSpec componentInstances/textPolicies/constraints/qaExpectations, read consistency profileRefs and apply profile-locked layout/pageIntent/stateGroup rules, resolve pm05 tokens and component blueprints/render rules, render through component adapters, use two-pass layout, preserve default-state-only behavior, do not replace page structure with a fixed template, run semantic/fingerprint/drift and screenshot/structure QA, and write figma-restore-report.md next to the source JSON.
+inputs:
+  required:
+    - product/pages/**/figma-nodes.json
+    - Figma design link
+  optional:
+    - write mode
+    - target node
+    - dry run
+outputs:
+  - Figma editable page or frame
+  - figma-restore-report.md
+constraints:
+  - Do not create a new Figma file unless the user explicitly asks.
+  - Do not generate non-default UI states.
+  - Do not compress or rewrite the source figmaDocument structure.
+  - Do not ignore renderSpec, component-blueprints.json, or figma-render-rules.json when present.
+  - Do not ignore consistency, profileRefs, styleFingerprint, or driftCheck when present.
+  - Do not use an existing Figma frame as a style baseline unless the user explicitly asks and the fingerprint matches.
+  - Do not skip RenderPlan, TokenResolver, component adapters, or QA.
+  - Do not delete unrelated Figma content.
+  - Do not replace editable Figma nodes with a single screenshot.

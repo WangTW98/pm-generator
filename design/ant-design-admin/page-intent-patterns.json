@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "name": "ant-design-admin-page-intent-patterns",
+    "version": "1.0.0"
+  },
+  "patterns": {
+    "auth": {
+      "displayName": "认证登录",
+      "rootLayout": "split-brand-panel-and-auth-card",
+      "regions": [
+        {
+          "key": "BrandValuePanel",
+          "role": "brand-and-value"
+        },
+        {
+          "key": "AuthPanel",
+          "role": "credential-input"
+        },
+        {
+          "key": "AuthMethodSwitch",
+          "role": "method-navigation"
+        },
+        {
+          "key": "CredentialArea",
+          "role": "state-specific-fields"
+        },
+        {
+          "key": "PrimaryAction",
+          "role": "submit"
+        },
+        {
+          "key": "AuxiliaryLinks",
+          "role": "help-policy"
+        }
+      ],
+      "lockedDefaults": {
+        "authCardWidth": 420,
+        "authCardPadding": 32,
+        "controlHeight": 40,
+        "methodSwitchHeight": 40,
+        "primaryButtonHeight": 40
+      },
+      "forbiddenRegions": [
+        "Table",
+        "FilterBar",
+        "DataDashboard"
+      ]
+    },
+    "list-management": {
+      "displayName": "列表管理",
+      "rootLayout": "header-filter-toolbar-table"
+    },
+    "form-create-edit": {
+      "displayName": "表单创建编辑",
+      "rootLayout": "header-grouped-form-actionbar"
+    },
+    "workbench-list": {
+      "displayName": "工作台列表",
+      "rootLayout": "workspace-sidebar-header-table",
+      "regions": [
+        {
+          "key": "WorkspaceHeader",
+          "role": "summary-and-actions"
+        },
+        {
+          "key": "QuickStats",
+          "role": "summary-metrics"
+        },
+        {
+          "key": "TaskList",
+          "role": "table-or-list"
+        }
+      ],
+      "lockedDefaults": {
+        "sidebarWidth": 232,
+        "contentPadding": 24,
+        "tableRowHeight": 56
+      },
+      "forbiddenRegions": [
+        "AuthPanel",
+        "MarketingHero"
+      ]
+    },
+    "commerce-list": {
+      "displayName": "服务商城",
+      "rootLayout": "workspace-sidebar-service-grid",
+      "regions": [
+        {
+          "key": "CatalogHeader",
+          "role": "title-and-search"
+        },
+        {
+          "key": "CategoryFilter",
+          "role": "filter"
+        },
+        {
+          "key": "ServiceGrid",
+          "role": "card-collection"
+        }
+      ],
+      "lockedDefaults": {
+        "cardWidth": 300,
+        "cardMinHeight": 180,
+        "gridGap": 16
+      }
+    },
+    "detail": {
+      "displayName": "详情页",
+      "rootLayout": "workspace-sidebar-detail",
+      "regions": [
+        {
+          "key": "DetailHeader",
+          "role": "title-status-actions"
+        },
+        {
+          "key": "DetailBody",
+          "role": "content-detail"
+        },
+        {
+          "key": "SideSummary",
+          "role": "purchase-summary"
+        }
+      ],
+      "lockedDefaults": {
+        "contentGap": 24,
+        "sideSummaryWidth": 320
+      }
+    },
+    "checkout-payment": {
+      "displayName": "订单结算",
+      "rootLayout": "workspace-sidebar-checkout",
+      "regions": [
+        {
+          "key": "CheckoutForm",
+          "role": "form"
+        },
+        {
+          "key": "OrderSummary",
+          "role": "summary"
+        },
+        {
+          "key": "PaymentAction",
+          "role": "submit"
+        }
+      ],
+      "lockedDefaults": {
+        "summaryWidth": 360,
+        "formGap": 16
+      }
+    },
+    "payment-status": {
+      "displayName": "支付状态",
+      "rootLayout": "workspace-centered-status",
+      "regions": [
+        {
+          "key": "StatusResult",
+          "role": "result"
+        },
+        {
+          "key": "OrderSummary",
+          "role": "summary"
+        },
+        {
+          "key": "NextActions",
+          "role": "actions"
+        }
+      ],
+      "lockedDefaults": {
+        "statusCardWidth": 720,
+        "iconSize": 56
+      }
+    }
+  }
+}

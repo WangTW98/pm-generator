@@ -1,0 +1,48 @@
+{
+  "meta": { "name": "ant-design-admin-component-blueprints", "version": "1.0.0" },
+  "componentBlueprints": {
+    "Button": {
+      "node": "Frame",
+      "layoutMode": "HORIZONTAL",
+      "height": 40,
+      "padding": { "left": 16, "right": 16, "top": 0, "bottom": 0 },
+      "children": [{ "node": "Text", "slot": "label" }]
+    },
+    "Input": {
+      "node": "Frame",
+      "layoutMode": "VERTICAL",
+      "gap": 6,
+      "children": [
+        { "node": "Text", "slot": "label" },
+        { "node": "Frame", "slot": "control", "height": 40, "children": [{ "node": "Text", "slot": "placeholder" }] },
+        { "node": "Text", "slot": "helper" }
+      ]
+    },
+    "Tabs": {
+      "node": "Frame",
+      "layoutMode": "HORIZONTAL",
+      "height": 40,
+      "children": [{ "node": "Frame", "slot": "tabItem" }]
+    },
+    "AuthCard": {
+      "node": "Frame",
+      "layoutMode": "VERTICAL",
+      "width": 420,
+      "padding": 32,
+      "gap": 20,
+      "children": [
+        { "node": "Text", "slot": "title" },
+        { "node": "Frame", "slot": "methodSwitch" },
+        { "node": "Frame", "slot": "credentialArea" },
+        { "node": "Frame", "slot": "primaryAction" },
+        { "node": "Frame", "slot": "auxiliaryLinks" }
+      ]
+    },
+    "QRCode": {
+      "node": "Frame",
+      "width": 180,
+      "height": 180,
+      "children": [{ "node": "Text", "slot": "qrPlaceholder" }]
+    }
+  }
+}

@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "generatedBy": "pm-06-page-style",
+    "version": "1.0.0",
+    "generatedAt": "2026-05-18",
+    "sourceLayout": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/layout.md",
+    "pageId": "PAGE-005",
+    "pageName": "服务详情页",
+    "device": "PC Web"
+  },
+  "designRefs": {
+    "designSpec": "design/ant-design-admin/design-spec.md",
+    "tokens": "design/ant-design-admin/tokens.json",
+    "figmaTokens": "design/ant-design-admin/figma-tokens.json",
+    "componentRules": "design/ant-design-admin/component-rules.json",
+    "componentBlueprints": "design/ant-design-admin/component-blueprints.json",
+    "figmaRenderRules": "design/ant-design-admin/figma-render-rules.json",
+    "aiGenerationRules": "design/ant-design-admin/ai-generation-rules.json",
+    "consistencyRules": "design/ant-design-admin/consistency-rules.json",
+    "layoutProfileSchema": "design/ant-design-admin/layout-profile-schema.json",
+    "pageIntentPatterns": "design/ant-design-admin/page-intent-patterns.json"
+  },
+  "stateGenerationPolicy": "default-state-only",
+  "excludedStates": [
+    {
+      "state": "空/加载/错误或同状态组其他状态差异",
+      "source": "layout.md 1.3.3",
+      "reason": "non-default state"
+    }
+  ],
+  "pageIntent": {
+    "primary": "detail",
+    "confidence": 0.96,
+    "requiredRegions": [
+      "DetailHeader",
+      "DetailBody",
+      "SideSummary"
+    ]
+  },
+  "semanticValidation": {
+    "status": "pass",
+    "checks": [
+      "default state only",
+      "required semantic regions present",
+      "profile consistency applied"
+    ]
+  },
+  "layoutShell": {
+    "sourceSitemap": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web",
+    "nodes": [
+      "Topbar",
+      "Sidebar",
+      "Content"
+    ]
+  },
+  "pageContent": {
+    "source": "layout.md",
+    "defaultStateNodes": [
+      "DetailHeader",
+      "DetailBody",
+      "SideSummary"
+    ],
+    "elementMappings": [
+      "PLE-001",
+      "PLE-002",
+      "PLE-003",
+      "PLE-004"
+    ]
+  },
+  "consistency": {
+    "layoutKey": "客户端-PC-Web",
+    "layoutVariantKey": "workspace",
+    "pageIntentKey": "detail",
+    "stateGroupKey": null,
+    "designSpecKey": "ant-design-admin",
+    "profileRefs": {
+      "layoutProfile": "product/style-profiles/客户端-PC-Web/layout-workspace-profile.json",
+      "intentProfile": "product/style-profiles/客户端-PC-Web/intent-detail-profile.json",
+      "stateGroupProfile": null
+    },
+    "profileStatus": {
+      "layoutProfile": "created",
+      "intentProfile": "created",
+      "stateGroupProfile": "not-applicable"
+    },
+    "styleFingerprint": {
+      "layoutHash": "layout-client-pc-web-workspace-v1",
+      "intentHash": "intent-detail-v1",
+      "stateGroupHash": ""
+    },
+    "lockedPropertiesApplied": [
+      "canvas",
+      "topbar.height",
+      "sidebar.width",
+      "pageContainer.padding",
+      "contentGap"
+    ],
+    "allowedPageOverrides": [
+      "pageId=PAGE-005",
+      "pageName=服务详情页"
+    ],
+    "driftCheck": {
+      "status": "pass",
+      "warnings": []
+    }
+  },
+  "figmaDocument": {
+    "type": "DOCUMENT",
+    "children": [
+      {
+        "id": "PAGE-005-root",
+        "name": "PM08 ProfileLocked/PAGE-005 - 服务详情页 - 客户端-PC-Web",
+        "semanticType": "FRAME",
+        "layout": {
+          "width": 1440,
+          "height": 900,
+          "layoutMode": "VERTICAL"
+        },
+        "tokens": {
+          "fill": "color.background"
+        },
+        "children": [
+          {
+            "id": "PAGE-005-topbar",
+            "name": "Shell/Topbar",
+            "semanticType": "FRAME",
+            "layout": {
+              "width": "fill",
+              "height": 64,
+              "layoutMode": "HORIZONTAL"
+            },
+            "content": {
+              "brand": "Case Tracking Portal",
+              "actions": [
+                "消息通知",
+                "待办事项",
+                "个人中心"
+              ]
+            }
+          },
+          {
+            "id": "PAGE-005-workspace",
+            "name": "Shell/Workspace",
+            "semanticType": "FRAME",
+            "layout": {
+              "width": "fill",
+              "height": 836,
+              "layoutMode": "HORIZONTAL"
+            },
+            "children": [
+              {
+                "id": "PAGE-005-sidebar",
+                "name": "Shell/Sidebar",
+                "semanticType": "FRAME",
+                "layout": {
+                  "width": 232,
+                  "height": "fill",
+                  "layoutMode": "VERTICAL"
+                },
+                "content": {
+                  "nav": [
+                    "工作台",
+                    "待办事项",
+                    "案件进度",
+                    "服务商城",
+                    "我的订单",
+                    "账户设置"
+                  ],
+                  "active": "服务商城"
+                }
+              },
+              {
+                "id": "PAGE-005-content",
+                "name": "PageContent",
+                "semanticType": "FRAME",
+                "layout": {
+                  "width": 1208,
+                  "height": "fill",
+                  "layoutMode": "VERTICAL",
+                  "gap": 24,
+                  "padding": 24
+                },
+                "children": [
+                  {
+                    "id": "PAGE-005-header",
+                    "name": "DetailHeader",
+                    "semanticType": "FRAME",
+                    "layout": {
+                      "width": "fill",
+                      "layoutMode": "VERTICAL",
+                      "gap": 8
+                    },
+                    "content": {
+                      "title": "美国商标注册",
+                      "subtitle": "查看服务说明、办理流程、SKU规格和下单信息。",
+                      "tags": [
+                        "热门服务",
+                        "资料审核",
+                        "官方递交"
+                      ]
+                    }
+                  },
+                  {
+                    "id": "PAGE-005-body",
+                    "name": "DetailBody",
+                    "semanticType": "FRAME",
+                    "layout": {
+                      "width": "fill",
+                      "layoutMode": "HORIZONTAL",
+                      "gap": 24
+                    },
+                    "content": {
+                      "sections": [
+                        "服务说明",
+                        "办理流程",
+                        "所需资料"
+                      ],
+                      "skus": [
+                        "基础版 | ¥3,200 | 20-30个工作日",
+                        "加急版 | ¥4,800 | 10-15个工作日"
+                      ]
+                    }
+                  },
+                  {
+                    "id": "PAGE-005-summary",
+                    "name": "SideSummary",
+                    "semanticType": "CARD",
+                    "layout": {
+                      "width": 320
+                    },
+                    "content": {
+                      "title": "购买摘要",
+                      "price": "¥3,200起",
+                      "action": "立即下单"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "renderSpec": {
+    "renderer": {
+      "sourceTree": "figmaDocument.children",
+      "requiresComponentAdapters": true,
+      "requiresTwoPassLayout": true,
+      "preferredRenderRules": "design/ant-design-admin/figma-render-rules.json"
+    },
+    "canvas": {
+      "width": 1440,
+      "height": 900
+    },
+    "layoutSafety": {
+      "preventOverflow": true,
+      "textPolicy": "wrap-or-ellipsis",
+      "minControlHeight": 40
+    },
+    "componentInstances": [
+      {
+        "nodeId": "PAGE-005-DetailHeader",
+        "adapter": "DetailHeader",
+        "sizing": "profile-locked"
+      },
+      {
+        "nodeId": "PAGE-005-DetailBody",
+        "adapter": "DetailBody",
+        "sizing": "profile-locked"
+      },
+      {
+        "nodeId": "PAGE-005-SideSummary",
+        "adapter": "SideSummary",
+        "sizing": "profile-locked"
+      }
+    ],
+    "textPolicies": [
+      {
+        "nodeId": "PAGE-005-header",
+        "policy": "wrap",
+        "maxLines": 2
+      }
+    ],
+    "constraints": [
+      {
+        "nodeId": "PAGE-005-content",
+        "width": 1208
+      },
+      {
+        "nodeId": "PAGE-005-sidebar",
+        "width": 232
+      }
+    ],
+    "qaExpectations": {
+      "requiredRegions": [
+        "DetailHeader",
+        "DetailBody",
+        "SideSummary"
+      ],
+      "consistencyChecks": [
+        "workspace shell matches profile",
+        "content padding matches profile",
+        "default state only"
+      ]
+    }
+  }
+}

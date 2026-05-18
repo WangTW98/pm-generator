@@ -1,0 +1,21 @@
+{
+  "layoutKey": "客户端-PC-Web",
+  "designSpecKey": "ant-design-admin",
+  "sourceSitemap": "product/layout/客户端-PC-Web-sitemap.md",
+  "canvas": { "width": 1440, "height": 900, "background": "color.background" },
+  "shell": {
+    "topbar": { "height": 64, "paddingX": 32, "background": "color.surface" },
+    "footer": { "height": 56, "paddingX": 32, "background": "color.surface" },
+    "sidebar": null
+  },
+  "pageContainer": {
+    "x": 0,
+    "y": 64,
+    "width": 1440,
+    "height": 780,
+    "padding": { "left": 80, "right": 80, "top": 48, "bottom": 48 },
+    "gap": 48
+  },
+  "lockedProperties": ["canvas", "shell.topbar", "shell.footer", "pageContainer"],
+  "hash": "layout-client-pc-web-v1"
+}

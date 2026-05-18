@@ -1,0 +1,19 @@
+{
+  "layoutKey": "客户端-PC-Web",
+  "pageIntentKey": "commerce-list",
+  "regions": [
+    "CatalogHeader",
+    "CategoryFilter",
+    "ServiceGrid"
+  ],
+  "componentDefaults": {
+    "cardWidth": 300,
+    "cardMinHeight": 180,
+    "gridGap": 16
+  },
+  "lockedProperties": [
+    "regions",
+    "componentDefaults"
+  ],
+  "hash": "intent-commerce-list-v1"
+}

@@ -1,0 +1,23 @@
+{
+  "layoutKey": "客户端-PC-Web",
+  "pageIntentKey": "auth",
+  "designSpecKey": "ant-design-admin",
+  "regions": ["BrandValuePanel", "AuthPanel", "AuthMethodSwitch", "CredentialArea", "PrimaryAction", "AuxiliaryLinks"],
+  "authShell": {
+    "layoutMode": "HORIZONTAL",
+    "gap": 64,
+    "align": "CENTER",
+    "brandWidth": 560,
+    "authCardWidth": 420,
+    "authCardPadding": 32
+  },
+  "componentDefaults": {
+    "methodSwitchHeight": 40,
+    "controlHeight": 40,
+    "primaryButtonHeight": 40,
+    "fieldGap": 12,
+    "sectionGap": 20
+  },
+  "lockedProperties": ["authShell", "componentDefaults", "regions"],
+  "hash": "intent-auth-ant-design-admin-v1"
+}

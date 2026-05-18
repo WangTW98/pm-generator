@@ -1,0 +1,19 @@
+{
+  "layoutKey": "客户端-PC-Web",
+  "pageIntentKey": "workbench-list",
+  "regions": [
+    "WorkspaceHeader",
+    "QuickStats",
+    "TaskList"
+  ],
+  "componentDefaults": {
+    "tableRowHeight": 56,
+    "statCardHeight": 92,
+    "filterHeight": 40
+  },
+  "lockedProperties": [
+    "regions",
+    "componentDefaults"
+  ],
+  "hash": "intent-workbench-list-v1"
+}

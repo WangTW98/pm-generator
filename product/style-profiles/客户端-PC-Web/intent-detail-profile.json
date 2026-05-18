@@ -1,0 +1,18 @@
+{
+  "layoutKey": "客户端-PC-Web",
+  "pageIntentKey": "detail",
+  "regions": [
+    "DetailHeader",
+    "DetailBody",
+    "SideSummary"
+  ],
+  "componentDefaults": {
+    "sideSummaryWidth": 320,
+    "sectionGap": 24
+  },
+  "lockedProperties": [
+    "regions",
+    "componentDefaults"
+  ],
+  "hash": "intent-detail-v1"
+}

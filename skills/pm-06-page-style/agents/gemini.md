@@ -1,0 +1,9 @@
+# Gemini Adapter Prompt
+
+Use the `pm-06-page-style` skill to create a default-state-only, render-ready Figma JSON node document from one pm-03 page layout Markdown file.
+
+Read `SKILL.md` as the workflow, `assets/figma-nodes-template.json` as the required JSON shape, and `assets/figma-node-notes-template.md` as the notes template. Use one `product/pages/**/layout.md` source only. Resolve or auto-match a valid `design/<design-spec>/` directory containing `design-spec.md`, `tokens.json`, `figma-tokens.json`, `component-rules.json`, `component-blueprints.json`, `figma-render-rules.json`, `ai-generation-rules.json`, `consistency-rules.json`, `layout-profile-schema.json`, and `page-intent-patterns.json`. Combine only the page's default-state pm-03 content with the source sitemap global layout from `来源Sitemap` and `使用Layout`. Do not generate empty/loading/error/success/modal-open/drawer-open state variants as Figma nodes. Output `figma-nodes.json` and `figma-node-notes.md` beside the source layout file.
+
+Classify a generic `pageIntent`, apply the matching design semantic pattern, and include `semanticValidation`. If the source element list is semantically inconsistent with the intent, repair from stronger source sections or fail the page instead of generating generic UI.
+
+Ensure the JSON is valid, token-referenced, traceable to default-state page elements and sitemap layout, semantically correct, and includes `renderSpec` with component adapters, constraints, text policies, layout safety, QA expectations, responsive variants, and excluded-state records. Include top-level `consistency` with layoutKey, pageIntentKey, stateGroupKey, designSpecKey, profileRefs, styleFingerprint, lockedPropertiesApplied, and driftCheck; create or reuse `product/style-profiles/<layoutKey>/` profiles according to the design spec.

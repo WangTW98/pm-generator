@@ -1,0 +1,31 @@
+{
+  "meta": { "name": "ant-design-admin-ai-generation-rules", "version": "1.0.0" },
+  "styleIntent": {
+    "keywords": ["antd", "ant design", "enterprise", "admin", "dashboard", "pc web", "auth"],
+    "density": "medium-high",
+    "tone": "professional"
+  },
+  "deviceStrategies": {
+    "PC Web": {
+      "canvas": [1440, 900],
+      "defaultShell": "topbar-content-footer",
+      "contentPadding": 24
+    },
+    "Mobile Web": {
+      "canvas": [390, 844],
+      "defaultShell": "single-column"
+    }
+  },
+  "pageIntentStrategies": {
+    "auth": {
+      "layout": "split-brand-panel-and-auth-card",
+      "requiredRegions": ["BrandValuePanel", "AuthPanel", "AuthMethodSwitch", "CredentialArea", "PrimaryAction", "AuxiliaryLinks"],
+      "lockedStateGroupSlots": ["methodSwitch", "credentialArea", "primaryAction", "auxiliaryLinks"]
+    }
+  },
+  "forbidden": [
+    "do not convert auth pages into admin tables",
+    "do not generate non-default states as root frames",
+    "do not change auth card width inside the same state group"
+  ]
+}
