@@ -1,0 +1,392 @@
+{
+  "meta": {
+    "documentType": "pm-06-figma-nodes",
+    "version": "1.0.0",
+    "generatedAt": "2026-05-19",
+    "pageId": "PAGE-006",
+    "pageName": "订单结算",
+    "sourceLayoutFile": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/PAGE-006-订单结算/layout.md",
+    "sourceSitemapFile": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web",
+    "designSpecDir": "design/antd-admin-design-spec"
+  },
+  "designRefs": {
+    "tokens": "design/antd-admin-design-spec/tokens.json",
+    "figmaTokens": "design/antd-admin-design-spec/figma-tokens.json",
+    "componentRules": "design/antd-admin-design-spec/component-rules.json",
+    "componentBlueprints": "design/antd-admin-design-spec/component-blueprints.json",
+    "figmaRenderRules": "design/antd-admin-design-spec/figma-render-rules.json",
+    "aiGenerationRules": "design/antd-admin-design-spec/ai-generation-rules.json",
+    "consistencyRules": "design/antd-admin-design-spec/consistency-rules.json",
+    "layoutProfileSchema": "design/antd-admin-design-spec/layout-profile-schema.json",
+    "pageIntentPatterns": "design/antd-admin-design-spec/page-intent-patterns.json"
+  },
+  "sourcePage": {
+    "layout": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/PAGE-006-订单结算/layout.md",
+    "pageId": "PAGE-006",
+    "pageName": "订单结算"
+  },
+  "sourceSitemap": {
+    "path": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web"
+  },
+  "pageIntent": {
+    "primary": "checkout-payment",
+    "confidence": "high",
+    "evidence": [
+      "页面属于服务采购结算场景",
+      "默认元素包含服务SKU摘要、企业主体、联系人、微信支付、应付金额和提交支付按钮"
+    ],
+    "selectedPattern": "checkout-payment",
+    "strategy": "render service purchase checkout with payment method and fee summary"
+  },
+  "semanticValidation": {
+    "status": "pass",
+    "conflicts": [],
+    "warnings": [
+      "本 JSON 因目录缺失 figma-nodes.json，由 pm08 前置补齐，结构来自 layout.md 的默认状态。"
+    ],
+    "criticalMissing": [],
+    "autoFixes": [],
+    "semanticOwnershipAudit": {
+      "status": "pass",
+      "globalShellDuplicates": [],
+      "pageBodyRegions": [
+        "订单确认区",
+        "购买方信息区",
+        "支付方式区",
+        "费用汇总区"
+      ],
+      "notes": [
+        "全局顶栏、底栏、登录后导航侧栏来自 sitemap merge；page body 不重复生成全局 Shell。"
+      ]
+    },
+    "duplicateAudit": {
+      "status": "pass",
+      "duplicateTexts": [],
+      "duplicateActions": [],
+      "blockingIssues": []
+    },
+    "layoutBudgetAudit": {
+      "status": "pass",
+      "availableContentHeight": 764,
+      "estimatedContentHeight": 700,
+      "compressionApplied": [],
+      "warnings": []
+    }
+  },
+  "consistency": {
+    "layoutKey": "客户端-PC-Web",
+    "pageIntentKey": "checkout-payment",
+    "stateGroupKey": null,
+    "designSpecKey": "antd-admin-design-spec",
+    "profileRefs": {
+      "layoutProfile": "product/style-profiles/客户端-PC-Web/layout-profile.json",
+      "intentProfile": "product/style-profiles/客户端-PC-Web/intent-checkout-payment-profile.json",
+      "stateGroupProfile": null
+    },
+    "profileStatus": {
+      "layoutProfile": "reused",
+      "intentProfile": "created",
+      "stateGroupProfile": "none"
+    },
+    "styleFingerprint": {
+      "layoutHash": "b2968cd4bc2c",
+      "intentHash": "checkout-payment-pm08-20260519",
+      "stateGroupHash": ""
+    },
+    "lockedPropertiesApplied": [
+      "canvas",
+      "global shell",
+      "content padding",
+      "responsive fallback",
+      "checkout payment skeleton"
+    ],
+    "allowedPageOverrides": [
+      "service SKU summary",
+      "buyer contact details",
+      "payment method",
+      "fee summary",
+      "payment CTA"
+    ],
+    "driftCheck": {
+      "status": "pass",
+      "warnings": [
+        "intent profile is generated inline for this pm08 restore because no prior figma-nodes.json existed."
+      ]
+    }
+  },
+  "renderSpec": {
+    "renderer": {
+      "sourceTree": "figmaDocument.children",
+      "requiresComponentAdapters": true,
+      "requiresTwoPassLayout": true,
+      "preferredRenderRules": "design/antd-admin-design-spec/figma-render-rules.json"
+    },
+    "canvas": {
+      "primaryFrameId": "frame-primary",
+      "device": "PC Web",
+      "width": 1440,
+      "minHeight": 900,
+      "layoutMode": "VERTICAL"
+    },
+    "layoutSafety": {
+      "noOverlap": true,
+      "noTextOverflow": true,
+      "avoidClipping": true,
+      "minClickableTarget": 32
+    },
+    "layoutBudget": {
+      "availableContentHeight": 764,
+      "estimatedContentHeight": 700,
+      "maxPrimaryPanelHeight": 720,
+      "compressionOrder": [
+        "secondary helper text",
+        "optional notices",
+        "payment explanation"
+      ],
+      "compressionApplied": [],
+      "scrollContainers": [],
+      "status": "pass"
+    },
+    "componentInstances": [
+      {
+        "sourceNodeId": "node-ple-001",
+        "component": "OrderSummary",
+        "adapter": "component-rules.components.Card",
+        "variant": "default",
+        "props": {
+          "label": "服务SKU摘要",
+          "service": "商标注册基础套餐",
+          "sku": "中国大陆 / 1类 / 加急"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-002",
+        "component": "Select",
+        "adapter": "component-rules.components.Select",
+        "variant": "default",
+        "props": {
+          "label": "企业主体选择",
+          "text": "上海远航贸易有限公司"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-003",
+        "component": "ContactInfo",
+        "adapter": "component-rules.components.DescriptionList",
+        "variant": "compact",
+        "props": {
+          "label": "联系人信息",
+          "name": "王经理",
+          "phone": "13800138000"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-004",
+        "component": "EntryGroup",
+        "adapter": "component-rules.components.Link",
+        "variant": "default",
+        "props": {
+          "label": "优惠与发票入口",
+          "items": [
+            "优惠券",
+            "发票信息"
+          ]
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-005",
+        "component": "PaymentMethod",
+        "adapter": "component-rules.components.Radio",
+        "variant": "selected",
+        "props": {
+          "label": "微信支付方式",
+          "text": "微信支付"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-006",
+        "component": "PriceSummary",
+        "adapter": "component-rules.components.Card",
+        "variant": "highlight",
+        "props": {
+          "label": "应付金额",
+          "text": "¥3,999.00"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-007",
+        "component": "Button",
+        "adapter": "component-rules.components.Button",
+        "variant": "primary",
+        "props": {
+          "label": "提交支付按钮",
+          "text": "提交支付"
+        }
+      }
+    ],
+    "slotContracts": [
+      {
+        "slotId": "slot-checkout-payment-primary-content",
+        "slotName": "checkout payment primary content",
+        "scope": "pageIntent",
+        "required": true,
+        "variableByState": false,
+        "allowedComponents": [
+          "OrderSummary",
+          "Select",
+          "ContactInfo",
+          "EntryGroup",
+          "PaymentMethod",
+          "PriceSummary",
+          "Button"
+        ],
+        "sizing": {
+          "widthMode": "fill",
+          "heightMode": "hug"
+        },
+        "overflow": "visible"
+      }
+    ],
+    "duplicateAudit": [],
+    "qaExpectations": {
+      "keyRegions": [
+        "OrderSummary",
+        "BuyerInfo",
+        "PaymentMethod",
+        "PriceSummary",
+        "PaymentAction"
+      ],
+      "forbiddenRegions": [
+        "default-visible admin data table",
+        "auth credential slot",
+        "non-default state board"
+      ],
+      "consistencyChecks": [
+        "layout-profile-applied",
+        "intent-profile-applied",
+        "style-fingerprint-recorded"
+      ],
+      "screenshotRequired": true,
+      "structuralChecks": [
+        "no-overlap",
+        "no-text-overflow",
+        "no-root-clipping",
+        "no-shell-collision",
+        "no-blocking-duplicate-action",
+        "semantic-key-regions-present"
+      ]
+    }
+  },
+  "figmaDocument": {
+    "type": "DOCUMENT",
+    "name": "订单结算 Figma Nodes",
+    "children": [
+      {
+        "id": "page-root",
+        "name": "Page/PAGE-006-订单结算",
+        "type": "PAGE",
+        "children": [
+          {
+            "id": "frame-primary",
+            "name": "Frame/Primary/客户端 / PC Web",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "tokens": {
+              "fill": "color/background"
+            },
+            "layout": {
+              "width": 1440,
+              "minHeight": 900
+            },
+            "children": [
+              {
+                "id": "shell-topbar",
+                "name": "GlobalShell/Topbar",
+                "type": "FRAME"
+              },
+              {
+                "id": "shell-footer",
+                "name": "GlobalShell/Footer",
+                "type": "FRAME"
+              },
+              {
+                "id": "shell-sidebar",
+                "name": "GlobalShell/Sidebar",
+                "type": "FRAME"
+              },
+              {
+                "id": "page-body",
+                "name": "PageBody/PAGE-006-订单结算",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "node-ple-001",
+                    "name": "Component/Card/服务SKU摘要",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-002",
+                    "name": "Component/Select/企业主体选择",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-003",
+                    "name": "Component/DescriptionList/联系人信息",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-004",
+                    "name": "Component/EntryGroup/优惠与发票入口",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-005",
+                    "name": "Component/Radio/微信支付方式",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-006",
+                    "name": "Component/Card/应付金额",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-007",
+                    "name": "Component/Button/提交支付",
+                    "type": "COMPONENT_INSTANCE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "excludedStates": [
+    {
+      "state": "空状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    },
+    {
+      "state": "加载状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    },
+    {
+      "state": "错误状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    }
+  ],
+  "assumptions": [
+    "订单结算页按照服务采购结算与微信支付骨架还原。",
+    "默认示例使用商标注册基础套餐、中国大陆/1类/加急、王经理、¥3,999.00。"
+  ],
+  "qualityChecklist": {
+    "defaultStateOnly": true,
+    "semanticValidationPassed": true,
+    "noGenericAdminTable": true,
+    "renderSpecPresent": true,
+    "consistencyPresent": true
+  }
+}

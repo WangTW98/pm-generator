@@ -24,7 +24,7 @@ This skill orchestrates repeated single-page `pm-06-page-style` runs. It does no
 - Exclude empty/loading/error/success/modal-open/drawer-open and other non-default state variants from generated Figma nodes.
 - Record excluded states in `figma-nodes.json` and `figma-node-notes.md`.
 
-Important: pm07 is only an orchestrator. It must not generate `figma-nodes.json` by applying one shared generic page template across all pages. If the runtime cannot invoke or faithfully perform pm06 page-by-page, mark affected tasks as `Failed` with reason `pm06 invocation unavailable` instead of creating schema-valid but semantically generic JSON.
+Important: pm07 is only an orchestrator. It must not generate `figma-nodes.json` by applying one shared generic page template across all pages. If the runtime cannot invoke pm06 page-by-page, mark affected tasks as `Failed` with reason `pm06 invocation unavailable` instead of creating schema-valid but semantically generic JSON.
 
 For each source `layout.md`, output beside it:
 
@@ -34,6 +34,30 @@ figma-node-notes.md
 ```
 
 This skill creates and maintains a batch task list so long runs can be resumed.
+
+## Orchestration-Only Invariant
+
+`pm-07-page-style-batch` is a pure batch orchestrator. It never changes how `pm-06-page-style` executes and never implements page-style JSON generation itself.
+
+For every eligible `layout.md` in normal `Development` mode, the batch loop must be:
+
+```text
+for each eligible layout.md in task-list order:
+  mark the task In Progress
+  invoke pm-06-page-style once as a fresh single-page execution for that layout.md only
+  validate figma-nodes.json and figma-node-notes.md using pm-07 batch guards
+  mark the task Done or Failed
+```
+
+Hard requirements:
+
+- Each loop iteration must invoke `pm-06-page-style` exactly once for one `layout.md`.
+- Each `pm-06-page-style` invocation must be a fresh single-page execution. Do not carry prior page-generation conversational context into the next page. Shared effects must flow only through filesystem artifacts such as design specs, style profiles, source layout files, generated JSON/notes files, and task lists.
+- Do not combine multiple `layout.md` files, page directories, page IDs, profile groups, or products into one downstream invocation.
+- Do not invent a new batch generation mechanism because of user wording, generated instructions, model context, performance concerns, or perceived optimization opportunities.
+- Do not inline, summarize, reinterpret, or reimplement `pm-06-page-style` rules inside pm-07. The downstream skill's execution method is unchanged by this batch skill.
+- If the runtime cannot invoke `pm-06-page-style` as a separate skill for a task row, mark that row `Failed` with reason `pm06 invocation unavailable`; do not create or update `figma-nodes.json` directly in pm-07.
+- `DryRun` and `DirectoryOnly` are the only exceptions to downstream invocation. In those modes, perform only the documented discovery, task-list, expected-output, and directory-check behavior.
 
 ## Cross-Model Compatibility
 
@@ -233,7 +257,7 @@ For each eligible task row:
 3. Confirm it contains `来源Sitemap`, `使用Layout`, and `页面清单ID`.
 4. Confirm the referenced `来源Sitemap` exists.
 5. Resolve the page's profile group and load any existing `product/style-profiles/<layoutKey>/` files.
-6. In `Development`, invoke or perform `pm-06-page-style` for that single `layout.md`.
+6. In `Development`, invoke `pm-06-page-style` for that single `layout.md` as a fresh single-page execution.
    - Pass existing profile refs when they exist.
    - Instruct pm06 to create missing profiles only when this page is the first successful page in its group.
    - Instruct pm06 to keep `figma-nodes.json.consistency` and profile fingerprints stable.

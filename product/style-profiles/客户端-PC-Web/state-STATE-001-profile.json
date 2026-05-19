@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "documentType": "pm-06-state-profile",
+    "designSpecKey": "antd-admin-design-spec",
+    "layoutKey": "客户端-PC-Web",
+    "stateGroupKey": "STATE-001",
+    "generatedAt": "2026-05-19"
+  },
+  "locked": {
+    "sharedSkeleton": [
+      "AuthBrandPanel",
+      "AuthCard",
+      "AuthMethodSwitch",
+      "CredentialSlot",
+      "AgreementRow",
+      "PrimaryLoginAction",
+      "AuxiliaryLinks"
+    ],
+    "authCard": {
+      "width": 420,
+      "padding": 32,
+      "radius": 8
+    },
+    "methodSwitch": {
+      "height": 40,
+      "itemCount": 3,
+      "activeStyle": "primary underline or filled segmented"
+    },
+    "controls": {
+      "height": 40,
+      "radius": 6,
+      "gap": 16
+    },
+    "allowedOverrides": [
+      "active login method",
+      "credential slot fields",
+      "QR code area",
+      "verification action text"
+    ]
+  },
+  "source": {
+    "firstStateGroup": "登录方式",
+    "designSpec": "design/antd-admin-design-spec"
+  },
+  "fingerprint": "fc0e36bec1f5"
+}

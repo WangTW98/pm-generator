@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "hardConstraints": [
+    "默认生成 PC Web 管理后台页面，除非页面名明确为移动端",
+    "必须复用 AdminShell，不得在 Page Body 内重复生成侧栏、品牌 Logo 或全局顶栏",
+    "每个页面只能有一个默认可见 primary action intent",
+    "列表管理页必须包含页标题、筛选区、表格、分页和批量操作策略",
+    "流程/案件详情页必须展示当前状态、时间线、资料审核区和操作日志入口",
+    "所有状态色必须来自 tokens.json，不允许自由取色",
+    "卡片圆角不得超过 8px，后台页面不得使用营销 hero 或纯装饰插画"
+  ],
+  "layoutSelection": {
+    "dashboard": "metric-grid + task-table + risk-panel",
+    "list-management": "page-header + filter-bar + data-table + pagination",
+    "detail": "summary-header + tabs + description-list + timeline/log",
+    "form-create-edit": "sectioned-form + sticky-footer-actions",
+    "wizard-flow": "steps + form-panel + review-sidebar",
+    "message-center": "segmented-tabs + message-list + detail-drawer"
+  },
+  "copyRules": {
+    "tone": "清晰、短句、操作导向",
+    "button": "动词开头，如 新建、保存、办理、审核通过、驳回",
+    "empty": "说明当前状态和下一步动作，不写泛泛的宣传语"
+  }
+}

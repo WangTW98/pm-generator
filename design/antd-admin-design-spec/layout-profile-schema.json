@@ -1,0 +1,161 @@
+{
+  "$schema": "https://example.local/pm-generator/layout-profile-schema.json",
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "definitions": {
+    "layoutProfile": {
+      "required": [
+        "layoutKey",
+        "shell",
+        "breakpoint",
+        "regions",
+        "layoutBudget"
+      ],
+      "properties": {
+        "layoutKey": {
+          "type": "string",
+          "example": "admin-pc-web-shell"
+        },
+        "shell": {
+          "enum": [
+            "admin-sider-header",
+            "mobile-bottom-nav",
+            "tablet-master-detail"
+          ]
+        },
+        "breakpoint": {
+          "enum": [
+            "mobile",
+            "tablet",
+            "desktop",
+            "wideDesktop"
+          ]
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "layoutBudget": {
+          "$ref": "#/definitions/layoutBudget"
+        }
+      }
+    },
+    "intentProfile": {
+      "required": [
+        "pageIntentKey",
+        "requiredRegions",
+        "slotContract",
+        "componentFamilies"
+      ],
+      "properties": {
+        "pageIntentKey": {
+          "type": "string"
+        },
+        "requiredRegions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbiddenRegions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "slotContract": {
+          "$ref": "#/definitions/slotContract"
+        },
+        "componentFamilies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stateGroupProfile": {
+      "required": [
+        "stateGroupKey",
+        "sharedSkeleton",
+        "allowedOverrides"
+      ],
+      "properties": {
+        "stateGroupKey": {
+          "type": "string"
+        },
+        "sharedSkeleton": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowedOverrides": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "layoutBudget": {
+      "properties": {
+        "viewport": {
+          "type": "string"
+        },
+        "reservedShell": {
+          "type": "object"
+        },
+        "bodyPadding": {
+          "type": "number"
+        },
+        "maxPrimaryContainerHeight": {
+          "type": "number"
+        },
+        "compressionOrder": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "overflowPolicy": {
+          "type": "string"
+        }
+      }
+    },
+    "slotContract": {
+      "properties": {
+        "fixedSlots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flexibleSlots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maxPrimaryActions": {
+          "type": "number"
+        },
+        "allowedComponents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

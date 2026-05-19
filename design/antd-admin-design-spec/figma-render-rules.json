@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "importerRules": {
+    "twoPhaseLayout": [
+      "先创建 Global Shell、页面容器和核心 slot，再挂载组件内容",
+      "所有 fill container 子节点必须有明确父容器尺寸",
+      "表格、时间线、抽屉等复杂组件按蓝图拆成可编辑 frame/text/line 节点"
+    ],
+    "appendStrategy": "同名页面追加到画布右侧 120px 空白处，不覆盖既有节点",
+    "overflowPolicy": {
+      "text": "默认单行省略，业务说明最多两行，长文进入详情抽屉",
+      "table": "桌面允许横向滚动容器；移动端转卡片列表",
+      "failureThreshold": "关键按钮、表格首列、状态标签重叠或被裁切时判定失败"
+    },
+    "qa": [
+      "截图检查侧栏、顶栏、正文三区域无重叠",
+      "检查主按钮唯一性",
+      "检查 Page Intent 必备区域完整",
+      "检查颜色、圆角、字号与 tokens.json 一致"
+    ]
+  }
+}

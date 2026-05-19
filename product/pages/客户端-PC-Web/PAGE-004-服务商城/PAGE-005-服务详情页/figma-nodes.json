@@ -1,0 +1,394 @@
+{
+  "meta": {
+    "documentType": "pm-06-figma-nodes",
+    "version": "1.0.0",
+    "generatedAt": "2026-05-19",
+    "pageId": "PAGE-005",
+    "pageName": "服务详情页",
+    "sourceLayoutFile": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/layout.md",
+    "sourceSitemapFile": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web",
+    "designSpecDir": "design/antd-admin-design-spec"
+  },
+  "designRefs": {
+    "tokens": "design/antd-admin-design-spec/tokens.json",
+    "figmaTokens": "design/antd-admin-design-spec/figma-tokens.json",
+    "componentRules": "design/antd-admin-design-spec/component-rules.json",
+    "componentBlueprints": "design/antd-admin-design-spec/component-blueprints.json",
+    "figmaRenderRules": "design/antd-admin-design-spec/figma-render-rules.json",
+    "aiGenerationRules": "design/antd-admin-design-spec/ai-generation-rules.json",
+    "consistencyRules": "design/antd-admin-design-spec/consistency-rules.json",
+    "layoutProfileSchema": "design/antd-admin-design-spec/layout-profile-schema.json",
+    "pageIntentPatterns": "design/antd-admin-design-spec/page-intent-patterns.json"
+  },
+  "sourcePage": {
+    "layout": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/layout.md",
+    "pageId": "PAGE-005",
+    "pageName": "服务详情页"
+  },
+  "sourceSitemap": {
+    "path": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web"
+  },
+  "pageIntent": {
+    "primary": "service-detail",
+    "confidence": "high",
+    "evidence": [
+      "页面属于服务采购场景",
+      "默认元素包含服务标题、服务卖点、SKU 选择、办理周期、价格合计和立即购买按钮"
+    ],
+    "selectedPattern": "service-detail",
+    "strategy": "render service purchase detail with SKU selection and purchase CTA"
+  },
+  "semanticValidation": {
+    "status": "pass",
+    "conflicts": [],
+    "warnings": [
+      "本 JSON 因目录缺失 figma-nodes.json，由 pm08 前置补齐，结构来自 layout.md 的默认状态。"
+    ],
+    "criticalMissing": [],
+    "autoFixes": [],
+    "semanticOwnershipAudit": {
+      "status": "pass",
+      "globalShellDuplicates": [],
+      "pageBodyRegions": [
+        "服务头图区",
+        "SKU选择区",
+        "服务流程说明区",
+        "购买操作区"
+      ],
+      "notes": [
+        "全局顶栏、底栏、登录后导航侧栏来自 sitemap merge；page body 不重复生成全局 Shell。"
+      ]
+    },
+    "duplicateAudit": {
+      "status": "pass",
+      "duplicateTexts": [],
+      "duplicateActions": [],
+      "blockingIssues": []
+    },
+    "layoutBudgetAudit": {
+      "status": "pass",
+      "availableContentHeight": 764,
+      "estimatedContentHeight": 680,
+      "compressionApplied": [],
+      "warnings": []
+    }
+  },
+  "consistency": {
+    "layoutKey": "客户端-PC-Web",
+    "pageIntentKey": "service-detail",
+    "stateGroupKey": null,
+    "designSpecKey": "antd-admin-design-spec",
+    "profileRefs": {
+      "layoutProfile": "product/style-profiles/客户端-PC-Web/layout-profile.json",
+      "intentProfile": "product/style-profiles/客户端-PC-Web/intent-service-detail-profile.json",
+      "stateGroupProfile": null
+    },
+    "profileStatus": {
+      "layoutProfile": "reused",
+      "intentProfile": "created",
+      "stateGroupProfile": "none"
+    },
+    "styleFingerprint": {
+      "layoutHash": "b2968cd4bc2c",
+      "intentHash": "service-detail-pm08-20260519",
+      "stateGroupHash": ""
+    },
+    "lockedPropertiesApplied": [
+      "canvas",
+      "global shell",
+      "content padding",
+      "responsive fallback",
+      "service detail skeleton"
+    ],
+    "allowedPageOverrides": [
+      "service SKU options",
+      "price summary",
+      "purchase CTA"
+    ],
+    "driftCheck": {
+      "status": "pass",
+      "warnings": [
+        "intent profile is generated inline for this pm08 restore because no prior figma-nodes.json existed."
+      ]
+    }
+  },
+  "renderSpec": {
+    "renderer": {
+      "sourceTree": "figmaDocument.children",
+      "requiresComponentAdapters": true,
+      "requiresTwoPassLayout": true,
+      "preferredRenderRules": "design/antd-admin-design-spec/figma-render-rules.json"
+    },
+    "canvas": {
+      "primaryFrameId": "frame-primary",
+      "device": "PC Web",
+      "width": 1440,
+      "minHeight": 900,
+      "layoutMode": "VERTICAL"
+    },
+    "layoutSafety": {
+      "noOverlap": true,
+      "noTextOverflow": true,
+      "avoidClipping": true,
+      "minClickableTarget": 32
+    },
+    "layoutBudget": {
+      "availableContentHeight": 764,
+      "estimatedContentHeight": 680,
+      "maxPrimaryPanelHeight": 720,
+      "compressionOrder": [
+        "secondary metadata",
+        "optional tags",
+        "helper text"
+      ],
+      "compressionApplied": [],
+      "scrollContainers": [],
+      "status": "pass"
+    },
+    "componentInstances": [
+      {
+        "sourceNodeId": "node-ple-001",
+        "component": "Text",
+        "adapter": "component-rules.components.Text",
+        "variant": "headline",
+        "props": {
+          "label": "服务标题",
+          "text": "商标注册基础套餐"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-002",
+        "component": "TagGroup",
+        "adapter": "component-rules.components.Tag",
+        "variant": "default",
+        "props": {
+          "label": "服务卖点",
+          "items": [
+            "官方流程托管",
+            "进度可视化",
+            "支持加急"
+          ]
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-003",
+        "component": "Select",
+        "adapter": "component-rules.components.Select",
+        "variant": "default",
+        "props": {
+          "label": "国家地区选择",
+          "text": "中国大陆"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-004",
+        "component": "Select",
+        "adapter": "component-rules.components.Select",
+        "variant": "default",
+        "props": {
+          "label": "类别数量选择",
+          "text": "1类"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-005",
+        "component": "Steps",
+        "adapter": "component-rules.components.Steps",
+        "variant": "default",
+        "props": {
+          "label": "办理周期说明",
+          "steps": [
+            "下单付款",
+            "资料提交",
+            "顾问审核",
+            "官方递交",
+            "结果交付"
+          ]
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-006",
+        "component": "PriceSummary",
+        "adapter": "component-rules.components.Card",
+        "variant": "highlight",
+        "props": {
+          "label": "价格合计",
+          "text": "¥3,999.00"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-007",
+        "component": "Button",
+        "adapter": "component-rules.components.Button",
+        "variant": "primary",
+        "props": {
+          "label": "立即购买按钮",
+          "text": "立即购买"
+        }
+      }
+    ],
+    "slotContracts": [
+      {
+        "slotId": "slot-service-detail-primary-content",
+        "slotName": "service detail primary content",
+        "scope": "pageIntent",
+        "required": true,
+        "variableByState": false,
+        "allowedComponents": [
+          "Text",
+          "TagGroup",
+          "Select",
+          "Steps",
+          "PriceSummary",
+          "Button"
+        ],
+        "sizing": {
+          "widthMode": "fill",
+          "heightMode": "hug"
+        },
+        "overflow": "visible"
+      }
+    ],
+    "duplicateAudit": [],
+    "qaExpectations": {
+      "keyRegions": [
+        "ServiceHero",
+        "SkuSelection",
+        "ServiceProcess",
+        "PriceSummary",
+        "PurchaseAction"
+      ],
+      "forbiddenRegions": [
+        "default-visible admin data table",
+        "auth credential slot",
+        "non-default state board"
+      ],
+      "consistencyChecks": [
+        "layout-profile-applied",
+        "intent-profile-applied",
+        "style-fingerprint-recorded"
+      ],
+      "screenshotRequired": true,
+      "structuralChecks": [
+        "no-overlap",
+        "no-text-overflow",
+        "no-root-clipping",
+        "no-shell-collision",
+        "no-blocking-duplicate-action",
+        "semantic-key-regions-present"
+      ]
+    }
+  },
+  "figmaDocument": {
+    "type": "DOCUMENT",
+    "name": "服务详情页 Figma Nodes",
+    "children": [
+      {
+        "id": "page-root",
+        "name": "Page/PAGE-005-服务详情页",
+        "type": "PAGE",
+        "children": [
+          {
+            "id": "frame-primary",
+            "name": "Frame/Primary/客户端 / PC Web",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "tokens": {
+              "fill": "color/background"
+            },
+            "layout": {
+              "width": 1440,
+              "minHeight": 900
+            },
+            "children": [
+              {
+                "id": "shell-topbar",
+                "name": "GlobalShell/Topbar",
+                "type": "FRAME"
+              },
+              {
+                "id": "shell-footer",
+                "name": "GlobalShell/Footer",
+                "type": "FRAME"
+              },
+              {
+                "id": "shell-sidebar",
+                "name": "GlobalShell/Sidebar",
+                "type": "FRAME"
+              },
+              {
+                "id": "page-body",
+                "name": "PageBody/PAGE-005-服务详情页",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "node-ple-001",
+                    "name": "Text/服务标题",
+                    "type": "TEXT"
+                  },
+                  {
+                    "id": "node-ple-002",
+                    "name": "Component/TagGroup/服务卖点",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-003",
+                    "name": "Component/Select/国家地区选择",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-004",
+                    "name": "Component/Select/类别数量选择",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-005",
+                    "name": "Component/Steps/办理周期说明",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-006",
+                    "name": "Component/Card/价格合计",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-007",
+                    "name": "Component/Button/立即购买",
+                    "type": "COMPONENT_INSTANCE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "excludedStates": [
+    {
+      "state": "空状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    },
+    {
+      "state": "加载状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    },
+    {
+      "state": "错误状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    }
+  ],
+  "assumptions": [
+    "服务详情页按照服务采购详情骨架还原。",
+    "SKU 示例使用商标注册基础套餐、中国大陆、1类、¥3,999.00。"
+  ],
+  "qualityChecklist": {
+    "defaultStateOnly": true,
+    "semanticValidationPassed": true,
+    "noGenericAdminTable": true,
+    "renderSpecPresent": true,
+    "consistencyPresent": true
+  }
+}

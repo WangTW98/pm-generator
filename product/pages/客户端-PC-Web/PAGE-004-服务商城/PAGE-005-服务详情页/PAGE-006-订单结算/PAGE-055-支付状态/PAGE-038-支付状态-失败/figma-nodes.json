@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "documentType": "pm-06-figma-nodes",
+    "version": "1.0.0",
+    "generatedAt": "2026-05-19",
+    "pageId": "PAGE-038",
+    "pageName": "支付状态-失败",
+    "sourceLayoutFile": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/PAGE-006-订单结算/PAGE-055-支付状态/PAGE-038-支付状态-失败/layout.md",
+    "sourceSitemapFile": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web",
+    "stateGroup": "STATE-003",
+    "designSpecDir": "design/antd-admin-design-spec"
+  },
+  "designRefs": {
+    "tokens": "design/antd-admin-design-spec/tokens.json",
+    "figmaTokens": "design/antd-admin-design-spec/figma-tokens.json",
+    "componentRules": "design/antd-admin-design-spec/component-rules.json",
+    "componentBlueprints": "design/antd-admin-design-spec/component-blueprints.json",
+    "figmaRenderRules": "design/antd-admin-design-spec/figma-render-rules.json",
+    "aiGenerationRules": "design/antd-admin-design-spec/ai-generation-rules.json",
+    "consistencyRules": "design/antd-admin-design-spec/consistency-rules.json",
+    "layoutProfileSchema": "design/antd-admin-design-spec/layout-profile-schema.json",
+    "pageIntentPatterns": "design/antd-admin-design-spec/page-intent-patterns.json"
+  },
+  "sourcePage": {
+    "layout": "product/pages/客户端-PC-Web/PAGE-004-服务商城/PAGE-005-服务详情页/PAGE-006-订单结算/PAGE-055-支付状态/PAGE-038-支付状态-失败/layout.md",
+    "pageId": "PAGE-038",
+    "pageName": "支付状态-失败"
+  },
+  "sourceSitemap": {
+    "path": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web"
+  },
+  "pageIntent": {
+    "primary": "payment-status",
+    "confidence": "high",
+    "evidence": [
+      "页面属于服务采购微信支付回调状态组",
+      "默认元素包含支付状态图标、状态标题、订单编号、支付金额、服务名称和重试操作"
+    ],
+    "selectedPattern": "payment-status",
+    "strategy": "render payment failure result with consistent order summary and actions"
+  },
+  "semanticValidation": {
+    "status": "pass",
+    "warnings": [
+      "本 JSON 因目录缺失 figma-nodes.json，由 pm08 前置补齐，结构来自 layout.md 的默认状态。"
+    ],
+    "conflicts": [],
+    "criticalMissing": [],
+    "semanticOwnershipAudit": {
+      "status": "pass",
+      "globalShellDuplicates": [],
+      "pageBodyRegions": [
+        "支付结果状态区",
+        "订单摘要区",
+        "后续操作区"
+      ]
+    },
+    "duplicateAudit": {
+      "status": "pass",
+      "duplicateActions": [],
+      "blockingIssues": []
+    },
+    "layoutBudgetAudit": {
+      "status": "pass",
+      "availableContentHeight": 764,
+      "estimatedContentHeight": 560,
+      "compressionApplied": []
+    }
+  },
+  "consistency": {
+    "layoutKey": "客户端-PC-Web",
+    "pageIntentKey": "payment-status",
+    "stateGroupKey": "STATE-003",
+    "designSpecKey": "antd-admin-design-spec",
+    "profileRefs": {
+      "layoutProfile": "product/style-profiles/客户端-PC-Web/layout-profile.json",
+      "intentProfile": "product/style-profiles/客户端-PC-Web/intent-payment-status-profile.json",
+      "stateGroupProfile": "product/style-profiles/客户端-PC-Web/state-STATE-003-profile.json"
+    },
+    "profileStatus": {
+      "layoutProfile": "reused",
+      "intentProfile": "created-inline",
+      "stateGroupProfile": "created-inline"
+    },
+    "styleFingerprint": {
+      "layoutHash": "b2968cd4bc2c",
+      "intentHash": "payment-status-pm08-20260519",
+      "stateGroupHash": "STATE-003-payment-status-inline"
+    },
+    "lockedPropertiesApplied": [
+      "canvas",
+      "global shell",
+      "content padding",
+      "payment status skeleton",
+      "state group summary alignment"
+    ],
+    "allowedPageOverrides": [
+      "status tone",
+      "status title",
+      "next action label",
+      "risk notice"
+    ],
+    "driftCheck": {
+      "status": "pass",
+      "warnings": [
+        "intent and state-group profiles are generated inline for this pm08 restore because no prior figma-nodes.json existed."
+      ]
+    }
+  },
+  "renderSpec": {
+    "renderer": {
+      "sourceTree": "figmaDocument.children",
+      "requiresComponentAdapters": true,
+      "requiresTwoPassLayout": true
+    },
+    "canvas": {
+      "primaryFrameId": "frame-primary",
+      "device": "PC Web",
+      "width": 1440,
+      "minHeight": 900,
+      "layoutMode": "VERTICAL"
+    },
+    "layoutSafety": {
+      "noOverlap": true,
+      "noTextOverflow": true,
+      "avoidClipping": true,
+      "minClickableTarget": 32
+    },
+    "componentInstances": [
+      {
+        "sourceNodeId": "node-ple-001",
+        "component": "StatusIcon",
+        "variant": "error",
+        "props": {
+          "label": "支付状态图标",
+          "text": "失败"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-002",
+        "component": "ResultTitle",
+        "variant": "error",
+        "props": {
+          "label": "状态标题",
+          "text": "支付失败"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-003",
+        "component": "Text",
+        "props": {
+          "label": "订单编号",
+          "text": "ORD-20260519-0008"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-004",
+        "component": "PriceSummary",
+        "props": {
+          "label": "支付金额",
+          "text": "¥3,999.00"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-005",
+        "component": "Text",
+        "props": {
+          "label": "服务名称",
+          "text": "商标注册基础套餐"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-006",
+        "component": "Button",
+        "variant": "primary",
+        "props": {
+          "label": "刷新支付状态按钮",
+          "text": "重新支付"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-007",
+        "component": "Button",
+        "variant": "default",
+        "props": {
+          "label": "返回订单按钮",
+          "text": "返回订单"
+        }
+      }
+    ],
+    "slotContracts": [
+      {
+        "slotId": "slot-payment-status-primary-content",
+        "slotName": "payment status primary content",
+        "scope": "stateGroup",
+        "required": true,
+        "variableByState": true,
+        "allowedComponents": [
+          "StatusIcon",
+          "ResultTitle",
+          "Text",
+          "PriceSummary",
+          "Button"
+        ],
+        "sizing": {
+          "widthMode": "fill",
+          "heightMode": "hug"
+        },
+        "overflow": "visible"
+      }
+    ],
+    "qaExpectations": {
+      "keyRegions": [
+        "PaymentStatusResult",
+        "OrderSummary",
+        "StatusActions"
+      ],
+      "forbiddenRegions": [
+        "default-visible admin data table",
+        "auth credential slot",
+        "non-default empty/loading/error board"
+      ],
+      "screenshotRequired": true
+    }
+  },
+  "figmaDocument": {
+    "type": "DOCUMENT",
+    "name": "支付状态-失败 Figma Nodes",
+    "children": [
+      {
+        "id": "page-root",
+        "name": "Page/PAGE-038-支付状态-失败",
+        "type": "PAGE",
+        "children": [
+          {
+            "id": "frame-primary",
+            "name": "Frame/Primary/客户端 / PC Web",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "layout": {
+              "width": 1440,
+              "minHeight": 900
+            },
+            "children": [
+              {
+                "id": "shell-topbar",
+                "name": "GlobalShell/Topbar",
+                "type": "FRAME"
+              },
+              {
+                "id": "shell-footer",
+                "name": "GlobalShell/Footer",
+                "type": "FRAME"
+              },
+              {
+                "id": "shell-sidebar",
+                "name": "GlobalShell/Sidebar",
+                "type": "FRAME"
+              },
+              {
+                "id": "page-body",
+                "name": "PageBody/PAGE-038-支付状态-失败",
+                "type": "FRAME",
+                "children": [
+                  {
+                    "id": "node-ple-001",
+                    "name": "Component/StatusIcon/支付状态图标",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-002",
+                    "name": "Text/状态标题",
+                    "type": "TEXT"
+                  },
+                  {
+                    "id": "node-ple-003",
+                    "name": "Text/订单编号",
+                    "type": "TEXT"
+                  },
+                  {
+                    "id": "node-ple-004",
+                    "name": "Component/Card/支付金额",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-005",
+                    "name": "Text/服务名称",
+                    "type": "TEXT"
+                  },
+                  {
+                    "id": "node-ple-006",
+                    "name": "Component/Button/重新支付",
+                    "type": "COMPONENT_INSTANCE"
+                  },
+                  {
+                    "id": "node-ple-007",
+                    "name": "Component/Button/返回订单",
+                    "type": "COMPONENT_INSTANCE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "excludedStates": [
+    {
+      "state": "空状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    },
+    {
+      "state": "加载状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    },
+    {
+      "state": "错误状态",
+      "reason": "Non-default state excluded from Figma node generation"
+    }
+  ],
+  "qualityChecklist": {
+    "defaultStateOnly": true,
+    "semanticValidationPassed": true,
+    "noGenericAdminTable": true,
+    "renderSpecPresent": true,
+    "consistencyPresent": true
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "figmaNodeDefaults": {
+    "autoLayout": true,
+    "sizing": "hug where possible, fill for page regions",
+    "textOverflow": "table cell single line ellipsis; detail prose max 2 lines unless body copy",
+    "minTapTargetMobile": 40
+  },
+  "blueprints": {
+    "AdminShell": {
+      "type": "frame",
+      "layout": "horizontal",
+      "children": [
+        "SiderNavigation",
+        "MainWorkspace"
+      ],
+      "slots": {
+        "sider": {
+          "width": 232,
+          "fixed": true
+        },
+        "main": {
+          "width": "fill",
+          "minWidth": 960
+        }
+      }
+    },
+    "SiderNavigation": {
+      "type": "frame",
+      "fill": "#001529",
+      "layout": "vertical",
+      "slots": {
+        "logo": {
+          "height": 56
+        },
+        "menu": {
+          "itemHeight": 40,
+          "gap": 4,
+          "padding": 12
+        }
+      }
+    },
+    "MainWorkspace": {
+      "type": "frame",
+      "layout": "vertical",
+      "children": [
+        "TopHeader",
+        "PageBody"
+      ],
+      "slots": {
+        "header": {
+          "height": 56,
+          "fixed": true
+        },
+        "body": {
+          "padding": 24,
+          "fill": "#F5F7FA"
+        }
+      }
+    },
+    "FilterTablePage": {
+      "type": "pageIntent",
+      "regions": [
+        "PageHeader",
+        "FilterBar",
+        "DataTable",
+        "Pagination"
+      ],
+      "contract": {
+        "primaryActionIntent": "create-or-import",
+        "filtersMaxVisibleDesktop": 8,
+        "tableMinColumns": 5,
+        "tableMaxVisibleActions": 3
+      }
+    },
+    "CaseDetailProcessPage": {
+      "type": "pageIntent",
+      "regions": [
+        "PageHeader",
+        "StatusSummary",
+        "ProcessTimeline",
+        "MaterialReviewPanel",
+        "ActionDrawer"
+      ],
+      "contract": {
+        "stateGroupKey": "case-service-detail-flow",
+        "sharedTimeline": true,
+        "riskBannerVisibleWhen": "riskLevel != none"
+      }
+    }
+  }
+}

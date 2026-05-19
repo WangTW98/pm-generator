@@ -3,6 +3,7 @@ display_name: PM 09 MD to Figma Batch
 description: Batch restore product/pages/**/figma-nodes.json files into a user-specified Figma link by orchestrating pm-08-md2figma with profile-locked consistency.
 default_prompt: >-
   Use pm-09-md2figma-batch to scan product/pages/**/figma-nodes.json, create a batch task list, and call pm-08-md2figma for each valid file to restore it into the specified Figma link.
+  This is a pure orchestrator: each valid figma-nodes.json must invoke pm-08-md2figma once as a fresh single-page execution; do not combine JSON files, carry prior page conversational context into the next page, inline pm08 rules, or write to Figma directly inside pm09. If separate pm08 invocation is unavailable, mark the affected task Failed with pm08 invocation unavailable.
   Sort and group tasks by designSpecKey, layoutKey, pageIntentKey, and stateGroupKey when consistency metadata exists. Do not compress, rewrite, or simplify the source JSON node tree; each page must be handed to pm-08-md2figma so it can recursively render figmaDocument and honor renderSpec, consistency profileRefs, styleFingerprint, driftCheck, component blueprints, text policies, layout constraints, and QA expectations.
 inputs:
   required:
@@ -19,6 +20,7 @@ outputs:
 constraints:
   - Do not write to Figma without a user-specified Figma link.
   - Do not bypass pm-08-md2figma rules.
+  - Do not inline, reimplement, or locally apply pm-08-md2figma rules inside pm09.
   - Do not compress or rewrite source figma-nodes.json structures.
   - Do not ignore renderSpec or pm08 component-adapter/layout/QA requirements.
   - Do not ignore consistency, profileRefs, styleFingerprint, driftCheck, or pm08 profile-locked mode.

@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "globalRules": {
+    "density": "compact-operational",
+    "radiusMaxForCards": 8,
+    "controlHeight": 32,
+    "tableRowHeight": 48,
+    "forbidden": [
+      "后台页面禁止使用营销落地页式大 hero",
+      "禁止在同一 page body 中放置两个相同 action intent 的主按钮",
+      "禁止以装饰性渐变块替代真实业务数据或状态"
+    ]
+  },
+  "components": {
+    "Button": {
+      "sizes": {
+        "small": 24,
+        "default": 32,
+        "large": 40
+      },
+      "primary": {
+        "fill": "#1677FF",
+        "text": "#FFFFFF",
+        "radius": 6
+      },
+      "default": {
+        "fill": "#FFFFFF",
+        "border": "#D9D9D9",
+        "text": "#1F2329"
+      },
+      "danger": {
+        "fill": "#FF4D4F",
+        "text": "#FFFFFF"
+      },
+      "states": {
+        "hover": "primary 使用 #4096FF；default 使用 #F5F5F5 背景",
+        "focus": "2px #91CAFF focus ring",
+        "disabled": "背景 #F5F5F5，文字 #BFBFBF，禁止点击"
+      },
+      "responsive": "移动端关键操作按钮最小高度 40px；桌面工具栏按钮默认 32px"
+    },
+    "Input": {
+      "height": 32,
+      "radius": 6,
+      "border": "#D9D9D9",
+      "focus": "边框 #1677FF，外发光 0 0 0 2px rgba(22,119,255,.12)",
+      "responsive": "移动端搜索框占满一行；桌面端在筛选区使用 200-280px 宽度"
+    },
+    "Select": {
+      "height": 32,
+      "radius": 6,
+      "dropdownShadow": "0 6px 16px rgba(0, 0, 0, 0.08)",
+      "responsive": "筛选项超过 4 个时桌面换行，移动端折叠为筛选抽屉"
+    },
+    "Table": {
+      "headerHeight": 44,
+      "rowHeight": 48,
+      "headerFill": "#FAFAFA",
+      "border": "#F0F0F0",
+      "zebra": false,
+      "actions": "每行操作最多 3 个可见项，其余进入更多菜单",
+      "responsive": "小于 600px 转卡片列表；600-1023px 保留关键列并允许横向滚动"
+    },
+    "Card": {
+      "fill": "#FFFFFF",
+      "radius": 8,
+      "padding": 24,
+      "border": "#F0F0F0",
+      "shadow": "0 1px 2px rgba(0, 0, 0, 0.04)",
+      "usage": "只用于指标块、信息分组、详情分区，不嵌套卡片"
+    },
+    "Navigation": {
+      "siderWidth": 232,
+      "siderFill": "#001529",
+      "activeFill": "#1677FF",
+      "headerHeight": 56,
+      "breadcrumb": "顶栏左侧显示当前位置，禁止在正文重复生成当前页面导航入口"
+    },
+    "Modal": {
+      "width": {
+        "small": 416,
+        "default": 520,
+        "large": 720
+      },
+      "radius": 8,
+      "footer": "右对齐，取消在左、主操作在右",
+      "responsive": "移动端全宽底部留 16px 安全边距；复杂编辑使用 Drawer"
+    },
+    "Drawer": {
+      "width": {
+        "default": 480,
+        "wide": 720
+      },
+      "usage": "详情预览、审核处理、配置表单；不承载全量列表"
+    },
+    "Tag": {
+      "radius": 4,
+      "mapping": {
+        "success": "#F6FFED",
+        "warning": "#FFFBE6",
+        "risk": "#FFF1F0",
+        "processing": "#E6F4FF"
+      }
+    }
+  }
+}

@@ -21,6 +21,30 @@ Type semantics for batch selection:
 - `页面`: standalone page. It organizes the sitemap tree and generates one page document for that row.
 - `状态`: state-specific page. It organizes the sitemap tree and generates one page document for that row; all rows in the same `状态组` together form one state-document set, and batch generation must rely on `pm-03-page-layout` baseline reuse so shared style/common description stay maximally consistent, changing only the state-specific parts.
 
+## Orchestration-Only Invariant
+
+`pm-04-page-layout-batch` is a pure batch orchestrator. It never changes how `pm-03-page-layout` executes and never implements page layout generation itself.
+
+For every eligible `页面` or `状态` row in normal `Development` / `Release` mode, the batch loop must be:
+
+```text
+for each eligible row in task-list order:
+  mark the task In Progress
+  invoke pm-03-page-layout once as a fresh single-page execution for that row only
+  validate the generated page document using pm-04 batch guards
+  mark the task Done or Failed
+```
+
+Hard requirements:
+
+- Each loop iteration must invoke `pm-03-page-layout` exactly once for one `PAGE-xxx` row, except for the explicit retry allowed by the Generic Template Pollution Guard.
+- Each `pm-03-page-layout` invocation must be a fresh single-page execution. Do not carry prior page-generation conversational context into the next page. Shared effects must flow only through filesystem artifacts such as source sitemaps, generated page documents, task lists, and pm-03 baseline files.
+- Do not combine multiple PAGE IDs, state groups, directories, or sitemap rows into one downstream invocation.
+- Do not invent a new batch generation mechanism because of user wording, generated instructions, model context, performance concerns, or perceived optimization opportunities.
+- Do not inline, summarize, reinterpret, or reimplement `pm-03-page-layout` rules inside pm-04. The downstream skill's execution method is unchanged by this batch skill.
+- If the runtime cannot invoke `pm-03-page-layout` as a separate skill for a task row, mark that row `Failed` with reason `pm03 invocation unavailable`; do not generate page content directly in pm-04.
+- `DryRun` and `DirectoryOnly` are the only exceptions to downstream invocation. In those modes, perform only the documented path, directory, task-list, and zero-byte placeholder behavior.
+
 ## Cross-Model Compatibility
 
 Support OpenAI/Codex, Gemini, Claude, and other capable AI assistants through the same orchestration rules.
@@ -239,6 +263,8 @@ For normal `Development` / `Release` generation, each eligible task row with `�
 - The single row's `页面ID`.
 - The user's Release/Development intent.
 - Any user-provided constraints relevant to layout generation.
+
+The invocation must be a fresh single-page execution for that row. User instructions and intermediate model-generated instructions may refine the arguments passed to `pm-03-page-layout`, but must not change the loop shape, merge rows, or replace the downstream skill invocation with pm-04-local generation.
 
 For `DryRun` and `DirectoryOnly`, do not invoke `pm-03-page-layout`. Instead:
 

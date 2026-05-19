@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "priority": [
+    "Design Spec",
+    "Layout Profile",
+    "Page Intent",
+    "State Group",
+    "Page Content"
+  ],
+  "profiles": {
+    "layoutProfile": {
+      "keyFields": [
+        "productForm",
+        "shellType",
+        "siderWidth",
+        "headerHeight",
+        "contentPadding"
+      ],
+      "locked": [
+        "AdminShell",
+        "SiderNavigation",
+        "TopHeader",
+        "content background"
+      ]
+    },
+    "intentProfile": {
+      "keyFields": [
+        "pageIntent",
+        "requiredRegions",
+        "slotContract",
+        "layoutBudget"
+      ],
+      "lockedByIntent": true
+    },
+    "stateGroupProfile": {
+      "keyFields": [
+        "stateGroupKey",
+        "sharedSkeleton",
+        "allowedStateOverrides"
+      ],
+      "lockedByStateGroup": true
+    }
+  },
+  "fingerprints": {
+    "include": [
+      "layoutKey",
+      "pageIntentKey",
+      "stateGroupKey",
+      "primaryActionIntent",
+      "requiredRegions",
+      "componentFamilies"
+    ],
+    "driftHandling": "低风险文案漂移自动接受；布局、组件族、主操作漂移必须失败并要求复核"
+  },
+  "duplicateActionRules": {
+    "samePrimaryIntentInBody": "fail",
+    "repeatedRowActions": "allowed-in-table-row",
+    "globalAndBodySameNav": "fail"
+  }
+}

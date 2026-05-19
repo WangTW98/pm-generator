@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "patterns": {
+    "auth": {
+      "requiredRegions": [
+        "brand-panel",
+        "login-form"
+      ],
+      "componentPattern": [
+        "Card",
+        "Form",
+        "Input",
+        "Button"
+      ],
+      "budget": "PC 登录框 360-400px 宽，移动端全宽 16px margin",
+      "forbidden": [
+        "公开注册入口，除非业务需求明确允许"
+      ]
+    },
+    "dashboard": {
+      "requiredRegions": [
+        "page-header",
+        "metric-grid",
+        "todo-table",
+        "risk-panel"
+      ],
+      "componentPattern": [
+        "StatisticCard",
+        "Table",
+        "Alert",
+        "Timeline"
+      ],
+      "budget": "首屏展示 4 个指标卡和一个待办表格，次要图表下沉",
+      "forbidden": [
+        "大幅营销横幅",
+        "无数据支撑的装饰卡片"
+      ]
+    },
+    "list-management": {
+      "requiredRegions": [
+        "page-header",
+        "filter-bar",
+        "data-table",
+        "pagination"
+      ],
+      "componentPattern": [
+        "FormInline",
+        "Table",
+        "Tag",
+        "DropdownActions"
+      ],
+      "budget": "筛选区最多两行；表格主体占正文剩余高度",
+      "forbidden": [
+        "正文重复侧栏菜单",
+        "每行超过三个裸露文字操作"
+      ]
+    },
+    "detail": {
+      "requiredRegions": [
+        "summary-header",
+        "tabs",
+        "description-list",
+        "activity-log"
+      ],
+      "componentPattern": [
+        "Descriptions",
+        "Tabs",
+        "Timeline",
+        "Drawer"
+      ],
+      "budget": "详情摘要固定在顶部，长内容进入 Tab 或抽屉",
+      "forbidden": [
+        "无层次地平铺全部字段"
+      ]
+    },
+    "form-create-edit": {
+      "requiredRegions": [
+        "page-header",
+        "sectioned-form",
+        "sticky-footer-actions"
+      ],
+      "componentPattern": [
+        "Form",
+        "Input",
+        "Select",
+        "Upload",
+        "Button"
+      ],
+      "budget": "单列 720px 或双列 1040px；底部操作固定",
+      "forbidden": [
+        "保存、提交、确认三个等价主按钮同时出现"
+      ]
+    },
+    "wizard-flow": {
+      "requiredRegions": [
+        "steps",
+        "active-step-form",
+        "review-sidebar",
+        "footer-actions"
+      ],
+      "componentPattern": [
+        "Steps",
+        "Form",
+        "Card",
+        "Button"
+      ],
+      "budget": "步骤条固定顶部，表单和侧栏共享高度",
+      "forbidden": [
+        "跳过当前节点必填校验"
+      ]
+    },
+    "message-center": {
+      "requiredRegions": [
+        "tabs",
+        "message-list",
+        "message-detail-drawer"
+      ],
+      "componentPattern": [
+        "Tabs",
+        "List",
+        "Badge",
+        "Drawer"
+      ],
+      "budget": "列表宽度不低于 640px，详情用抽屉承载",
+      "forbidden": [
+        "把系统、短信、邮件模板混成同一未分类列表"
+      ]
+    },
+    "document-viewer": {
+      "requiredRegions": [
+        "toolbar",
+        "preview-pane",
+        "metadata-panel"
+      ],
+      "componentPattern": [
+        "Toolbar",
+        "PreviewFrame",
+        "Descriptions"
+      ],
+      "budget": "预览区优先占宽，元信息面板 320px",
+      "forbidden": [
+        "在表格单元格内嵌完整文档预览"
+      ]
+    },
+    "custom": {
+      "requiredRegions": [
+        "page-header",
+        "primary-content"
+      ],
+      "componentPattern": [
+        "根据业务选择，但必须遵守 token 和 action intent"
+      ],
+      "budget": "先定义 slotContract 再生成视觉结构",
+      "forbidden": [
+        "未声明 pageIntentKey 的自由布局"
+      ]
+    }
+  }
+}

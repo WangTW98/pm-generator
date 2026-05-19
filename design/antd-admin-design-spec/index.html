@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ant Design 风格后台管理设计规范</title>
+  <style>
+    :root {
+      --color-primary: #1677FF;
+      --color-primary-hover: #4096FF;
+      --color-primary-bg: #E6F4FF;
+      --color-secondary: #13C2C2;
+      --color-accent: #722ED1;
+      --color-background: #F5F7FA;
+      --color-sider: #001529;
+      --color-surface: #FFFFFF;
+      --color-surface-subtle: #FAFAFA;
+      --color-text-primary: #1F2329;
+      --color-text-secondary: #4E5969;
+      --color-text-tertiary: #86909C;
+      --color-text-inverse: #FFFFFF;
+      --color-border: #D9D9D9;
+      --color-border-subtle: #F0F0F0;
+      --color-success: #52C41A;
+      --color-warning: #FAAD14;
+      --color-error: #FF4D4F;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      color: var(--color-text-primary);
+      background: var(--color-background);
+      font-size: 14px;
+      line-height: 1.57;
+    }
+    .board { min-height: 100vh; display: grid; grid-template-columns: 232px 1fr; }
+    .sider { background: var(--color-sider); color: rgba(255,255,255,.72); padding: 16px 12px; }
+    .brand { height: 40px; display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 600; margin-bottom: 18px; }
+    .brand-mark { width: 28px; height: 28px; border-radius: 7px; background: var(--color-primary); display: grid; place-items: center; font-size: 13px; }
+    .menu-group { margin: 14px 0 6px; color: rgba(255,255,255,.42); font-size: 12px; padding: 0 12px; }
+    .menu-item { height: 40px; border-radius: 6px; padding: 0 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .menu-item.active { background: var(--color-primary); color: #fff; }
+    .main { min-width: 0; }
+    .topbar { height: 56px; background: #fff; border-bottom: 1px solid var(--color-border-subtle); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .crumb { color: var(--color-text-secondary); }
+    .top-actions { display: flex; align-items: center; gap: 12px; color: var(--color-text-secondary); }
+    .avatar { width: 28px; height: 28px; border-radius: 999px; background: var(--color-primary-bg); color: var(--color-primary); display: grid; place-items: center; font-weight: 600; }
+    .content { padding: 24px; display: grid; gap: 24px; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    h1 { margin: 0; font-size: 20px; line-height: 28px; }
+    .sub { margin-top: 4px; color: var(--color-text-secondary); }
+    .button { border: 1px solid var(--color-border); background: #fff; color: var(--color-text-primary); border-radius: 6px; height: 32px; padding: 0 14px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+    .button.primary { border-color: var(--color-primary); background: var(--color-primary); color: #fff; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .card { background: #fff; border: 1px solid var(--color-border-subtle); border-radius: 8px; box-shadow: var(--shadow-sm); padding: 20px; min-width: 0; }
+    .metric-label { color: var(--color-text-secondary); font-size: 13px; }
+    .metric-value { margin-top: 8px; font-size: 24px; line-height: 30px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .metric-foot { margin-top: 8px; color: var(--color-text-tertiary); font-size: 12px; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.5fr) 360px; gap: 24px; align-items: start; }
+    .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-weight: 600; }
+    .filter { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-subtle); }
+    .input { height: 32px; min-width: 180px; border: 1px solid var(--color-border); border-radius: 6px; padding: 0 11px; color: var(--color-text-secondary); background: #fff; display: flex; align-items: center; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th { height: 44px; text-align: left; background: #fafafa; color: var(--color-text-secondary); font-weight: 500; border-bottom: 1px solid var(--color-border-subtle); padding: 0 12px; }
+    td { height: 48px; border-bottom: 1px solid var(--color-border-subtle); padding: 0 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    tr:hover td { background: #fafafa; }
+    .tag { display: inline-flex; align-items: center; height: 22px; border-radius: 4px; padding: 0 8px; font-size: 12px; border: 1px solid transparent; }
+    .tag.info { color: var(--color-primary); background: var(--color-primary-bg); border-color: #BAE0FF; }
+    .tag.warn { color: #AD6800; background: #FFFBE6; border-color: #FFE58F; }
+    .tag.ok { color: #389E0D; background: #F6FFED; border-color: #B7EB8F; }
+    .tag.danger { color: #CF1322; background: #FFF1F0; border-color: #FFA39E; }
+    .risk-item { display: grid; gap: 6px; padding: 12px 0; border-bottom: 1px solid var(--color-border-subtle); }
+    .risk-top { display: flex; justify-content: space-between; gap: 12px; }
+    .timeline { display: grid; gap: 12px; margin-top: 16px; }
+    .step { display: grid; grid-template-columns: 20px 1fr; gap: 10px; color: var(--color-text-secondary); }
+    .dot { width: 10px; height: 10px; border-radius: 999px; margin: 6px auto 0; background: var(--color-border); }
+    .dot.active { background: var(--color-primary); box-shadow: 0 0 0 4px rgba(22,119,255,.12); }
+    .spec-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+    .swatch { height: 72px; border-radius: 8px; border: 1px solid var(--color-border-subtle); padding: 10px; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; font-size: 12px; }
+    .mobile-preview { width: 280px; border-radius: 18px; border: 8px solid #1f2329; background: #fff; padding: 14px; box-shadow: var(--shadow-md); }
+    .mobile-card { border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 12px; margin-top: 12px; }
+    .desktop-panel { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+    @media (max-width: 1023px) {
+      .board { grid-template-columns: 64px 1fr; }
+      .sider { padding: 12px 8px; }
+      .brand span, .menu-group, .menu-item span { display: none; }
+      .menu-item { justify-content: center; padding: 0; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid, .desktop-panel { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 599px) {
+      .board { display: block; }
+      .sider { display: none; }
+      .topbar { padding: 0 16px; }
+      .content { padding: 16px; }
+      .page-head { flex-direction: column; }
+      .metrics, .spec-row { grid-template-columns: 1fr; }
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { display: none; }
+      tr { border: 1px solid var(--color-border-subtle); border-radius: 8px; margin-bottom: 12px; padding: 8px 0; }
+      td { height: auto; border: 0; padding: 6px 12px; }
+      .input, .button { width: 100%; justify-content: center; height: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    <aside class="sider">
+      <div class="brand"><div class="brand-mark">IP</div><span>合规管理后台</span></div>
+      <div class="menu-group">工作台</div>
+      <div class="menu-item active">□ <span>待办事项</span></div>
+      <div class="menu-item">□ <span>消息通知</span></div>
+      <div class="menu-group">业务管理</div>
+      <div class="menu-item">□ <span>客户管理</span></div>
+      <div class="menu-item">□ <span>订单管理</span></div>
+      <div class="menu-item">□ <span>服务管理</span></div>
+      <div class="menu-group">配置</div>
+      <div class="menu-item">□ <span>服务发布管理</span></div>
+      <div class="menu-item">□ <span>系统管理</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">工作台 / 待办事项</div>
+        <div class="top-actions"><span>全局搜索</span><div class="avatar">王</div></div>
+      </header>
+      <section class="content">
+        <div class="page-head">
+          <div>
+            <h1>Ant Design 风格后台管理设计规范</h1>
+            <div class="sub">面向知识产权与合规服务平台，覆盖工作台、订单、案件流程、服务配置和系统权限。</div>
+          </div>
+          <button class="button primary">新建服务模板</button>
+        </div>
+        <div class="metrics">
+          <div class="card"><div class="metric-label">待接单订单</div><div class="metric-value">128</div><div class="metric-foot">较昨日 +12</div></div>
+          <div class="card"><div class="metric-label">超时风险案件</div><div class="metric-value" style="color:var(--color-error)">9</div><div class="metric-foot">需优先处理</div></div>
+          <div class="card"><div class="metric-label">待审核资料</div><div class="metric-value">46</div><div class="metric-foot">平均等待 3.2h</div></div>
+          <div class="card"><div class="metric-label">本周完成交付</div><div class="metric-value">312</div><div class="metric-foot">完成率 92%</div></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="section-title"><span>列表管理页样张</span><span class="tag info">PC Web</span></div>
+            <div class="filter">
+              <div class="input">订单号 / 客户名称</div>
+              <div class="input">服务类型</div>
+              <div class="input">办理状态</div>
+              <button class="button primary">查询</button>
+              <button class="button">重置</button>
+            </div>
+            <table>
+              <thead><tr><th>订单/案件</th><th>客户</th><th>状态</th><th>负责人</th><th>更新时间</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>IP-20260519-0188</td><td>杭州星海贸易</td><td><span class="tag warn">待接单</span></td><td>未分配</td><td>12:32</td><td style="color:var(--color-primary)">办理</td></tr>
+                <tr><td>VAT-20260518-1021</td><td>Shine EU Ltd.</td><td><span class="tag danger">风险</span></td><td>李敏</td><td>10:16</td><td style="color:var(--color-primary)">查看</td></tr>
+                <tr><td>TM-20260517-0772</td><td>深圳云帆科技</td><td><span class="tag ok">已完成</span></td><td>陈航</td><td>昨日</td><td style="color:var(--color-primary)">详情</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="section-title"><span>风险与流程状态</span><span class="tag danger">需处理</span></div>
+            <div class="risk-item"><div class="risk-top"><strong>德国 VAT 资料驳回</strong><span class="tag danger">高</span></div><div class="sub">客户上传文件缺少授权签章，需重新提交。</div></div>
+            <div class="risk-item"><div class="risk-top"><strong>商标案件即将超时</strong><span class="tag warn">临期</span></div><div class="sub">距离 SLA 截止还剩 5 小时。</div></div>
+            <div class="timeline">
+              <div class="step"><div class="dot active"></div><div><strong>客户资料审核</strong><div class="sub">当前节点，支持通过或驳回。</div></div></div>
+              <div class="step"><div class="dot"></div><div>协议回填审核</div></div>
+              <div class="step"><div class="dot"></div><div>案件交付</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title"><span>Token 与组件预览</span><span class="tag info">同步 JSON</span></div>
+          <div class="spec-row">
+            <div class="swatch" style="background:#1677FF">Primary<br>#1677FF</div>
+            <div class="swatch" style="background:#13C2C2">Secondary<br>#13C2C2</div>
+            <div class="swatch" style="background:#722ED1">Accent<br>#722ED1</div>
+            <div class="swatch" style="background:#52C41A">Success<br>#52C41A</div>
+            <div class="swatch" style="background:#FAAD14;color:#613400">Warning<br>#FAAD14</div>
+            <div class="swatch" style="background:#FF4D4F">Error<br>#FF4D4F</div>
+          </div>
+        </div>
+        <div class="desktop-panel">
+          <div class="card">
+            <div class="section-title"><span>PC 桌面多栏工作台</span><span class="tag info">Desktop App</span></div>
+            <div class="desktop-panel">
+              <div class="card" style="padding:12px;background:#fafafa"><strong>案件列表</strong><div class="mobile-card">VAT-1021<br><span class="tag danger">风险</span></div><div class="mobile-card">TM-0772<br><span class="tag ok">完成</span></div></div>
+              <div class="card" style="padding:12px"><strong>属性与日志</strong><div class="sub">负责人、SLA、操作记录、资料版本。</div></div>
+            </div>
+          </div>
+          <div class="mobile-preview">
+            <strong>移动端待办</strong>
+            <div class="mobile-card"><span class="tag warn">待接单</span><br><strong>IP-0188 商标注册</strong><div class="sub">杭州星海贸易 · 12:32</div></div>
+            <div class="mobile-card"><span class="tag danger">风险</span><br><strong>VAT-1021 资料驳回</strong><div class="sub">需客户补充授权签章</div></div>
+            <button class="button primary" style="margin-top:12px">处理选中待办</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+

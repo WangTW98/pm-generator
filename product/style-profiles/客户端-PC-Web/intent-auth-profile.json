@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "documentType": "pm-06-intent-profile",
+    "designSpecKey": "antd-admin-design-spec",
+    "layoutKey": "客户端-PC-Web",
+    "pageIntentKey": "auth",
+    "generatedAt": "2026-05-19"
+  },
+  "locked": {
+    "skeleton": [
+      "AuthBrandPanel",
+      "AuthCard",
+      "AuthMethodSwitch",
+      "CredentialSlot",
+      "AgreementRow",
+      "PrimaryLoginAction",
+      "AuxiliaryLinks"
+    ],
+    "card": {
+      "width": 420,
+      "padding": 32,
+      "radius": 8
+    },
+    "shellVariant": "public-topbar-footer",
+    "componentVariants": {
+      "button": "primary-large",
+      "input": "default-large",
+      "segmented": "auth-method-tabs"
+    },
+    "slotContract": {
+      "fixedSlots": [
+        "brand",
+        "method-switch",
+        "agreement",
+        "auxiliary-links"
+      ],
+      "flexibleSlots": [
+        "credential-slot"
+      ],
+      "maxPrimaryActions": 1
+    }
+  },
+  "source": {
+    "designSpec": "design/antd-admin-design-spec"
+  },
+  "fingerprint": "cacd70c11191"
+}

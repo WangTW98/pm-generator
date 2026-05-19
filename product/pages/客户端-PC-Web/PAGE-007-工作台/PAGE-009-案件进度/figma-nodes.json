@@ -1,0 +1,2420 @@
+{
+  "meta": {
+    "documentType": "pm-06-figma-nodes",
+    "version": "1.0.0",
+    "generatedAt": "2026-05-19",
+    "pageId": "PAGE-009",
+    "pageName": "案件进度",
+    "sourceLayoutFile": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+    "sourceSitemapFile": "product/layout/客户端-PC-Web-sitemap.md",
+    "usedLayout": "客户端 / PC Web",
+    "designSpecDir": "design/antd-admin-design-spec"
+  },
+  "designRefs": {
+    "designSpec": "design/antd-admin-design-spec/design-spec.md",
+    "tokens": "design/antd-admin-design-spec/tokens.json",
+    "figmaTokens": "design/antd-admin-design-spec/figma-tokens.json",
+    "componentRules": "design/antd-admin-design-spec/component-rules.json",
+    "componentBlueprints": "design/antd-admin-design-spec/component-blueprints.json",
+    "figmaRenderRules": "design/antd-admin-design-spec/figma-render-rules.json",
+    "aiGenerationRules": "design/antd-admin-design-spec/ai-generation-rules.json",
+    "consistencyRules": "design/antd-admin-design-spec/consistency-rules.json",
+    "layoutProfileSchema": "design/antd-admin-design-spec/layout-profile-schema.json",
+    "pageIntentPatterns": "design/antd-admin-design-spec/page-intent-patterns.json"
+  },
+  "sourcePage": {
+    "layoutFile": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+    "pageId": "PAGE-009",
+    "pageName": "案件进度",
+    "stateGroup": "",
+    "usedLayout": "客户端 / PC Web",
+    "sourceSections": {
+      "status": "0.文档状态",
+      "goal": "1.1.页面目标与范围",
+      "layoutState": "1.2.使用的layout与状态",
+      "defaultContent": "1.3.1.默认状态页面结构",
+      "defaultElementDetails": "1.3.2.默认状态元素细节",
+      "stateListReferenceOnly": "1.3.3.状态清单",
+      "stateDeltaReferenceOnly": "1.3.4.状态差异说明",
+      "structure": "1.4.默认状态页面结构图",
+      "elementList": "1.5.页面元素清单",
+      "mockData": "2.Mock数据"
+    },
+    "stateGenerationPolicy": "default-state-only"
+  },
+  "sourceSitemap": {
+    "file": "product/layout/客户端-PC-Web-sitemap.md",
+    "productEndAndShape": "客户端 / PC Web",
+    "layoutSectionsRead": [
+      "0.文档状态",
+      "1.layout布局方式",
+      "1.2.区域、分组与元素",
+      "2.1.sitemap思维导图",
+      "2.2.页面清单"
+    ],
+    "pageParentChain": [
+      {
+        "pageId": "PAGE-007",
+        "pageName": "工作台",
+        "pageType": "节点",
+        "parentId": null
+      },
+      {
+        "pageId": "PAGE-009",
+        "pageName": "案件进度",
+        "pageType": "页面",
+        "parentId": "PAGE-007"
+      }
+    ],
+    "matchedRow": {
+      "ID": "PAGE-009",
+      "父级ID": "PAGE-007",
+      "层级": "2",
+      "页面/模块": "案件进度",
+      "页面类型": "页面",
+      "状态组": "",
+      "用户角色": "客户",
+      "核心场景": "进度追踪",
+      "来源PEF-ID": "PEF-006",
+      "备注/关联待确认ID": ""
+    }
+  },
+  "pageIntent": {
+    "primary": "list-management",
+    "confidence": "high",
+    "evidence": [
+      "页面属于进度追踪场景",
+      "默认元素包含筛选、搜索、案件集合和行级详情入口"
+    ],
+    "selectedPattern": "page-intent-patterns.patterns.list-management",
+    "strategy": "ai-generation-rules.layoutSelection.list-management"
+  },
+  "semanticValidation": {
+    "status": "pass",
+    "conflicts": [],
+    "warnings": [],
+    "criticalMissing": [],
+    "autoFixes": [],
+    "semanticOwnershipAudit": {
+      "status": "pass",
+      "globalShellDuplicates": [],
+      "pageBodyRegions": [
+        "案件概览指标区",
+        "案件筛选区",
+        "案件列表区",
+        "进度提示区"
+      ],
+      "notes": [
+        "全局顶栏、底栏、登录后导航侧栏仅来自 sitemap merge；page body 不重复生成全局 Shell。"
+      ]
+    },
+    "duplicateAudit": {
+      "status": "pass",
+      "duplicateTexts": [],
+      "duplicateActions": [],
+      "blockingIssues": []
+    },
+    "layoutBudgetAudit": {
+      "status": "pass",
+      "availableContentHeight": 700,
+      "estimatedContentHeight": 680,
+      "compressionApplied": [],
+      "warnings": []
+    }
+  },
+  "layoutShell": {
+    "source": "sourceSitemap",
+    "usedLayout": "客户端 / PC Web",
+    "nodes": [
+      {
+        "id": "shell-topbar",
+        "name": "GlobalShell/Topbar",
+        "type": "FRAME",
+        "source": {
+          "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+          "region": "顶栏"
+        },
+        "tokens": {
+          "fill": "color/surface",
+          "borderBottom": "color/border/subtle"
+        },
+        "layout": {
+          "layoutMode": "HORIZONTAL",
+          "height": 64,
+          "padding": {
+            "left": 24,
+            "right": 24
+          },
+          "itemSpacing": 16
+        },
+        "children": [
+          {
+            "id": "shell-topbar-logo",
+            "name": "GlobalShell/Topbar/Logo",
+            "type": "TEXT",
+            "content": {
+              "text": "合规服务平台"
+            },
+            "tokens": {
+              "textStyle": "admin/page-title",
+              "fill": "color/text/primary"
+            }
+          },
+          {
+            "id": "shell-topbar-actions",
+            "name": "GlobalShell/Topbar/UserActions",
+            "type": "FRAME",
+            "layout": {
+              "layoutMode": "HORIZONTAL",
+              "itemSpacing": 16
+            },
+            "children": [
+              {
+                "id": "shell-topbar-action-1",
+                "name": "GlobalShell/Topbar/消息通知",
+                "type": "TEXT",
+                "content": {
+                  "text": "消息通知"
+                },
+                "tokens": {
+                  "textStyle": "admin/body",
+                  "fill": "color/text/secondary"
+                }
+              },
+              {
+                "id": "shell-topbar-action-2",
+                "name": "GlobalShell/Topbar/待办事项",
+                "type": "TEXT",
+                "content": {
+                  "text": "待办事项"
+                },
+                "tokens": {
+                  "textStyle": "admin/body",
+                  "fill": "color/text/secondary"
+                }
+              },
+              {
+                "id": "shell-topbar-action-3",
+                "name": "GlobalShell/Topbar/登录/注册",
+                "type": "TEXT",
+                "content": {
+                  "text": "登录/注册"
+                },
+                "tokens": {
+                  "textStyle": "admin/body",
+                  "fill": "color/text/secondary"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "shell-sidebar",
+        "name": "GlobalShell/Sidebar",
+        "type": "FRAME",
+        "source": {
+          "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+          "region": "导航侧栏"
+        },
+        "tokens": {
+          "fill": "color/layout-sider"
+        },
+        "layout": {
+          "layoutMode": "VERTICAL",
+          "width": 232,
+          "padding": 12,
+          "itemSpacing": 4
+        },
+        "children": [
+          {
+            "id": "shell-sidebar-item-1",
+            "name": "GlobalShell/Sidebar/工作台",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "工作台"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-2",
+            "name": "GlobalShell/Sidebar/待办事项",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "active-or-sibling",
+            "content": {
+              "label": "待办事项"
+            },
+            "tokens": {
+              "fill": "color/primary",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-3",
+            "name": "GlobalShell/Sidebar/案件进度",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "active-or-sibling",
+            "content": {
+              "label": "案件进度"
+            },
+            "tokens": {
+              "fill": "color/primary",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-4",
+            "name": "GlobalShell/Sidebar/服务商城",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "服务商城"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-5",
+            "name": "GlobalShell/Sidebar/个人中心",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "个人中心"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-6",
+            "name": "GlobalShell/Sidebar/消息通知",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "消息通知"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-7",
+            "name": "GlobalShell/Sidebar/我的服务",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "我的服务"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-8",
+            "name": "GlobalShell/Sidebar/我的订单",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "我的订单"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          },
+          {
+            "id": "shell-sidebar-item-9",
+            "name": "GlobalShell/Sidebar/账户设置",
+            "type": "COMPONENT_INSTANCE",
+            "component": "Navigation",
+            "variant": "default",
+            "content": {
+              "label": "账户设置"
+            },
+            "tokens": {
+              "fill": "transparent",
+              "text": "color/text/inverse"
+            }
+          }
+        ]
+      },
+      {
+        "id": "shell-footer",
+        "name": "GlobalShell/Footer",
+        "type": "FRAME",
+        "source": {
+          "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+          "region": "底栏"
+        },
+        "tokens": {
+          "fill": "color/surface",
+          "borderTop": "color/border/subtle"
+        },
+        "layout": {
+          "layoutMode": "HORIZONTAL",
+          "height": 72,
+          "padding": {
+            "left": 24,
+            "right": 24
+          },
+          "itemSpacing": 24
+        },
+        "children": [
+          {
+            "id": "shell-footer-item-1",
+            "name": "GlobalShell/Footer/关于我们",
+            "type": "TEXT",
+            "content": {
+              "text": "关于我们"
+            },
+            "tokens": {
+              "textStyle": "admin/caption",
+              "fill": "color/text/secondary"
+            }
+          },
+          {
+            "id": "shell-footer-item-2",
+            "name": "GlobalShell/Footer/合规协议",
+            "type": "TEXT",
+            "content": {
+              "text": "合规协议"
+            },
+            "tokens": {
+              "textStyle": "admin/caption",
+              "fill": "color/text/secondary"
+            }
+          },
+          {
+            "id": "shell-footer-item-3",
+            "name": "GlobalShell/Footer/© 2026 合规服务平台",
+            "type": "TEXT",
+            "content": {
+              "text": "© 2026 合规服务平台"
+            },
+            "tokens": {
+              "textStyle": "admin/caption",
+              "fill": "color/text/secondary"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pageContent": {
+    "source": "sourcePage",
+    "defaultStateNodes": [
+      {
+        "id": "content-group-1-案件概览指标区",
+        "name": "Section/案件概览指标区",
+        "type": "FRAME",
+        "source": {
+          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+          "groupId": "PGR-001",
+          "groupName": "案件概览指标区"
+        },
+        "tokens": {
+          "fill": "color/surface",
+          "radius": "radius/lg",
+          "border": "color/border/subtle",
+          "padding": "space/6"
+        },
+        "layout": {
+          "layoutMode": "VERTICAL",
+          "padding": 24,
+          "itemSpacing": 16,
+          "widthMode": "FILL",
+          "heightMode": "HUG"
+        },
+        "children": [
+          {
+            "id": "content-group-1-title",
+            "name": "Text/SectionTitle/案件概览指标区",
+            "type": "TEXT",
+            "content": {
+              "text": "案件概览指标区"
+            },
+            "tokens": {
+              "textStyle": "admin/page-title",
+              "fill": "color/text/primary"
+            }
+          },
+          {
+            "id": "node-ple-001",
+            "name": "Component/Text/进行中案件数",
+            "type": "TEXT",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-001",
+              "elementName": "进行中案件数",
+              "groupId": "PGR-001"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": ""
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 0
+            },
+            "content": {
+              "label": "进行中案件数",
+              "text": "进行中 8",
+              "placeholder": "进行中 8"
+            },
+            "component": "Text",
+            "variant": "default"
+          },
+          {
+            "id": "node-ple-002",
+            "name": "Component/Text/风险案件数",
+            "type": "TEXT",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-002",
+              "elementName": "风险案件数",
+              "groupId": "PGR-001"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": ""
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 0
+            },
+            "content": {
+              "label": "风险案件数",
+              "text": "风险 1",
+              "placeholder": "风险 1"
+            },
+            "component": "Text",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "id": "content-group-2-案件筛选区",
+        "name": "Section/案件筛选区",
+        "type": "FRAME",
+        "source": {
+          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+          "groupId": "PGR-002",
+          "groupName": "案件筛选区"
+        },
+        "tokens": {
+          "fill": "color/surface",
+          "radius": "radius/lg",
+          "border": "color/border/subtle",
+          "padding": "space/6"
+        },
+        "layout": {
+          "layoutMode": "VERTICAL",
+          "padding": 24,
+          "itemSpacing": 16,
+          "widthMode": "FILL",
+          "heightMode": "HUG"
+        },
+        "children": [
+          {
+            "id": "content-group-2-title",
+            "name": "Text/SectionTitle/案件筛选区",
+            "type": "TEXT",
+            "content": {
+              "text": "案件筛选区"
+            },
+            "tokens": {
+              "textStyle": "admin/page-title",
+              "fill": "color/text/primary"
+            }
+          },
+          {
+            "id": "node-ple-003",
+            "name": "Component/Select/服务类型筛选",
+            "type": "COMPONENT_INSTANCE",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-003",
+              "elementName": "服务类型筛选",
+              "groupId": "PGR-002"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": ""
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 40
+            },
+            "content": {
+              "label": "服务类型筛选",
+              "text": "案件号 CASE-20260519-001",
+              "placeholder": "案件号 CASE-20260519-001"
+            },
+            "component": "Select",
+            "variant": "default"
+          },
+          {
+            "id": "node-ple-004",
+            "name": "Component/Input/案件编号搜索",
+            "type": "COMPONENT_INSTANCE",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-004",
+              "elementName": "案件编号搜索",
+              "groupId": "PGR-002"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": ""
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 40
+            },
+            "content": {
+              "label": "案件编号搜索",
+              "text": "进度 Step02 资料审核",
+              "placeholder": "进度 Step02 资料审核"
+            },
+            "component": "Input",
+            "variant": "default"
+          }
+        ]
+      },
+      {
+        "id": "content-group-3-案件列表区",
+        "name": "Section/案件列表区",
+        "type": "FRAME",
+        "source": {
+          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+          "groupId": "PGR-003",
+          "groupName": "案件列表区"
+        },
+        "tokens": {
+          "fill": "color/surface",
+          "radius": "radius/lg",
+          "border": "color/border/subtle",
+          "padding": "space/6"
+        },
+        "layout": {
+          "layoutMode": "VERTICAL",
+          "padding": 24,
+          "itemSpacing": 16,
+          "widthMode": "FILL",
+          "heightMode": "HUG"
+        },
+        "children": [
+          {
+            "id": "content-group-3-title",
+            "name": "Text/SectionTitle/案件列表区",
+            "type": "TEXT",
+            "content": {
+              "text": "案件列表区"
+            },
+            "tokens": {
+              "textStyle": "admin/page-title",
+              "fill": "color/text/primary"
+            }
+          },
+          {
+            "id": "node-ple-005",
+            "name": "Component/CardList/案件卡片/表格",
+            "type": "FRAME",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-005",
+              "elementName": "案件卡片/表格",
+              "groupId": "PGR-003"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": ""
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 0
+            },
+            "content": {
+              "label": "案件卡片/表格",
+              "text": "案件卡片/表格",
+              "placeholder": "案件卡片/表格"
+            },
+            "component": "Card",
+            "variant": "default",
+            "children": [
+              {
+                "id": "node-ple-005-card-1",
+                "name": "Card/待处理事项",
+                "type": "FRAME",
+                "component": "Card",
+                "content": {
+                  "title": "案件卡片/表格",
+                  "subtitle": "截止 2026-05-20 18:00"
+                },
+                "tokens": {
+                  "fill": "color/surface",
+                  "border": "color/border/subtle"
+                }
+              }
+            ]
+          },
+          {
+            "id": "node-ple-006",
+            "name": "Component/Timeline/进度步骤摘要",
+            "type": "COMPONENT_INSTANCE",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-006",
+              "elementName": "进度步骤摘要",
+              "groupId": "PGR-003"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": ""
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 0
+            },
+            "content": {
+              "label": "进度步骤摘要",
+              "text": "进度步骤摘要",
+              "placeholder": "进度步骤摘要"
+            },
+            "component": "Timeline",
+            "variant": "default",
+            "children": [
+              {
+                "id": "node-ple-006-step-1",
+                "name": "TimelineStep/资料提交",
+                "type": "FRAME",
+                "content": {
+                  "label": "资料提交",
+                  "status": "done"
+                }
+              },
+              {
+                "id": "node-ple-006-step-2",
+                "name": "TimelineStep/资料审核",
+                "type": "FRAME",
+                "content": {
+                  "label": "资料审核",
+                  "status": "active"
+                }
+              },
+              {
+                "id": "node-ple-006-step-3",
+                "name": "TimelineStep/协议回填",
+                "type": "FRAME",
+                "content": {
+                  "label": "协议回填",
+                  "status": "pending"
+                }
+              },
+              {
+                "id": "node-ple-006-step-4",
+                "name": "TimelineStep/案件交付",
+                "type": "FRAME",
+                "content": {
+                  "label": "案件交付",
+                  "status": "pending"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "content-group-4-进度提示区",
+        "name": "Section/进度提示区",
+        "type": "FRAME",
+        "source": {
+          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+          "groupId": "PGR-004",
+          "groupName": "进度提示区"
+        },
+        "tokens": {
+          "fill": "color/surface",
+          "radius": "radius/lg",
+          "border": "color/border/subtle",
+          "padding": "space/6"
+        },
+        "layout": {
+          "layoutMode": "VERTICAL",
+          "padding": 24,
+          "itemSpacing": 16,
+          "widthMode": "FILL",
+          "heightMode": "HUG"
+        },
+        "children": [
+          {
+            "id": "content-group-4-title",
+            "name": "Text/SectionTitle/进度提示区",
+            "type": "TEXT",
+            "content": {
+              "text": "进度提示区"
+            },
+            "tokens": {
+              "textStyle": "admin/page-title",
+              "fill": "color/text/primary"
+            }
+          },
+          {
+            "id": "node-ple-007",
+            "name": "Component/Button/查看服务详情按钮",
+            "type": "COMPONENT_INSTANCE",
+            "source": {
+              "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+              "elementId": "PLE-007",
+              "elementName": "查看服务详情按钮",
+              "groupId": "PGR-004"
+            },
+            "semantic": {
+              "owner": "Page Body",
+              "actionIntent": "view-detail"
+            },
+            "tokens": {
+              "textStyle": "admin/body",
+              "fill": "color/text/primary"
+            },
+            "layout": {
+              "widthMode": "FILL",
+              "heightMode": "HUG",
+              "minHeight": 40
+            },
+            "content": {
+              "label": "查看服务详情按钮",
+              "text": "查看服务详情按钮",
+              "placeholder": "查看服务详情按钮"
+            },
+            "component": "Button",
+            "variant": "primary"
+          }
+        ]
+      }
+    ],
+    "elementMappings": [
+      {
+        "sourceElementId": "PLE-001",
+        "sourceElementName": "进行中案件数",
+        "sourceType": "文本/展示",
+        "figmaNodeId": "node-ple-001",
+        "figmaNodeType": "TEXT",
+        "componentRule": "Text"
+      },
+      {
+        "sourceElementId": "PLE-002",
+        "sourceElementName": "风险案件数",
+        "sourceType": "文本/展示",
+        "figmaNodeId": "node-ple-002",
+        "figmaNodeType": "TEXT",
+        "componentRule": "Text"
+      },
+      {
+        "sourceElementId": "PLE-003",
+        "sourceElementName": "服务类型筛选",
+        "sourceType": "选择控件",
+        "figmaNodeId": "node-ple-003",
+        "figmaNodeType": "COMPONENT_INSTANCE",
+        "componentRule": "Select"
+      },
+      {
+        "sourceElementId": "PLE-004",
+        "sourceElementName": "案件编号搜索",
+        "sourceType": "文本/展示",
+        "figmaNodeId": "node-ple-004",
+        "figmaNodeType": "COMPONENT_INSTANCE",
+        "componentRule": "Input"
+      },
+      {
+        "sourceElementId": "PLE-005",
+        "sourceElementName": "案件卡片/表格",
+        "sourceType": "列表/表格",
+        "figmaNodeId": "node-ple-005",
+        "figmaNodeType": "COMPONENT_INSTANCE",
+        "componentRule": "Card"
+      },
+      {
+        "sourceElementId": "PLE-006",
+        "sourceElementName": "进度步骤摘要",
+        "sourceType": "流程组件",
+        "figmaNodeId": "node-ple-006",
+        "figmaNodeType": "COMPONENT_INSTANCE",
+        "componentRule": "Timeline"
+      },
+      {
+        "sourceElementId": "PLE-007",
+        "sourceElementName": "查看服务详情按钮",
+        "sourceType": "按钮",
+        "figmaNodeId": "node-ple-007",
+        "figmaNodeType": "COMPONENT_INSTANCE",
+        "componentRule": "Button"
+      }
+    ]
+  },
+  "consistency": {
+    "layoutKey": "客户端-PC-Web",
+    "pageIntentKey": "list-management",
+    "stateGroupKey": "",
+    "designSpecKey": "antd-admin-design-spec",
+    "profileRefs": {
+      "layoutProfile": "product/style-profiles/客户端-PC-Web/layout-profile.json",
+      "intentProfile": "product/style-profiles/客户端-PC-Web/intent-list-management-profile.json",
+      "stateGroupProfile": ""
+    },
+    "profileStatus": {
+      "layoutProfile": "created",
+      "intentProfile": "created",
+      "stateGroupProfile": "not-applicable"
+    },
+    "styleFingerprint": {
+      "layoutHash": "b2968cd4bc2c",
+      "intentHash": "fb8680bf9b7b",
+      "stateGroupHash": ""
+    },
+    "lockedPropertiesApplied": [
+      "canvas",
+      "global shell",
+      "content padding",
+      "responsive fallback",
+      "list-management skeleton",
+      "no state group"
+    ],
+    "allowedPageOverrides": [
+      "business copy and mock data only"
+    ],
+    "driftCheck": {
+      "status": "pass",
+      "warnings": []
+    }
+  },
+  "renderSpec": {
+    "renderer": {
+      "sourceTree": "figmaDocument.children",
+      "requiresComponentAdapters": true,
+      "requiresTwoPassLayout": true,
+      "preferredRenderRules": "design/antd-admin-design-spec/figma-render-rules.json"
+    },
+    "canvas": {
+      "primaryFrameId": "frame-primary",
+      "device": "PC Web",
+      "width": 1440,
+      "minHeight": 900,
+      "layoutMode": "VERTICAL"
+    },
+    "layoutSafety": {
+      "noOverlap": true,
+      "noTextOverflow": true,
+      "avoidClipping": true,
+      "minClickableTarget": 32
+    },
+    "layoutBudget": {
+      "availableContentHeight": 700,
+      "estimatedContentHeight": 680,
+      "maxPrimaryPanelHeight": null,
+      "compressionOrder": [
+        "helper text",
+        "secondary metadata",
+        "optional cards",
+        "table secondary columns"
+      ],
+      "compressionApplied": [],
+      "scrollContainers": [
+        "page-body"
+      ],
+      "status": "pass"
+    },
+    "componentInstances": [
+      {
+        "sourceNodeId": "node-ple-001",
+        "component": "Text",
+        "adapter": "component-rules.components.Text",
+        "variant": "default",
+        "props": {
+          "label": "进行中案件数",
+          "text": "进行中 8",
+          "placeholder": "进行中 8"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 0
+        },
+        "textPolicy": "text-policy-node-ple-001",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Text primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-002",
+        "component": "Text",
+        "adapter": "component-rules.components.Text",
+        "variant": "default",
+        "props": {
+          "label": "风险案件数",
+          "text": "风险 1",
+          "placeholder": "风险 1"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 0
+        },
+        "textPolicy": "text-policy-node-ple-002",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Text primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-003",
+        "component": "Select",
+        "adapter": "component-rules.components.Select",
+        "variant": "default",
+        "props": {
+          "label": "服务类型筛选",
+          "text": "案件号 CASE-20260519-001",
+          "placeholder": "案件号 CASE-20260519-001"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 40
+        },
+        "textPolicy": "text-policy-node-ple-003",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Select primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-004",
+        "component": "Input",
+        "adapter": "component-rules.components.Input",
+        "variant": "default",
+        "props": {
+          "label": "案件编号搜索",
+          "text": "进度 Step02 资料审核",
+          "placeholder": "进度 Step02 资料审核"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 40
+        },
+        "textPolicy": "text-policy-node-ple-004",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Input primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-005",
+        "component": "Card",
+        "adapter": "component-rules.components.Card",
+        "variant": "default",
+        "props": {
+          "label": "案件卡片/表格",
+          "text": "案件卡片/表格",
+          "placeholder": "案件卡片/表格"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 0
+        },
+        "textPolicy": "text-policy-node-ple-005",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Card primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-005-card-1",
+        "component": "Card",
+        "adapter": "component-rules.components.Card",
+        "variant": "default",
+        "props": {
+          "title": "案件卡片/表格",
+          "subtitle": "截止 2026-05-20 18:00"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "fill",
+          "heightMode": "hug",
+          "minWidth": 0,
+          "minHeight": 0
+        },
+        "textPolicy": "text-policy-node-ple-005-card-1",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Card primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-006",
+        "component": "Timeline",
+        "adapter": "component-rules.components.Timeline",
+        "variant": "default",
+        "props": {
+          "label": "进度步骤摘要",
+          "text": "进度步骤摘要",
+          "placeholder": "进度步骤摘要"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 0
+        },
+        "textPolicy": "text-policy-node-ple-006",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Timeline primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      },
+      {
+        "sourceNodeId": "node-ple-007",
+        "component": "Button",
+        "adapter": "component-rules.components.Button",
+        "variant": "primary",
+        "props": {
+          "label": "查看服务详情按钮",
+          "text": "查看服务详情按钮",
+          "placeholder": "查看服务详情按钮"
+        },
+        "slots": {},
+        "sizing": {
+          "widthMode": "FILL",
+          "heightMode": "HUG",
+          "minWidth": 0,
+          "minHeight": 40
+        },
+        "textPolicy": "text-policy-node-ple-007",
+        "fallbackAdapter": {
+          "reason": "component-blueprints.json has no Button primitive blueprint",
+          "strategy": "render as editable primitive Figma nodes using component-rules sizing/state/style tokens",
+          "blueprintSource": "component-rules.json"
+        }
+      }
+    ],
+    "textPolicies": [
+      {
+        "sourceNodeId": "content-group-1-title",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-001",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-002",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "content-group-2-title",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-003",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-004",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "content-group-3-title",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-005",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-006",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-1",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-2",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-3",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-4",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "content-group-4-title",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      },
+      {
+        "sourceNodeId": "node-ple-007",
+        "wrap": true,
+        "maxLines": 2,
+        "overflow": "grow-parent",
+        "minWidth": 120
+      }
+    ],
+    "constraints": [
+      {
+        "sourceNodeId": "frame-primary",
+        "widthMode": "fixed",
+        "heightMode": "hug",
+        "minWidth": 1440,
+        "minHeight": 900,
+        "maxWidth": 1440,
+        "gapToken": "space/0",
+        "paddingToken": "space/0",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "page-body",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 600,
+        "maxWidth": null,
+        "gapToken": "space/6",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-1-案件概览指标区",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-1-title",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-001",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-002",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-2-案件筛选区",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-2-title",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-003",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 40,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-004",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 40,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-3-案件列表区",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-3-title",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-005",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-005-card-1",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-006",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-1",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-2",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-3",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-006-step-4",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-4-进度提示区",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "content-group-4-title",
+        "widthMode": "fill",
+        "heightMode": "hug",
+        "minWidth": 0,
+        "minHeight": 0,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      },
+      {
+        "sourceNodeId": "node-ple-007",
+        "widthMode": "FILL",
+        "heightMode": "HUG",
+        "minWidth": 0,
+        "minHeight": 40,
+        "maxWidth": null,
+        "gapToken": "space/4",
+        "paddingToken": "space/6",
+        "alignment": "stretch"
+      }
+    ],
+    "slotContracts": [
+      {
+        "slotId": "slot-list-management-primary-content",
+        "slotName": "list-management primary content",
+        "scope": "pageIntent",
+        "required": true,
+        "variableByState": false,
+        "allowedComponents": [
+          "Text",
+          "Text",
+          "Select",
+          "Input",
+          "Card",
+          "Card",
+          "Timeline",
+          "Button"
+        ],
+        "sizing": {
+          "widthMode": "fill",
+          "heightMode": "hug"
+        },
+        "overflow": "scroll"
+      }
+    ],
+    "duplicateAudit": [],
+    "qaExpectations": {
+      "keyRegions": [
+        "PageHeader",
+        "MetricGrid",
+        "FilterBar",
+        "DataCollection",
+        "ProgressSummary",
+        "PrimaryAction"
+      ],
+      "forbiddenRegions": [
+        "duplicated global shell",
+        "blocking duplicate primary action"
+      ],
+      "consistencyChecks": [
+        "layout-profile-applied",
+        "intent-profile-applied",
+        "state-group-profile-applied-when-present",
+        "style-fingerprint-recorded"
+      ],
+      "screenshotRequired": true,
+      "structuralChecks": [
+        "no-overlap",
+        "no-text-overflow",
+        "no-root-clipping",
+        "no-shell-collision",
+        "no-blocking-duplicate-action",
+        "semantic-key-regions-present"
+      ]
+    }
+  },
+  "figmaDocument": {
+    "type": "DOCUMENT",
+    "name": "案件进度 Figma Nodes",
+    "children": [
+      {
+        "id": "page-root",
+        "name": "Page/PAGE-009-案件进度",
+        "type": "PAGE",
+        "children": [
+          {
+            "id": "frame-primary",
+            "name": "Frame/Primary/客户端 / PC Web",
+            "type": "FRAME",
+            "layoutMode": "VERTICAL",
+            "tokens": {
+              "fill": "color/background"
+            },
+            "layout": {
+              "width": 1440,
+              "minHeight": 900
+            },
+            "children": [
+              {
+                "id": "shell-topbar",
+                "name": "GlobalShell/Topbar",
+                "type": "FRAME",
+                "source": {
+                  "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+                  "region": "顶栏"
+                },
+                "tokens": {
+                  "fill": "color/surface",
+                  "borderBottom": "color/border/subtle"
+                },
+                "layout": {
+                  "layoutMode": "HORIZONTAL",
+                  "height": 64,
+                  "padding": {
+                    "left": 24,
+                    "right": 24
+                  },
+                  "itemSpacing": 16
+                },
+                "children": [
+                  {
+                    "id": "shell-topbar-logo",
+                    "name": "GlobalShell/Topbar/Logo",
+                    "type": "TEXT",
+                    "content": {
+                      "text": "合规服务平台"
+                    },
+                    "tokens": {
+                      "textStyle": "admin/page-title",
+                      "fill": "color/text/primary"
+                    }
+                  },
+                  {
+                    "id": "shell-topbar-actions",
+                    "name": "GlobalShell/Topbar/UserActions",
+                    "type": "FRAME",
+                    "layout": {
+                      "layoutMode": "HORIZONTAL",
+                      "itemSpacing": 16
+                    },
+                    "children": [
+                      {
+                        "id": "shell-topbar-action-1",
+                        "name": "GlobalShell/Topbar/消息通知",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "消息通知"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/secondary"
+                        }
+                      },
+                      {
+                        "id": "shell-topbar-action-2",
+                        "name": "GlobalShell/Topbar/待办事项",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "待办事项"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/secondary"
+                        }
+                      },
+                      {
+                        "id": "shell-topbar-action-3",
+                        "name": "GlobalShell/Topbar/登录/注册",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "登录/注册"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/secondary"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "shell-sidebar",
+                "name": "GlobalShell/Sidebar",
+                "type": "FRAME",
+                "source": {
+                  "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+                  "region": "导航侧栏"
+                },
+                "tokens": {
+                  "fill": "color/layout-sider"
+                },
+                "layout": {
+                  "layoutMode": "VERTICAL",
+                  "width": 232,
+                  "padding": 12,
+                  "itemSpacing": 4
+                },
+                "children": [
+                  {
+                    "id": "shell-sidebar-item-1",
+                    "name": "GlobalShell/Sidebar/工作台",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "工作台"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-2",
+                    "name": "GlobalShell/Sidebar/待办事项",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "active-or-sibling",
+                    "content": {
+                      "label": "待办事项"
+                    },
+                    "tokens": {
+                      "fill": "color/primary",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-3",
+                    "name": "GlobalShell/Sidebar/案件进度",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "active-or-sibling",
+                    "content": {
+                      "label": "案件进度"
+                    },
+                    "tokens": {
+                      "fill": "color/primary",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-4",
+                    "name": "GlobalShell/Sidebar/服务商城",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "服务商城"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-5",
+                    "name": "GlobalShell/Sidebar/个人中心",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "个人中心"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-6",
+                    "name": "GlobalShell/Sidebar/消息通知",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "消息通知"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-7",
+                    "name": "GlobalShell/Sidebar/我的服务",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "我的服务"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-8",
+                    "name": "GlobalShell/Sidebar/我的订单",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "我的订单"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  },
+                  {
+                    "id": "shell-sidebar-item-9",
+                    "name": "GlobalShell/Sidebar/账户设置",
+                    "type": "COMPONENT_INSTANCE",
+                    "component": "Navigation",
+                    "variant": "default",
+                    "content": {
+                      "label": "账户设置"
+                    },
+                    "tokens": {
+                      "fill": "transparent",
+                      "text": "color/text/inverse"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "shell-footer",
+                "name": "GlobalShell/Footer",
+                "type": "FRAME",
+                "source": {
+                  "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+                  "region": "底栏"
+                },
+                "tokens": {
+                  "fill": "color/surface",
+                  "borderTop": "color/border/subtle"
+                },
+                "layout": {
+                  "layoutMode": "HORIZONTAL",
+                  "height": 72,
+                  "padding": {
+                    "left": 24,
+                    "right": 24
+                  },
+                  "itemSpacing": 24
+                },
+                "children": [
+                  {
+                    "id": "shell-footer-item-1",
+                    "name": "GlobalShell/Footer/关于我们",
+                    "type": "TEXT",
+                    "content": {
+                      "text": "关于我们"
+                    },
+                    "tokens": {
+                      "textStyle": "admin/caption",
+                      "fill": "color/text/secondary"
+                    }
+                  },
+                  {
+                    "id": "shell-footer-item-2",
+                    "name": "GlobalShell/Footer/合规协议",
+                    "type": "TEXT",
+                    "content": {
+                      "text": "合规协议"
+                    },
+                    "tokens": {
+                      "textStyle": "admin/caption",
+                      "fill": "color/text/secondary"
+                    }
+                  },
+                  {
+                    "id": "shell-footer-item-3",
+                    "name": "GlobalShell/Footer/© 2026 合规服务平台",
+                    "type": "TEXT",
+                    "content": {
+                      "text": "© 2026 合规服务平台"
+                    },
+                    "tokens": {
+                      "textStyle": "admin/caption",
+                      "fill": "color/text/secondary"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "page-body",
+                "name": "PageBody/PAGE-009-案件进度",
+                "type": "FRAME",
+                "source": {
+                  "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md"
+                },
+                "tokens": {
+                  "fill": "color/background",
+                  "padding": "space/6"
+                },
+                "layout": {
+                  "layoutMode": "VERTICAL",
+                  "padding": 24,
+                  "itemSpacing": 24,
+                  "widthMode": "FILL",
+                  "heightMode": "HUG"
+                },
+                "children": [
+                  {
+                    "id": "page-title",
+                    "name": "Text/PageTitle/案件进度",
+                    "type": "TEXT",
+                    "content": {
+                      "text": "案件进度"
+                    },
+                    "tokens": {
+                      "textStyle": "admin/page-title",
+                      "fill": "color/text/primary"
+                    }
+                  },
+                  {
+                    "id": "content-group-1-案件概览指标区",
+                    "name": "Section/案件概览指标区",
+                    "type": "FRAME",
+                    "source": {
+                      "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                      "groupId": "PGR-001",
+                      "groupName": "案件概览指标区"
+                    },
+                    "tokens": {
+                      "fill": "color/surface",
+                      "radius": "radius/lg",
+                      "border": "color/border/subtle",
+                      "padding": "space/6"
+                    },
+                    "layout": {
+                      "layoutMode": "VERTICAL",
+                      "padding": 24,
+                      "itemSpacing": 16,
+                      "widthMode": "FILL",
+                      "heightMode": "HUG"
+                    },
+                    "children": [
+                      {
+                        "id": "content-group-1-title",
+                        "name": "Text/SectionTitle/案件概览指标区",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "案件概览指标区"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/page-title",
+                          "fill": "color/text/primary"
+                        }
+                      },
+                      {
+                        "id": "node-ple-001",
+                        "name": "Component/Text/进行中案件数",
+                        "type": "TEXT",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-001",
+                          "elementName": "进行中案件数",
+                          "groupId": "PGR-001"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": ""
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 0
+                        },
+                        "content": {
+                          "label": "进行中案件数",
+                          "text": "进行中 8",
+                          "placeholder": "进行中 8"
+                        },
+                        "component": "Text",
+                        "variant": "default"
+                      },
+                      {
+                        "id": "node-ple-002",
+                        "name": "Component/Text/风险案件数",
+                        "type": "TEXT",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-002",
+                          "elementName": "风险案件数",
+                          "groupId": "PGR-001"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": ""
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 0
+                        },
+                        "content": {
+                          "label": "风险案件数",
+                          "text": "风险 1",
+                          "placeholder": "风险 1"
+                        },
+                        "component": "Text",
+                        "variant": "default"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "content-group-2-案件筛选区",
+                    "name": "Section/案件筛选区",
+                    "type": "FRAME",
+                    "source": {
+                      "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                      "groupId": "PGR-002",
+                      "groupName": "案件筛选区"
+                    },
+                    "tokens": {
+                      "fill": "color/surface",
+                      "radius": "radius/lg",
+                      "border": "color/border/subtle",
+                      "padding": "space/6"
+                    },
+                    "layout": {
+                      "layoutMode": "VERTICAL",
+                      "padding": 24,
+                      "itemSpacing": 16,
+                      "widthMode": "FILL",
+                      "heightMode": "HUG"
+                    },
+                    "children": [
+                      {
+                        "id": "content-group-2-title",
+                        "name": "Text/SectionTitle/案件筛选区",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "案件筛选区"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/page-title",
+                          "fill": "color/text/primary"
+                        }
+                      },
+                      {
+                        "id": "node-ple-003",
+                        "name": "Component/Select/服务类型筛选",
+                        "type": "COMPONENT_INSTANCE",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-003",
+                          "elementName": "服务类型筛选",
+                          "groupId": "PGR-002"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": ""
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 40
+                        },
+                        "content": {
+                          "label": "服务类型筛选",
+                          "text": "案件号 CASE-20260519-001",
+                          "placeholder": "案件号 CASE-20260519-001"
+                        },
+                        "component": "Select",
+                        "variant": "default"
+                      },
+                      {
+                        "id": "node-ple-004",
+                        "name": "Component/Input/案件编号搜索",
+                        "type": "COMPONENT_INSTANCE",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-004",
+                          "elementName": "案件编号搜索",
+                          "groupId": "PGR-002"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": ""
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 40
+                        },
+                        "content": {
+                          "label": "案件编号搜索",
+                          "text": "进度 Step02 资料审核",
+                          "placeholder": "进度 Step02 资料审核"
+                        },
+                        "component": "Input",
+                        "variant": "default"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "content-group-3-案件列表区",
+                    "name": "Section/案件列表区",
+                    "type": "FRAME",
+                    "source": {
+                      "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                      "groupId": "PGR-003",
+                      "groupName": "案件列表区"
+                    },
+                    "tokens": {
+                      "fill": "color/surface",
+                      "radius": "radius/lg",
+                      "border": "color/border/subtle",
+                      "padding": "space/6"
+                    },
+                    "layout": {
+                      "layoutMode": "VERTICAL",
+                      "padding": 24,
+                      "itemSpacing": 16,
+                      "widthMode": "FILL",
+                      "heightMode": "HUG"
+                    },
+                    "children": [
+                      {
+                        "id": "content-group-3-title",
+                        "name": "Text/SectionTitle/案件列表区",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "案件列表区"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/page-title",
+                          "fill": "color/text/primary"
+                        }
+                      },
+                      {
+                        "id": "node-ple-005",
+                        "name": "Component/CardList/案件卡片/表格",
+                        "type": "FRAME",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-005",
+                          "elementName": "案件卡片/表格",
+                          "groupId": "PGR-003"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": ""
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 0
+                        },
+                        "content": {
+                          "label": "案件卡片/表格",
+                          "text": "案件卡片/表格",
+                          "placeholder": "案件卡片/表格"
+                        },
+                        "component": "Card",
+                        "variant": "default",
+                        "children": [
+                          {
+                            "id": "node-ple-005-card-1",
+                            "name": "Card/待处理事项",
+                            "type": "FRAME",
+                            "component": "Card",
+                            "content": {
+                              "title": "案件卡片/表格",
+                              "subtitle": "截止 2026-05-20 18:00"
+                            },
+                            "tokens": {
+                              "fill": "color/surface",
+                              "border": "color/border/subtle"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": "node-ple-006",
+                        "name": "Component/Timeline/进度步骤摘要",
+                        "type": "COMPONENT_INSTANCE",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-006",
+                          "elementName": "进度步骤摘要",
+                          "groupId": "PGR-003"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": ""
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 0
+                        },
+                        "content": {
+                          "label": "进度步骤摘要",
+                          "text": "进度步骤摘要",
+                          "placeholder": "进度步骤摘要"
+                        },
+                        "component": "Timeline",
+                        "variant": "default",
+                        "children": [
+                          {
+                            "id": "node-ple-006-step-1",
+                            "name": "TimelineStep/资料提交",
+                            "type": "FRAME",
+                            "content": {
+                              "label": "资料提交",
+                              "status": "done"
+                            }
+                          },
+                          {
+                            "id": "node-ple-006-step-2",
+                            "name": "TimelineStep/资料审核",
+                            "type": "FRAME",
+                            "content": {
+                              "label": "资料审核",
+                              "status": "active"
+                            }
+                          },
+                          {
+                            "id": "node-ple-006-step-3",
+                            "name": "TimelineStep/协议回填",
+                            "type": "FRAME",
+                            "content": {
+                              "label": "协议回填",
+                              "status": "pending"
+                            }
+                          },
+                          {
+                            "id": "node-ple-006-step-4",
+                            "name": "TimelineStep/案件交付",
+                            "type": "FRAME",
+                            "content": {
+                              "label": "案件交付",
+                              "status": "pending"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "content-group-4-进度提示区",
+                    "name": "Section/进度提示区",
+                    "type": "FRAME",
+                    "source": {
+                      "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                      "groupId": "PGR-004",
+                      "groupName": "进度提示区"
+                    },
+                    "tokens": {
+                      "fill": "color/surface",
+                      "radius": "radius/lg",
+                      "border": "color/border/subtle",
+                      "padding": "space/6"
+                    },
+                    "layout": {
+                      "layoutMode": "VERTICAL",
+                      "padding": 24,
+                      "itemSpacing": 16,
+                      "widthMode": "FILL",
+                      "heightMode": "HUG"
+                    },
+                    "children": [
+                      {
+                        "id": "content-group-4-title",
+                        "name": "Text/SectionTitle/进度提示区",
+                        "type": "TEXT",
+                        "content": {
+                          "text": "进度提示区"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/page-title",
+                          "fill": "color/text/primary"
+                        }
+                      },
+                      {
+                        "id": "node-ple-007",
+                        "name": "Component/Button/查看服务详情按钮",
+                        "type": "COMPONENT_INSTANCE",
+                        "source": {
+                          "layout": "product/pages/客户端-PC-Web/PAGE-007-工作台/PAGE-009-案件进度/layout.md",
+                          "elementId": "PLE-007",
+                          "elementName": "查看服务详情按钮",
+                          "groupId": "PGR-004"
+                        },
+                        "semantic": {
+                          "owner": "Page Body",
+                          "actionIntent": "view-detail"
+                        },
+                        "tokens": {
+                          "textStyle": "admin/body",
+                          "fill": "color/text/primary"
+                        },
+                        "layout": {
+                          "widthMode": "FILL",
+                          "heightMode": "HUG",
+                          "minHeight": 40
+                        },
+                        "content": {
+                          "label": "查看服务详情按钮",
+                          "text": "查看服务详情按钮",
+                          "placeholder": "查看服务详情按钮"
+                        },
+                        "component": "Button",
+                        "variant": "primary"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "responsiveVariants": {
+    "primary": {
+      "device": "PC Web",
+      "frameWidth": 1440,
+      "strategy": "logged-in portal shell with sidebar, topbar and content cards"
+    },
+    "fallbacks": [
+      {
+        "device": "Tablet",
+        "frameWidth": 768,
+        "strategy": "collapse sidebar, keep card/table content stacked with 20px page padding"
+      },
+      {
+        "device": "Mobile",
+        "frameWidth": 390,
+        "strategy": "hide sidebar, convert tables to card list, filters into drawer"
+      }
+    ]
+  },
+  "excludedStates": [
+    {
+      "stateId": "EXCLUDED-001",
+      "stateName": "空状态",
+      "reference": "空状态容器",
+      "reason": "Non-default state excluded from Figma node generation",
+      "followUp": "如需状态画板，使用专门状态生成流程"
+    },
+    {
+      "stateId": "EXCLUDED-002",
+      "stateName": "加载状态",
+      "reference": "加载状态提示",
+      "reason": "Non-default state excluded from Figma node generation",
+      "followUp": "如需状态画板，使用专门状态生成流程"
+    },
+    {
+      "stateId": "EXCLUDED-003",
+      "stateName": "错误状态",
+      "reference": "错误状态提示",
+      "reason": "Non-default state excluded from Figma node generation",
+      "followUp": "如需状态画板，使用专门状态生成流程"
+    },
+    {
+      "stateId": "EXCLUDED-004",
+      "stateName": "空状态文案",
+      "reference": "暂无符合条件的数据",
+      "reason": "Non-default state excluded from Figma node generation",
+      "followUp": "如需状态画板，使用专门状态生成流程"
+    },
+    {
+      "stateId": "EXCLUDED-005",
+      "stateName": "加载文案",
+      "reference": "加载中，请稍候",
+      "reason": "Non-default state excluded from Figma node generation",
+      "followUp": "如需状态画板，使用专门状态生成流程"
+    },
+    {
+      "stateId": "EXCLUDED-006",
+      "stateName": "错误文案",
+      "reference": "数据加载失败，请重试",
+      "reason": "Non-default state excluded from Figma node generation",
+      "followUp": "如需状态画板，使用专门状态生成流程"
+    }
+  ],
+  "assumptions": [
+    "当前仅生成默认状态主节点树；空、加载、错误等非默认状态已记录到 excludedStates。",
+    "客户端 PC Web 使用上一次生成的 Ant Design 风格后台管理规范作为唯一有效 pm-05 设计规范；视觉偏企业中后台，适配客户工作台和登录页。"
+  ],
+  "qualityChecklist": [
+    "layout.md source exists",
+    "design JSON files parsed",
+    "source sitemap read and merged",
+    "pageIntent.primary selected",
+    "semanticValidation audits present",
+    "renderSpec complete",
+    "consistency profile refs and fingerprints present",
+    "non-default states excluded",
+    "component instance fallback adapters recorded when primitive blueprint is absent"
+  ]
+}

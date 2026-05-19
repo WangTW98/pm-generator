@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "documentType": "pm-06-layout-profile",
+    "designSpecKey": "antd-admin-design-spec",
+    "layoutKey": "客户端-PC-Web",
+    "generatedAt": "2026-05-19"
+  },
+  "locked": {
+    "canvas": {
+      "width": 1440,
+      "minHeight": 900
+    },
+    "shell": {
+      "topbar": {
+        "height": 64,
+        "position": "top",
+        "fill": "color/surface"
+      },
+      "sidebar": {
+        "width": 232,
+        "fill": "color/layout-sider",
+        "appliesTo": [
+          "dashboard",
+          "list-management",
+          "detail",
+          "profile-settings",
+          "message-center"
+        ]
+      },
+      "footer": {
+        "height": 72,
+        "fill": "color/surface"
+      },
+      "content": {
+        "padding": 24,
+        "background": "color/background"
+      }
+    },
+    "navigation": [
+      "工作台",
+      "待办事项",
+      "案件进度",
+      "服务商城",
+      "个人中心",
+      "消息通知",
+      "我的服务",
+      "我的订单",
+      "账户设置"
+    ],
+    "responsive": {
+      "desktop": "topbar + optional sidebar + content",
+      "tablet": "collapsed sidebar + content",
+      "mobile": "topbar + bottom navigation + card/list content"
+    }
+  },
+  "source": {
+    "sitemap": "product/layout/客户端-PC-Web-sitemap.md",
+    "designSpec": "design/antd-admin-design-spec"
+  },
+  "fingerprint": "b2968cd4bc2c"
+}

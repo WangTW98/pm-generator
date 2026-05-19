@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "documentType": "pm-06-intent-profile",
+    "designSpecKey": "antd-admin-design-spec",
+    "layoutKey": "客户端-PC-Web",
+    "pageIntentKey": "list-management",
+    "generatedAt": "2026-05-19"
+  },
+  "locked": {
+    "skeleton": [
+      "PageHeader",
+      "MetricGrid",
+      "FilterBar",
+      "DataCollection",
+      "ProgressSummary",
+      "PrimaryAction"
+    ],
+    "shellVariant": "logged-in-sidebar",
+    "componentVariants": {
+      "table": "client-case-table",
+      "select": "filter-select",
+      "input": "search-input",
+      "button": "primary/default"
+    },
+    "slotContract": {
+      "fixedSlots": [
+        "filter-bar",
+        "data-collection"
+      ],
+      "flexibleSlots": [
+        "progress-summary"
+      ],
+      "maxPrimaryActions": 1
+    }
+  },
+  "source": {
+    "designSpec": "design/antd-admin-design-spec"
+  },
+  "fingerprint": "fb8680bf9b7b"
+}

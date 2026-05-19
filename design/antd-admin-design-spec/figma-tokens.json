@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "name": "Ant Design 风格后台管理设计规范",
+    "slug": "antd-admin-design-spec",
+    "version": "1.0.0",
+    "updatedAt": "2026-05-19",
+    "source": "使用pm-05-design-spec skill生成antd风格的完整后台管理设计规范",
+    "primaryFormFactor": "PC Web admin",
+    "productContext": "知识产权与合规服务管理后台"
+  },
+  "variableCollections": [
+    {
+      "name": "Antd Admin / Color",
+      "modes": [
+        "Light"
+      ],
+      "variables": {
+        "color/primary": {
+          "type": "COLOR",
+          "value": "#1677FF"
+        },
+        "color/primary-hover": {
+          "type": "COLOR",
+          "value": "#4096FF"
+        },
+        "color/background": {
+          "type": "COLOR",
+          "value": "#F5F7FA"
+        },
+        "color/surface": {
+          "type": "COLOR",
+          "value": "#FFFFFF"
+        },
+        "color/layout-sider": {
+          "type": "COLOR",
+          "value": "#001529"
+        },
+        "color/text/primary": {
+          "type": "COLOR",
+          "value": "#1F2329"
+        },
+        "color/text/secondary": {
+          "type": "COLOR",
+          "value": "#4E5969"
+        },
+        "color/border/default": {
+          "type": "COLOR",
+          "value": "#D9D9D9"
+        },
+        "color/status/success": {
+          "type": "COLOR",
+          "value": "#52C41A"
+        },
+        "color/status/warning": {
+          "type": "COLOR",
+          "value": "#FAAD14"
+        },
+        "color/status/error": {
+          "type": "COLOR",
+          "value": "#FF4D4F"
+        }
+      }
+    },
+    {
+      "name": "Antd Admin / Size",
+      "modes": [
+        "Default"
+      ],
+      "variables": {
+        "space/4": {
+          "type": "FLOAT",
+          "value": 16
+        },
+        "space/6": {
+          "type": "FLOAT",
+          "value": 24
+        },
+        "radius/md": {
+          "type": "FLOAT",
+          "value": 6
+        },
+        "layout/sider-width": {
+          "type": "FLOAT",
+          "value": 232
+        },
+        "layout/header-height": {
+          "type": "FLOAT",
+          "value": 56
+        },
+        "component/control-height": {
+          "type": "FLOAT",
+          "value": 32
+        },
+        "component/table-row-height": {
+          "type": "FLOAT",
+          "value": 48
+        }
+      }
+    }
+  ],
+  "textStyles": {
+    "admin/page-title": {
+      "fontSize": 20,
+      "fontWeight": 600,
+      "lineHeight": 28
+    },
+    "admin/body": {
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": 22
+    },
+    "admin/caption": {
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": 18
+    },
+    "admin/metric": {
+      "fontSize": 24,
+      "fontWeight": 600,
+      "lineHeight": 30
+    }
+  },
+  "effectStyles": {
+    "shadow/card": "0 1px 2px rgba(0, 0, 0, 0.04)",
+    "shadow/dropdown": "0 6px 16px rgba(0, 0, 0, 0.08)",
+    "shadow/modal": "0 12px 32px rgba(0, 0, 0, 0.12)"
+  }
+}
