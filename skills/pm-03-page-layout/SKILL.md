@@ -1,6 +1,6 @@
 ---
 name: pm-03-page-layout
-description: "Generate or update one Chinese page layout specification from a specified application sitemap file and page-list ID. Use when an AI assistant needs to read product/layout/<应用端>-sitemap.md, select exactly one PAGE ID, and create or patch product/pages/<来源Sitemap Layout>/<完整父子目录链>/layout.md with reference-only sitemap/layout metadata, default-state-first visible page content, a default-state page structure diagram, detailed atomic page UI element tables, and mock data that covers controls, table columns, row actions, options, and page states. When updating existing layout documents from user edits or natural-language change requests, apply cross-section sync patch rules so page descriptions, state deltas, structure diagram, element table, and mock data remain consistent. Do not inline global layout/sitemap shell elements; downstream skills should merge them later by reading 来源Sitemap and 使用Layout. Also supports single-page dry-run or directory-only checks that compute the canonical path and create zero-byte Markdown placeholders without page content. Always read page metadata and path IDs from 2.2.页面清单 and generate paths from the page-list parent tree. pm-02-sitemap must keep that list tree synchronized with 2.1.sitemap思维导图. State groups are used for baseline reuse and consistency only; they must not collapse, replace, or override the list/mind-map directory tree."
+description: "Generate or update one Chinese page layout specification from a specified application sitemap file and page-list ID. Use when an AI assistant needs to read product/layout/<应用端>-sitemap.md, select exactly one PAGE ID, and create or patch product/pages/<来源Sitemap Layout>/<完整父子目录链>/layout.md with reference-only sitemap/layout metadata, default-state-first visible page content, a concrete default-state page structure diagram, detailed atomic page UI element tables, and mock data that covers controls, table columns, row actions, options, labels, links, tags, and page states. When updating existing layout documents from user edits or natural-language change requests, apply cross-section sync patch rules so page descriptions, state deltas, structure diagram, element table, and mock data remain consistent. Do not inline global layout/sitemap shell elements; downstream skills should merge them later by reading 来源Sitemap and 使用Layout. Also supports single-page dry-run or directory-only checks that compute the canonical path and create zero-byte Markdown placeholders without page content. Always read page metadata and path IDs from 2.2.页面清单 and generate paths from the page-list parent tree. pm-02-sitemap must keep that list tree synchronized with 2.1.sitemap思维导图. State groups are used for baseline reuse and consistency only; they must not collapse, replace, or override the list/mind-map directory tree."
 ---
 
 # PM 03 Page Layout
@@ -403,6 +403,70 @@ Generation rules:
 - Do not describe non-default states as complete alternate layouts in `1.4`. Non-default states belong in `1.3.3.状态清单`, `1.3.4.状态差异说明`, `1.5.页面元素清单`, and `2.2.Mock数据表` as deltas from the default state.
 - If a non-default state changes a default-state container in a way that is important for layout generation, show at most a short note node attached to the affected default-state group, such as `状态差异见 1.3.4`, not a full sibling page structure.
 
+## Concrete Default-State Structure Rule
+
+The default-state description must be concrete enough for downstream skills to create UI components without guessing. Keep the existing Markdown headings, Mermaid block, table columns, and ID formats unchanged; increase only the semantic specificity of the generated content.
+
+Apply this rule to `1.3.1`, `1.3.2`, `1.4`, `1.5`, and default-state rows in `2.2`.
+
+### Concrete Structure Requirements
+
+- Describe default-state regions and groups as containers, then name their visible child elements.
+- Do not stop at broad phrases such as `展示三项能力标签`, `相关操作按钮`, `表单项`, `输入区`, `信息列表`, `数据表格`, `帮助链接`, `状态提示`, `内容区域`, or `动态内容` when the concrete elements can be inferred.
+- If a source says `三项`, `多个`, `若干`, `一组`, `相关`, or `等`, expand the group into concrete visible elements using source wording or conservative product assumptions.
+- If exact labels are known or reasonably inferable, write the actual labels, such as `服务购买标签`, `案件追踪标签`, `消息触达标签`, `手机号输入框`, `短信验证码输入框`, `获取验证码按钮`, `服务协议链接`, and `隐私政策链接`.
+- Keep page-level layout stable. Do not invent unrelated modules or business flows just to increase detail.
+- Record uncertainty in section `3` only when concrete labels, options, or fields cannot be reasonably inferred.
+
+### Structure Diagram Specificity
+
+`1.4.默认状态页面结构图` may remain less exhaustive than `1.5`, but its leaf nodes must be concrete visible elements or meaningful component slots.
+
+Allowed diagram pattern:
+
+```mermaid
+flowchart TB
+  Page["手机号登录默认状态"]
+  Page --> Brand["品牌价值区"]
+  Brand --> BrandName["平台名称：Case Tracking Portal"]
+  Brand --> BrandDesc["价值说明"]
+  Brand --> Tags["能力标签组"]
+  Tags --> TagService["服务购买标签"]
+  Tags --> TagTracking["案件追踪标签"]
+  Tags --> TagMessage["消息触达标签"]
+  Page --> Card["认证卡片"]
+  Card --> Switch["登录方式切换"]
+  Switch --> PhoneTab["手机号选项"]
+  Switch --> EmailTab["邮箱选项"]
+  Switch --> WechatTab["微信选项"]
+  Card --> Credential["凭证输入区"]
+  Credential --> PhoneInput["手机号输入框"]
+  Credential --> CodeRow["验证码行"]
+  CodeRow --> CodeInput["短信验证码输入框"]
+  CodeRow --> GetCode["获取验证码按钮"]
+```
+
+Disallowed as final leaf nodes when they hide concrete children:
+
+- `能力标签`
+- `手机号 + 验证码输入区`
+- `协议勾选与帮助链接`
+- `操作按钮`
+- `表单项`
+- `数据表格`
+- `信息列表`
+
+### Default Element vs State-Difference Element
+
+Default-state visible elements must not be marked as state-difference elements just because their text, loading state, disabled state, or validation state can change later.
+
+Example:
+
+- `获取验证码按钮` is visible in the default state, so its default row must use `是否状态差异元素 = 否`.
+- `获取验证码按钮-发送中倒计时` or `验证码发送中提示` is a separate `Derived State` row with `是否状态差异元素 = 是`.
+
+This prevents downstream default-state-only skills from accidentally excluding default controls.
+
 ## User Editing Rule
 
 Users may modify any page layout content, including sections `1`, `2`, `3`, and `4`.
@@ -604,9 +668,13 @@ Required subsection structure:
 
 Describe the default, initial, or most common state of the current page. This is the only full-page baseline description. All regions, groups, element order, table columns, form fields, buttons, modal triggers, and repeated item structures should be described here.
 
+Use concrete child elements inside each default-state group. For example, do not write only `三项能力标签`; write `能力标签组，包含服务购买标签、案件追踪标签、消息触达标签`. Do not write only `协议与帮助`; write the checkbox, agreement text, service-agreement link, privacy-policy link, and each auxiliary link that is default-visible.
+
 #### 1.3.2.默认状态元素细节
 
 List every default-state visible element at the required granularity: buttons, inputs, dropdowns, radio/checkbox options, tabs, table columns, row actions, cards, timeline nodes, dialogs, empty placeholders embedded in default containers, and validation hints.
+
+For grouped visual content, list the concrete child labels and behavior. For example, a segmented control must name each option and the active option; a tag group must name each tag; a link group must name each link; a form row must name every input, suffix button, placeholder, helper text, and validation hint.
 
 #### 1.3.3.状态清单
 
@@ -656,6 +724,9 @@ Rules:
 - Do not duplicate the full page structure once per state.
 - Do not include sitemap/layout shell nodes such as topbar, sidebar, footer, logo, app navigation, global user menu, or notification controls.
 - For state groups, shared elements should appear once; changed elements should include state/category children that name the state delta.
+- Leaf nodes must be concrete enough to map to a UI component, text node, field, link, tag, option, button, table column, or repeated item slot.
+- If a node name contains broad aggregation words such as `标签组`, `链接组`, `操作区`, `输入区`, `筛选区`, `表格`, `列表`, or `卡片`, add child nodes for the concrete visible children that matter for rendering.
+- Do not use `能力标签`, `相关链接`, `表单项`, `操作按钮`, `动态内容`, `信息列表`, or `数据表格` as final leaf nodes when the child labels or controls can be inferred.
 
 ### 1.5.页面元素清单
 
@@ -677,13 +748,17 @@ Rules:
 - Do not combine multiple elements in one row.
 - `状态/数据分类` identifies dropdown values, filter categories, table row categories, status chips, tab values, modal states, or state-group values.
 - Default-state elements must appear first and use `状态/数据分类 = 默认状态` or a more specific default data category such as `默认状态/表格行数据`.
-- For state groups, mark elements that differ between states with `是否状态差异元素 = 是`; otherwise use `否`.
+- For state groups, mark only elements that are not default-state visible and exist specifically as a state delta with `是否状态差异元素 = 是`; otherwise use `否`.
+- If a default-state visible element later changes during loading, validation, disabled, success, or error states, keep the default element row as `是否状态差异元素 = 否` and add separate `Derived State` rows for the changed state-specific element or content.
 - Preserve unchanged `PLE/PGR/PEL` IDs during updates.
 
 Element granularity rules:
 
 - Every visible control must have its own row. This includes buttons, icon buttons, text inputs, textareas, password inputs, verification-code inputs, number inputs, date/time pickers, file uploads, dropdowns, cascaders, radio options, checkbox options, switches, segmented controls, tabs, search fields, links, status chips, alerts, toasts, and inline validation messages.
 - Every complex container must have a container row plus rows for critical child elements. For example, a table must have a `表格` container row, one row for each visible column header, one row for each row-level action, and rows for status chips or special cells that affect behavior.
+- Tag groups, capability labels, badges, feature chips, and status chips must have a container row plus one concrete row per visible tag/chip when the labels are known or inferable.
+- Link groups must have one row per visible link, such as `邮箱登录链接`, `微信扫码登录链接`, `服务协议链接`, `隐私政策链接`, or `遇到问题链接`.
+- Agreement areas must split into checkbox, agreement copy, and each policy link instead of one broad `协议勾选` row when those items are visible.
 - Table column rows should use `类型 = 表格列` or a more specific type such as `表格列/状态标签`, and `状态/数据分类` should name the table data category and, when relevant, the row status category.
 - Form field rows should use specific control types such as `输入框`, `密码框`, `验证码输入框`, `下拉框`, `单选Radio`, `复选框`, `日期选择器`, `文件上传`, `开关`, or `文本域`; do not use broad labels like `表单项` when the control type is known or inferable.
 - Selection controls must expose their options. For dropdowns, tabs, segmented controls, radio groups, checkboxes, and status filters, create either one row per option or one parent control row whose `状态/数据分类` lists every option explicitly. Prefer one row per option when options affect content or validation.
@@ -735,6 +810,7 @@ Rules:
 - For every table, include mock data for all visible column headers. Use one mock row per field per representative sample row, and identify the sample row and status in `备注`, such as `示例行1/待审核`, `示例行2/已通过`, or `空状态`.
 - For every list/card/timeline/stepper, include mock data for every visible repeated-item field and at least one example for each status type shown on the current page.
 - For every form control, include placeholder/default value, valid sample value, and invalid/empty-state example when validation affects the UI.
+- For every tag, badge, segmented-control option, tab option, checkbox label, radio option, dropdown option, and visible link, include mock rows for the visible label/value when the label affects rendering.
 - For state-group pages, include the current page state plus all visible state categories referenced by the current page's controls, timeline, status chips, or table rows. Do not generate sibling page documents, but the current document's mock data must show the state examples needed to understand this state screen.
 - Empty/loading/error/success mock rows should reference the affected `Derived State` elements and should not repeat all default-state table/card/form data.
 - Mock rows must not reference sitemap/layout shell elements.
@@ -810,19 +886,27 @@ Before finishing:
 - Ensure `0.文档状态` records both `来源Sitemap` and `使用Layout`.
 - Ensure `1.2` is reference-only: it declares the source sitemap/layout and merge context but does not inline global app-shell elements.
 - Ensure `1.3` describes the concrete visible screen, including actual labels, controls, fields, table headers, row actions, repeated item fields, dialogs, and visible state variants; fail and revise if it only contains broad module names.
+- Ensure `1.3.1` expands grouped default-state content into concrete visible child elements when labels or controls are known or inferable.
+- Ensure `1.3.2` names concrete child labels and behavior for tag groups, segmented controls, link groups, agreement areas, form rows, table rows, and card/list repeated items.
 - Ensure `1.3` follows default-state-first structure: `1.3.1.默认状态页面结构`, `1.3.2.默认状态元素细节`, `1.3.3.状态清单`, and `1.3.4.状态差异说明`.
 - Ensure state differences are deltas from the default state and do not duplicate full page structure per state.
 - Ensure `1.4` is a Mermaid `flowchart TB` default-state page structure diagram generated from `1.3.1.默认状态页面结构`.
 - Ensure `1.4` contains only current page body structure and does not include global layout/sitemap shell nodes.
 - Ensure `1.4` is not treated as a synchronized mirror of `1.5`; do not block updates or ask priority questions because the diagram and element table differ in granularity.
+- Ensure `1.4` does not use broad aggregation labels such as `能力标签`, `相关链接`, `表单项`, `操作按钮`, `动态内容`, `信息列表`, or `数据表格` as final leaf nodes when concrete children are known or inferable.
+- Ensure every major `1.4` leaf node maps to a concrete default-state element row in `1.5`, or to a container whose concrete children are listed in `1.5`.
 - When updating an existing document, ensure every visible-content patch was propagated according to the Cross-Section Sync Patch Rule.
 - Ensure every default-state visible element added to `1.3.1` has concrete details in `1.3.2` and atomic rows in `1.5`.
 - Ensure every non-default state element added to `1.3.3` or `1.3.4` has corresponding Derived State rows in `1.5` and mock rows in `2.2` when it has visible copy, data, options, status, validation, or feedback.
 - Ensure `1.5` uses the exact element table columns and stable `PLE/PGR/PEL` IDs.
 - Ensure `1.5` does not include `元素来源 = Sitemap Layout` and does not include global layout/sitemap shell rows.
 - Ensure `1.5` decomposes every visible control and complex container to the required granularity: buttons, inputs, selects, radio/checkbox options, tabs, table container, table columns, row actions, status chips, modal fields, empty/loading/error/success states.
+- Ensure `1.5` does not use broad rows such as `标签组`, `帮助链接`, `协议区`, `表单项`, `操作区`, `信息列表`, or `数据表格` as the only representation of multiple visible child elements.
+- Ensure tag groups, link groups, agreement areas, segmented controls, tabs, dropdowns, radio groups, checkbox groups, and table/list/card containers are expanded into concrete child rows when labels or controls are known or inferable.
+- Ensure every default-state visible control uses `是否状态差异元素 = 否`; represent later loading, disabled, validation, success, or error variants with separate `Derived State` rows instead of hiding the default element.
 - Ensure `2.2` mock data is derived from `状态/数据分类` values in `1.5`.
 - Ensure `2.2` mock data covers every data-bearing default-state element, every table column, every option/enum/status value, and every current-page state example; every `关联元素ID` must exist in `1.5`.
+- Ensure `2.2` includes visible labels/values for concrete tags, links, segmented-control options, tab options, checkbox labels, radio options, dropdown options, and button feedback when they affect rendering.
 - Ensure deleted elements, groups, states, options, and mock-backed values leave no stale references in `1.3`, `1.4`, `1.5`, `2.1`, or `2.2`.
 - Ensure default-state mock data appears first and non-default state mock data only records deltas.
 - Ensure no mock row references global layout/sitemap shell elements.
