@@ -30,9 +30,9 @@
 
 ## 2.页面样式生成任务清单
 
-| Task ID | 状态 | layout.md | 页面清单ID | 使用Layout | 来源Sitemap | 设计规范 | layoutKey | pageIntentKey | stateGroupKey | Profile状态 | Fingerprint | semanticValidation | renderSpec | consistency | figma-nodes.json | figma-node-notes.md | 开始时间 | 完成时间 | 失败原因/恢复说明 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| PSTYLE-001 | Pending | `{{layout.md}}` | {{PAGE-ID}} | {{使用Layout}} | `{{来源Sitemap}}` | {{design-dir}} | {{layoutKey}} | {{pageIntentKey}} | {{stateGroupKey-or-null}} | pending / created / reused | {{hash}} | {{pass/warning/failed}} | {{pass/warning/failed}} | {{pass/warning/failed}} | `{{figma-nodes.json}}` | `{{figma-node-notes.md}}` |  |  |  |
+| Task ID | 状态 | layout.md | 页面清单ID | 使用Layout | 来源Sitemap | 设计规范 | layoutKey | pageIntentKey | stateGroupKey | Profile状态 | Fingerprint | semanticValidation | semanticOwnership | duplicateAudit | layoutBudget | slotContracts | renderSpec | consistency | figma-nodes.json | figma-node-notes.md | 开始时间 | 完成时间 | 失败原因/恢复说明 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| PSTYLE-001 | Pending | `{{layout.md}}` | {{PAGE-ID}} | {{使用Layout}} | `{{来源Sitemap}}` | {{design-dir}} | {{layoutKey}} | {{pageIntentKey}} | {{stateGroupKey-or-null}} | pending / created / reused | {{hash}} | {{pass/warning/failed}} | {{pass/warning/failed}} | {{pass/warning/failed}} | {{pass/warning/failed}} | {{pass/warning/failed}} | {{pass/warning/failed}} | {{pass/warning/failed}} | `{{figma-nodes.json}}` | `{{figma-node-notes.md}}` |  |  |  |
 
 ## 3.统计
 
@@ -48,6 +48,10 @@
 | Failed | 0 |
 | Consistency Drift Warning | 0 |
 | Consistency Drift Failed | 0 |
+| Semantic Ownership Failed | 0 |
+| Duplicate Audit Failed | 0 |
+| Layout Budget Failed | 0 |
+| Slot Contract Warning | 0 |
 
 ## 4.执行日志
 

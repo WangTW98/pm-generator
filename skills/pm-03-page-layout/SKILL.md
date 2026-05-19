@@ -1,6 +1,6 @@
 ---
 name: pm-03-page-layout
-description: "Generate or update one Chinese page layout specification from a specified application sitemap file and page-list ID. Use when an AI assistant needs to read product/layout/<应用端>-sitemap.md, select exactly one PAGE ID, and create or patch product/pages/<来源Sitemap Layout>/<完整父子目录链>/layout.md with reference-only sitemap/layout metadata, default-state-first visible page content, a concrete default-state page structure diagram, detailed atomic page UI element tables, and mock data that covers controls, table columns, row actions, options, labels, links, tags, and page states. When updating existing layout documents from user edits or natural-language change requests, apply cross-section sync patch rules so page descriptions, state deltas, structure diagram, element table, and mock data remain consistent. Do not inline global layout/sitemap shell elements; downstream skills should merge them later by reading 来源Sitemap and 使用Layout. Also supports single-page dry-run or directory-only checks that compute the canonical path and create zero-byte Markdown placeholders without page content. Always read page metadata and path IDs from 2.2.页面清单 and generate paths from the page-list parent tree. pm-02-sitemap must keep that list tree synchronized with 2.1.sitemap思维导图. State groups are used for baseline reuse and consistency only; they must not collapse, replace, or override the list/mind-map directory tree."
+description: "Generate or update one Chinese page layout specification from a specified application sitemap file and page-list ID. Use when an AI assistant needs to read product/layout/<应用端>-sitemap.md, select exactly one PAGE ID, and create or patch product/pages/<来源Sitemap Layout>/<完整父子目录链>/layout.md with reference-only sitemap/layout metadata, default-state-first visible page content, a concrete default-state page structure diagram, detailed atomic page UI element tables, semantic ownership and duplicate-action checks, and mock data that covers controls, table columns, row actions, options, labels, links, tags, and page states. When updating existing layout documents from user edits or natural-language change requests, apply cross-section sync patch rules so page descriptions, state deltas, structure diagram, element table, and mock data remain consistent. Do not inline global layout/sitemap shell elements; downstream skills should merge them later by reading 来源Sitemap and 使用Layout. Also supports single-page dry-run or directory-only checks that compute the canonical path and create zero-byte Markdown placeholders without page content. Always read page metadata and path IDs from 2.2.页面清单 and generate paths from the page-list parent tree. pm-02-sitemap must keep that list tree synchronized with 2.1.sitemap思维导图. State groups are used for baseline reuse and consistency only; they must not collapse, replace, or override the list/mind-map directory tree."
 ---
 
 # PM 03 Page Layout
@@ -649,6 +649,26 @@ Rules:
 - Only mention active navigation or parent chain as reference context, not as visible element rows.
 - If the source sitemap lacks enough layout reference metadata, add a section `3` assumption or risk item, but still do not inline global layout elements.
 
+### Semantic Ownership And Duplication Rules
+
+Before writing `1.3`, `1.4`, `1.5`, or `2.2`, classify each visible item by semantic ownership:
+
+| Ownership | Meaning | Allowed in page body? |
+|---|---|---|
+| `Global Shell` | App-level header, sidebar, bottom nav, footer, product logo, global user menu, global notification, global search, current top-level nav entry, global breadcrumb | No, record only as layout reference in `1.2` |
+| `Page Body` | Page-specific content, page-local title, filters, forms, tables, cards, charts, actions, state body, page-local links | Yes |
+| `Overlay/State` | Default-visible modal/drawer/popover, or non-default state delta such as loading/error/success/disabled/empty | Only when default-visible; otherwise Derived State only |
+| `Mock Data` | Sample values, enum values, row examples, status examples, validation examples | Only in `2.Mock数据` and related element data rows |
+
+Rules:
+
+- Do not duplicate `Global Shell` semantics inside `Page Body`. If a page body needs a brand/value proposition that shares text with the shell, it must be described as a page-specific marketing/value region with a distinct role; otherwise omit it from the body and let downstream skills render the global shell.
+- Same visible text may appear more than once only when the role differs and the repetition is intentional, such as a product name in global shell plus a page-local hero title. Record the role difference in `1.5.备注/关联待确认ID` when ambiguity is likely.
+- Same `actionIntent` may not appear as two default-visible primary actions. If two controls trigger the same action, demote one to a secondary inline action, rename it to a distinct intent, or record a section `3` assumption and keep only one primary action in the default body.
+- Do not create both an inline action and a bottom primary action with the same label and same result unless the source explicitly requires duplicated affordances; when required, mark one as secondary and explain why both remain visible.
+- Current-page navigation links from a global shell, such as a topbar link that points to the current page, are not page-body elements.
+- Apply these rules during both new generation and cross-section patches. If a patch adds/removes/renames an element, re-run semantic ownership and duplicate-action checks across `1.3`, `1.4`, `1.5`, and `2.2`.
+
 ### 1.3.完整页面内容
 
 Describe the complete visible page content in structured prose or bullets. This section is the primary human-readable screen description; a product manager, designer, frontend engineer, or AI agent must be able to understand what the current page itself looks like without opening any other file.
@@ -675,6 +695,8 @@ Use concrete child elements inside each default-state group. For example, do not
 List every default-state visible element at the required granularity: buttons, inputs, dropdowns, radio/checkbox options, tabs, table columns, row actions, cards, timeline nodes, dialogs, empty placeholders embedded in default containers, and validation hints.
 
 For grouped visual content, list the concrete child labels and behavior. For example, a segmented control must name each option and the active option; a tag group must name each tag; a link group must name each link; a form row must name every input, suffix button, placeholder, helper text, and validation hint.
+
+Before finalizing `1.3.2`, scan for duplicate default-visible actions. Every action-like element should have an implicit or explicit action intent, such as `submit`, `refresh`, `export`, `open-detail`, `switch-method`, `pay`, `cancel`, or `contact-support`. One page body may have only one default-visible primary action for a given intent.
 
 #### 1.3.3.状态清单
 
@@ -758,6 +780,8 @@ Element granularity rules:
 - Every complex container must have a container row plus rows for critical child elements. For example, a table must have a `表格` container row, one row for each visible column header, one row for each row-level action, and rows for status chips or special cells that affect behavior.
 - Tag groups, capability labels, badges, feature chips, and status chips must have a container row plus one concrete row per visible tag/chip when the labels are known or inferable.
 - Link groups must have one row per visible link, such as `邮箱登录链接`, `微信扫码登录链接`, `服务协议链接`, `隐私政策链接`, or `遇到问题链接`.
+- For every button, link, tab, row action, icon button, submit bar action, or clickable card, include a clear action intent in `交互/校验规则`. Downstream skills use this to detect duplicate primary actions and unsafe repeated affordances.
+- If a visible text string repeats in multiple element rows, the repeated rows must have different `类型`, `区域`, role, or action intent. Otherwise consolidate the duplicate or mark one as `Derived State`.
 - Agreement areas must split into checkbox, agreement copy, and each policy link instead of one broad `协议勾选` row when those items are visible.
 - Table column rows should use `类型 = 表格列` or a more specific type such as `表格列/状态标签`, and `状态/数据分类` should name the table data category and, when relevant, the row status category.
 - Form field rows should use specific control types such as `输入框`, `密码框`, `验证码输入框`, `下拉框`, `单选Radio`, `复选框`, `日期选择器`, `文件上传`, `开关`, or `文本域`; do not use broad labels like `表单项` when the control type is known or inferable.

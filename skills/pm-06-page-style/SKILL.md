@@ -1,6 +1,6 @@
 ---
 name: pm-06-page-style
-description: "Generate a default-state-only, render-ready Figma JSON node document from one pm-03 page layout Markdown file and one pm-05 design specification. Use when an AI assistant needs to read product/pages/**/layout.md, resolve or auto-match a design/<design-spec>/ directory, combine the pm-03 默认状态页面结构 with the source sitemap's global layout and the pm-05 tokens, component rules, component blueprints, and Figma render rules, then create product/pages/**/figma-nodes.json and figma-node-notes.md. The generated JSON must focus only on the default visible page structure, avoid generating empty/loading/error/overlay state variants as design nodes, include a renderSpec contract for later Figma restoration, remain valid and token-referenced, and be traceable to 来源Sitemap and 使用Layout. Supports GPT/Codex, Gemini, Claude, and other AI agents through the same canonical workflow."
+description: "Generate a default-state-only, render-ready Figma JSON node document from one pm-03 page layout Markdown file and one pm-05 design specification. Use when an AI assistant needs to read product/pages/**/layout.md, resolve or auto-match a design/<design-spec>/ directory, combine the pm-03 默认状态页面结构 with the source sitemap's global layout and the pm-05 tokens, component rules, component blueprints, and Figma render rules, then create product/pages/**/figma-nodes.json and figma-node-notes.md. The generated JSON must focus only on the default visible page structure, avoid generating empty/loading/error/overlay state variants as design nodes, include semantic ownership, duplicate-action, layout-budget, slot-contract, and renderSpec contracts for later Figma restoration, remain valid and token-referenced, and be traceable to 来源Sitemap and 使用Layout. Supports GPT/Codex, Gemini, Claude, and other AI agents through the same canonical workflow."
 ---
 
 # PM 06 Page Style
@@ -370,7 +370,10 @@ Write a `semanticValidation` object:
   "conflicts": [],
   "warnings": [],
   "criticalMissing": [],
-  "autoFixes": []
+  "autoFixes": [],
+  "semanticOwnershipAudit": {},
+  "duplicateAudit": {},
+  "layoutBudgetAudit": {}
 }
 ```
 
@@ -388,6 +391,28 @@ Handling:
 - If a severe conflict means the generated design would be semantically wrong, mark the page task as `Failed` rather than producing misleading `figma-nodes.json`.
 - If the conflict is repairable from `1.3.1`, `1.4`, sitemap context, or design semantic patterns, fix the node tree using the page-intent strategy and record the repair in `semanticValidation.autoFixes` and `figma-node-notes.md`.
 - Never silently pass schema-valid but semantically wrong JSON.
+
+### Semantic Ownership, Duplicate, And Budget Audits
+
+`pm-06` must treat `layout.md` as product semantics and compile it into render-safe JSON. Before writing `figma-nodes.json`, run these audits:
+
+1. `semanticOwnershipAudit`
+   - Classify every default-visible node as `Global Shell`, `Page Body`, `Overlay/State`, or `Mock Data`.
+   - Global shell nodes may come only from `来源Sitemap` merge. Page-body nodes must not duplicate global topbar/sidebar/footer/current-navigation semantics.
+   - If a page-body node repeats global text intentionally, record distinct roles; otherwise remove it from page-body generation or fail with `duplicate-global-shell-semantics`.
+2. `duplicateAudit`
+   - Build a list of visible text strings, interactive elements, and `actionIntent` values.
+   - Allow repeated text only when roles differ, such as shell product name vs page hero title.
+   - Fail when the same page body has two default-visible primary actions with the same `actionIntent`.
+   - Warn when the same helper link or navigation destination appears twice in the same region.
+3. `layoutBudgetAudit`
+   - Load `figma-render-rules.layoutRecipes`, `figma-render-rules.measurementRules`, `consistency-rules.layoutBudgetRules`, and matching `page-intent-patterns.layoutBudgets` when present.
+   - Compute available root/content height from canvas minus reserved shell regions and page padding.
+   - Estimate major container heights from fixed components, text policies, gap, padding, and slot content.
+   - If content exceeds the budget, apply the design's compression order in JSON constraints: reduce noncritical gaps, cap optional slot height, mark scroll containers, or shrink allowed media/QR/preview sizes.
+   - If no legal compression can fit the default state, set `semanticValidation.status = "failed"` and do not emit a misleading render-ready JSON.
+
+Audit results must be copied into both `semanticValidation` and `renderSpec.qaExpectations`; batch skills rely on these fields.
 
 ## Figma Node Model
 
@@ -457,9 +482,19 @@ Required structure:
     "avoidClipping": true,
     "minClickableTarget": 32
   },
+  "layoutBudget": {
+    "availableContentHeight": 0,
+    "estimatedContentHeight": 0,
+    "maxPrimaryPanelHeight": null,
+    "compressionOrder": [],
+    "scrollContainers": [],
+    "status": "pass|warning|failed"
+  },
   "componentInstances": [],
   "textPolicies": [],
   "constraints": [],
+  "slotContracts": [],
+  "duplicateAudit": [],
   "qaExpectations": {}
 }
 ```
@@ -469,8 +504,12 @@ Rules:
 - Every `COMPONENT_INSTANCE` in `figmaDocument` must have a matching `renderSpec.componentInstances` entry with `sourceNodeId`, `component`, `adapter`, `variant`, `props`, `slots`, `sizing`, and `textPolicy`.
 - Every text-heavy node must have a matching `renderSpec.textPolicies` entry defining wrap/truncate behavior, max lines, minimum width, and whether the parent may grow vertically.
 - Every major frame, section, table, form row, card, and shell container must have a matching `renderSpec.constraints` entry defining width mode, height mode, min/max values, alignment, gap, and padding source.
+- `renderSpec.layoutBudget` must record available content dimensions, estimated content dimensions, compression actions, scroll containers, and whether the page is safe to restore.
+- `renderSpec.slotContracts` must record shared and variable slots from page-intent/state-group profiles, including which slot may vary by page/state and which dimensions are locked.
+- `renderSpec.duplicateAudit` must record duplicate text and duplicate action-intent findings. Blocking duplicate primary actions must fail generation.
 - `renderSpec.qaExpectations.keyRegions` must list expected semantic regions from `pageIntent`, such as auth panel, submit action, filter bar, data collection, detail summary, or payment action.
 - `renderSpec.qaExpectations.forbiddenRegions` must list structures that must not appear for the selected intent, such as default-visible primary data tables on an auth page unless explicitly sourced.
+- `renderSpec.qaExpectations` must include required post-render checks: no shell collision, no root clipping, no incoherent overlap, no duplicate primary action intent, no text overflow, and no unexpected non-default state nodes.
 - Use `component-blueprints.json` for the adapter and prop contract. Use `figma-render-rules.json` for overflow, two-pass layout, append, and QA expectations.
 - If the source page cannot be expressed with render-safe constraints, fail the run or write `semanticValidation.status = "failed"` instead of emitting a vague JSON tree.
 
@@ -519,7 +558,8 @@ Default-state filtering:
 10. Do not create separate nodes for empty, loading, error, success, modal-open, drawer-open, or other non-default states.
 11. Record excluded state rows in `excludedStates` and explain the exclusion in `figma-node-notes.md`.
 12. Generate `renderSpec` after the semantic node tree is built, binding every component instance, major container, and text-heavy node to concrete adapter, sizing, overflow rules, and consistency profile references.
-13. Before writing JSON, check the generated tree against `figma-render-rules.json.semanticKeyRegions`, `figma-render-rules.json.qaRules`, and the loaded consistency profiles; repair or fail rather than emitting a structurally valid but visually unsafe or inconsistent document.
+13. Generate and validate `renderSpec.layoutBudget`, `renderSpec.slotContracts`, and `renderSpec.duplicateAudit` before writing JSON.
+14. Before writing JSON, check the generated tree against `figma-render-rules.json.semanticKeyRegions`, `figma-render-rules.json.qaRules`, `figma-render-rules.layoutRecipes`, `consistency-rules.layoutBudgetRules`, `consistency-rules.semanticUniquenessRules`, and the loaded consistency profiles; repair or fail rather than emitting a structurally valid but visually unsafe or inconsistent document.
 
 Consistency-specific generation rules:
 
@@ -527,6 +567,7 @@ Consistency-specific generation rules:
 - Same `使用Layout + pageIntent` pages must share major intent structure and visual proportions. For example, all auth pages under one layout must share auth panel direction, brand panel width, card width, card padding, tabs style, and auxiliary link placement unless the profile explicitly defines alternatives.
 - Same `状态组` pages must share the state-group skeleton. For example, login method states may change active tab and credential/SSO slot content, but not card width, tabs gap, brand typography, button height, or shared shell dimensions.
 - If a current page requires a different geometry for legitimate content reasons, record it as `consistency.allowedPageOverrides` and ensure it does not mutate the profile for sibling pages.
+- Same `使用Layout + pageIntent + stateGroup` pages must share slot contracts and layout budgets. State/page-specific content may fill a variable slot differently, but it must not force shared regions outside safe bounds unless recorded as an allowed override and marked for manual review.
 
 When `1.4` and `1.5` conflict, do not blindly prefer one side. Resolve using `pageIntent` and evidence quality:
 
@@ -600,15 +641,18 @@ Before final response, verify:
 - `figma-node-notes.md` exists.
 - `figma-nodes.json` includes required top-level keys.
 - `figma-nodes.json.consistency` exists and includes profile refs, profile status, fingerprints, locked properties applied, allowed overrides, and drift check.
-- `renderSpec` exists and includes `renderer`, `canvas`, `layoutSafety`, `componentInstances`, `textPolicies`, `constraints`, and `qaExpectations`.
+- `renderSpec` exists and includes `renderer`, `canvas`, `layoutSafety`, `layoutBudget`, `componentInstances`, `textPolicies`, `constraints`, `slotContracts`, `duplicateAudit`, and `qaExpectations`.
 - `pageIntent.primary` exists and uses an allowed generic intent value.
 - `semanticValidation.status` is `pass` or `warning`; severe conflicts must fail the page instead of producing misleading JSON.
+- `semanticValidation.semanticOwnershipAudit`, `semanticValidation.duplicateAudit`, and `semanticValidation.layoutBudgetAudit` exist or are explicitly marked not applicable.
 - Main page root, global layout shell, default-state page content, and responsive variants are present.
 - Non-default states are excluded from generated Figma nodes and recorded in `excludedStates` or notes.
 - Major visual styling references tokens or Figma variables.
 - Table mobile fallback is present when the page contains a table.
 - Every component instance has an adapter or explicit fallback recorded in `renderSpec.componentInstances`.
 - Every major text node and table/list/card/form container has overflow and sizing rules that prevent text clipping or element stacking during Figma restoration.
+- `renderSpec.layoutBudget.status` is not `failed`; if it is `warning`, the warning explains the expected scroll/compression behavior.
+- `renderSpec.duplicateAudit` contains no blocking duplicate primary action intent.
 - Same-layout and same-state-group consistency is checked against `product/style-profiles/<layoutKey>/`; drift is recorded as `warning` or `failed`, not silently ignored.
 
 If any requirement fails, fix it before responding.

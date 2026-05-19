@@ -6,7 +6,7 @@
 
 此 skill 面向 GPT/Codex、Gemini、Claude 等 AI Agent。Agent 必须把 `figma-nodes.json` 当作结构化设计蓝图，而不是普通 Markdown 摘要；还原目标是 Figma 中的默认状态页面，不生成空状态、加载态、错误态、成功态、弹窗打开态、抽屉打开态等非默认状态。
 
-pm08 是通用 JSON renderer。业务结构必须来自 `figma-nodes.json`，尤其是 `figmaDocument`、`layoutShell`、`pageContent`、`pageIntent`、`semanticValidation`、`renderSpec` 和 `consistency`。pm08 不得把不同页面重新套入固定模板，也不得根据页面名称二次推断业务结构。
+pm08 是通用 JSON renderer。业务结构必须来自 `figma-nodes.json`，尤其是 `figmaDocument`、`layoutShell`、`pageContent`、`pageIntent`、`semanticValidation`、`renderSpec` 和 `consistency`。pm08 必须执行布局预算、slot 合同、重复动作和渲染后 QA；不得把不同页面重新套入固定模板，也不得根据页面名称二次推断业务结构。
 
 ## 输入
 
@@ -353,6 +353,9 @@ Use shared plugin data when available. If the runtime cannot write metadata, rec
 - `constraints`
 - `renderSpec.constraints`
 - `renderSpec.layoutSafety`
+- `renderSpec.layoutBudget`
+- `renderSpec.slotContracts`
+- `renderSpec.duplicateAudit`
 - `consistency.profileRefs`
 - `consistency.lockedPropertiesApplied`
 - `responsive`
@@ -366,7 +369,9 @@ Use shared plugin data when available. If the runtime cannot write metadata, rec
 2. 根据 JSON `layout.width`、`layout.height`、`layout.minHeight`、`layoutMode`、`renderSpec.constraints`、consistency profiles、component blueprints、component rules 计算尺寸。
 3. 设置 fills、strokes、cornerRadius、effects、text style。
 4. 对 `width: "fill"`、`height: "fill"` 暂存为 layout intent，不要提前设置 `layoutSizingHorizontal/Vertical`。
-5. 对缺失高度的容器使用内容估算高度，禁止出现明显异常值，例如标题区高度接近整页高度。
+5. 对 `height: "hug"` 的容器必须使用内容测量后的真实高度，不得把它拉伸到父容器剩余高度。
+6. 对缺失高度的容器使用内容估算高度，禁止出现明显异常值，例如标题区、协议区、链接区、辅助操作区高度接近整页高度。
+7. 根据 `renderSpec.layoutBudget` 或 pm05 `measurementRules` 计算可用内容区、主要面板最大高度、压缩顺序、滚动候选容器和失败阈值。若 JSON 未提供预算，也必须从 canvas、shell、padding 和主要容器估算一个保守预算并在报告中标记 fallback。
 
 #### 8.2 第二阶段：append 后 Auto Layout sizing
 
@@ -381,7 +386,34 @@ Use shared plugin data when available. If the runtime cannot write metadata, rec
 5. 对组件使用 component adapter 和 profile locked sizing 计算尺寸，避免只靠文本 Hug 导致控件过窄。
 6. 写入后读取根画板结构，检查主要容器高度、宽度和子节点数量。
 
-若两阶段布局后发现明显异常，必须先尝试局部修正；无法修正时在报告中标记 `QA failed`，不得声称无问题。
+#### 8.3 布局预算与压缩策略
+
+当内容超过安全区域或主要容器预算时，按以下顺序处理，除非 `renderSpec.layoutBudget.compressionOrder` 或 pm05 recipe 指定了更严格顺序：
+
+1. 压缩非关键区域 gap，但不得低于设计 token 的最小安全间距。
+2. 压缩次要容器 padding，但不得压缩表单控件、点击目标或文本行高。
+3. 缩小允许缩放的媒体、二维码、插图、预览图或统计图尺寸。
+4. 把明确允许滚动的容器设为内部滚动/裁切容器，并保留可见高度。
+5. 将非关键辅助链接或说明区折行，但不得覆盖主操作。
+6. 如果仍然超过 root 或与 shell/footer/header 冲突，标记 `QA failed`，不要声称 Done。
+
+禁止通过以下方式“解决”超高内容：
+
+- 把根画板或主内容裁切后仍标记成功。
+- 让主要面板越过 topbar、sidebar、footer 或 root 边界。
+- 把 hug 容器拉伸为大块空白区域。
+- 删除 JSON 中的业务节点，除非节点是非默认状态或明确被 `renderSpec` 标记为可折叠。
+
+#### 8.4 重复语义与动作检查
+
+写入前后都必须检查 `renderSpec.duplicateAudit` 和实际 Figma 文本/动作：
+
+- 同一 page body 中不得存在两个默认可见 primary action 指向同一 `actionIntent`。
+- 重复文本只有在不同区域角色明确时才允许，例如 global shell brand 与 page hero brand；否则记录 warning 或 failed。
+- 如果 JSON 已标记 blocking duplicate，pm08 不得写入 Figma。
+- 如果 Figma 结果新增了重复动作或重复区域，报告 `renderer duplicate introduced` 并标记 failed。
+
+若两阶段布局后发现明显异常，必须先尝试局部修正；无法修正时在报告中标记 `QA failed`，该页不得标记 `Done`。
 
 若页面含多设备形态：
 
@@ -471,6 +503,11 @@ Use shared plugin data when available. If the runtime cannot write metadata, rec
 - Figma 根画板 metadata 中的 `layoutKey`、`pageIntentKey`、`stateGroupKey`、`styleFingerprint` 与 JSON 一致，或报告中明确记录无法写入 metadata。
 - 现有同 profile 画板如被用作更新目标，fingerprint 必须匹配或明确报告不匹配。
 - 没有明显文本溢出、元素堆叠、表格单元格互相覆盖、按钮文字挤压、表单控件高度异常。
+- 根画板所有默认可见节点都在 root bounds 内，除非其父容器被明确标记为可滚动/可裁切。
+- 主要内容容器不与 topbar、sidebar、footer、bottom nav、fixed action bar 等 shell 区域发生 incoherent overlap。
+- `height: "hug"` 的容器没有被异常拉伸，协议区、辅助链接区、操作区等低内容区域高度与内容量相符。
+- `renderSpec.layoutBudget.status`、实际测量结果、压缩/滚动处理结果已记录。
+- `renderSpec.duplicateAudit` 与 Figma 实际重复文本/动作检查已记录；阻塞级重复动作不得通过。
 
 可用时，必须生成目标根画板截图进行人工检查；若截图工具不可用，必须至少执行结构 QA。
 
@@ -484,6 +521,8 @@ QA 必须记录：
 - 关键语义区命中情况。
 - renderSpec 命中率、组件适配命中率、文本策略命中率、约束命中率。
 - consistency profile 命中率、fingerprint 匹配结果、driftCheck 结果。
+- layoutBudget 命中率、主要容器预计高度与实际高度、压缩/滚动处理结果、root/shell collision 结果。
+- duplicateAudit 结果，包括重复文本、重复 actionIntent、重复 primary action。
 - 是否存在不应出现的表格/状态页/截图占位。
 - 截图 URL 或截图不可用原因。
 

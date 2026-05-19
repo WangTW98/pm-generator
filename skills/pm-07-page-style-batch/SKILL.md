@@ -1,6 +1,6 @@
 ---
 name: pm-07-page-style-batch
-description: "Batch-generate render-ready Figma JSON node documents for every product/pages/**/layout.md by orchestrating repeated pm-06-page-style runs. Use when an AI assistant needs to scan product/pages, find page layout Markdown files, resolve or auto-match pm-05 design specs, create or update figma-nodes.json and figma-node-notes.md next to each layout.md, and preserve pm-06's default-state-only, renderSpec, layout profile, page intent profile, state group profile, and fingerprint consistency rules. Maintains a resumable batch task list under product/pages/_style-batch-tasks/. Supports GPT/Codex, Gemini, Claude, and other AI agents through the same canonical workflow."
+description: "Batch-generate render-ready Figma JSON node documents for every product/pages/**/layout.md by orchestrating repeated pm-06-page-style runs. Use when an AI assistant needs to scan product/pages, find page layout Markdown files, resolve or auto-match pm-05 design specs, create or update figma-nodes.json and figma-node-notes.md next to each layout.md, and preserve pm-06's default-state-only, renderSpec, layout profile, page intent profile, state group profile, semantic ownership, duplicate-action, layout-budget, slot-contract, and fingerprint consistency rules. Maintains a resumable batch task list under product/pages/_style-batch-tasks/. Supports GPT/Codex, Gemini, Claude, and other AI agents through the same canonical workflow."
 ---
 
 # PM 07 Page Style Batch
@@ -244,14 +244,16 @@ For each eligible task row:
 10. Confirm `figma-node-notes.md` exists.
 11. Confirm `pageIntent.primary` exists.
 12. Confirm `semanticValidation.status` is `pass` or `warning`.
-13. Confirm `renderSpec` exists and includes `componentInstances`, `textPolicies`, `constraints`, and `qaExpectations`.
-14. Confirm top-level `consistency` exists and includes `layoutKey`, `pageIntentKey`, `designSpecKey`, `profileRefs`, `styleFingerprint`, and `driftCheck`.
-15. Confirm referenced profile files exist unless `profileStatus` explicitly says the page created them during this run.
-16. Confirm output is not mechanically generic by checking pm06 intent-specific required regions from the selected design spec and `renderSpec.qaExpectations`.
-17. Confirm same-profile pages share locked profile values and compatible fingerprints.
-18. Mark task `Done` with completion time, output paths, profile refs, and fingerprint status.
-19. On failure, mark task `Failed` and record the failure reason.
-20. Append an execution log row.
+13. Confirm `semanticValidation.semanticOwnershipAudit`, `semanticValidation.duplicateAudit`, and `semanticValidation.layoutBudgetAudit` exist or are explicitly marked not applicable.
+14. Confirm `renderSpec` exists and includes `componentInstances`, `textPolicies`, `constraints`, `layoutBudget`, `slotContracts`, `duplicateAudit`, and `qaExpectations`.
+15. Confirm top-level `consistency` exists and includes `layoutKey`, `pageIntentKey`, `designSpecKey`, `profileRefs`, `styleFingerprint`, and `driftCheck`.
+16. Confirm referenced profile files exist unless `profileStatus` explicitly says the page created them during this run.
+17. Confirm output is not mechanically generic by checking pm06 intent-specific required regions from the selected design spec and `renderSpec.qaExpectations`.
+18. Confirm same-profile pages share locked profile values, compatible fingerprints, compatible slot contracts, and compatible layout budgets.
+19. If `renderSpec.layoutBudget.status = failed`, `semanticValidation.status = failed`, or `renderSpec.duplicateAudit` contains a blocking duplicate primary action, mark the task `Failed` and do not count it as `Done`.
+20. Mark task `Done` with completion time, output paths, profile refs, fingerprint status, semantic audit status, layout budget status, and duplicate audit status.
+21. On failure, mark task `Failed` and record the failure reason.
+22. Append an execution log row.
 
 When invoking `pm-06-page-style`, pass:
 
@@ -260,6 +262,7 @@ When invoking `pm-06-page-style`, pass:
 - The instruction that output must remain default-state-only.
 - The instruction that output must include a complete `renderSpec` and must fail rather than emit visually unsafe or generic JSON.
 - The instruction that output must include `consistency` metadata and must reuse existing layout/page-intent/state-group profiles when present.
+- The instruction that output must include semantic ownership, duplicate-action, layout-budget, and slot-contract audits, and must fail blocking duplicate primary actions or unsafe layout budgets.
 
 Do not alter `layout.md` files.
 
@@ -269,6 +272,7 @@ Do not synthesize page structures in pm07 itself. Forbidden pm07 behavior:
 - Inferring elements directly from path names without running pm06.
 - Compressing page data into a reduced intermediate format and writing that as `figma-nodes.json`.
 - Marking a page `Done` only because the JSON parses.
+- Marking a page `Done` when pm06 reports failed semantic ownership, blocking duplicate actions, failed layout budget, missing slot contracts, or render-blocking QA issues.
 - Regenerating an existing profile differently for a later page without recording drift and rerunning affected pages.
 
 ## Resume Rules
@@ -277,7 +281,7 @@ When resuming:
 
 - Do not rerun `Done`, `Planned`, or `Directory Checked` rows unless the user explicitly asks to rerun.
 - For `In Progress` rows, inspect the expected outputs:
-  - If `figma-nodes.json` parses, `figma-node-notes.md` exists, and `figma-nodes.json.consistency.driftCheck.status` is `pass` or `warning`, mark `Done`.
+  - If `figma-nodes.json` parses, `figma-node-notes.md` exists, `figma-nodes.json.consistency.driftCheck.status` is `pass` or `warning`, `renderSpec.layoutBudget.status` is not `failed`, `renderSpec.duplicateAudit` has no blocking duplicate primary action, and required audit fields exist, mark `Done`.
   - Otherwise rerun the single page.
 - For `Failed` rows, retry only if the user asks to retry failures or resume unfinished work.
 - For `Pending` rows, continue in task-list order.
@@ -318,13 +322,16 @@ Before final response, verify:
 - Every `Done` row's `figma-nodes.json` parses as JSON.
 - Every `Done` row has `pageIntent.primary`.
 - Every `Done` row has `semanticValidation.status` equal to `pass` or `warning`.
-- Every `Done` row has `renderSpec.renderer`, `renderSpec.canvas`, `renderSpec.layoutSafety`, `renderSpec.componentInstances`, `renderSpec.textPolicies`, `renderSpec.constraints`, and `renderSpec.qaExpectations`.
+- Every `Done` row has `semanticValidation.semanticOwnershipAudit`, `semanticValidation.duplicateAudit`, and `semanticValidation.layoutBudgetAudit`, or explicit not-applicable markers.
+- Every `Done` row has `renderSpec.renderer`, `renderSpec.canvas`, `renderSpec.layoutSafety`, `renderSpec.layoutBudget`, `renderSpec.componentInstances`, `renderSpec.textPolicies`, `renderSpec.constraints`, `renderSpec.slotContracts`, `renderSpec.duplicateAudit`, and `renderSpec.qaExpectations`.
 - Every `Done` row has `consistency.layoutKey`, `consistency.pageIntentKey`, `consistency.designSpecKey`, `consistency.profileRefs`, `consistency.styleFingerprint`, and `consistency.driftCheck`.
 - Every same-layout page uses the same `layout-profile.json` locked values.
 - Every same-intent page under a layout uses the same `intent-<pageIntentKey>-profile.json` locked values.
 - Every same-state-group page uses the same `state-<stateGroupKey>-profile.json` locked values when a state group exists.
+- Every same intent/state group has compatible `renderSpec.slotContracts` and compatible layout budget strategy; allowed page-specific slot differences are recorded as overrides.
 - Every `Done` row satisfies pm06's intent-specific semantic quality gate; schema-only validity is insufficient.
 - Every `Done` row is render-ready: major components have adapters or explicit fallbacks, and text/container constraints prevent obvious overflow or stacking during pm08 restoration.
+- Every `Done` row has no blocking duplicate primary action and no failed `layoutBudget`.
 - Every generated `figma-nodes.json` preserves pm-06's `default-state-only` behavior.
 - Failures are recorded with actionable reasons.
 - The final task list status is `Completed`, `Paused`, or `Failed`.

@@ -23,6 +23,9 @@
 - Consistency Missing：
 - Drift Warning：
 - Drift Failed：
+- Layout Budget Failed：
+- Duplicate Audit Failed：
+- Post-render QA Failed：
 
 ## 一致性分组
 
@@ -32,9 +35,9 @@
 
 ## 任务列表
 
-| 序号 | 状态 | 页面编号 | 页面名称 | 设备形态 | layoutKey | pageIntentKey | stateGroupKey | pageIntent | semanticValidation | renderSpec | consistency | styleFingerprint | driftCheck | JSON 路径 | 报告路径 | 备注 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Pending |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 序号 | 状态 | 页面编号 | 页面名称 | 设备形态 | layoutKey | pageIntentKey | stateGroupKey | pageIntent | semanticValidation | layoutBudget | duplicateAudit | renderSpec | consistency | styleFingerprint | driftCheck | postRenderQA | JSON 路径 | 报告路径 | 备注 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Pending |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 
 ## 失败记录
 
@@ -51,3 +54,9 @@
 ## 人工检查项
 
 - 
+
+## Post-render QA 汇总
+
+| 页面编号 | Root Bounds | Shell Collision | Text Overflow | Incoherent Overlap | Duplicate Action | Key Regions | 结果 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |  |

@@ -10,6 +10,6 @@ Execution requirements:
 4. Validate each JSON.
 5. For each valid item, apply pm08 restoration rules to the original JSON tree, including `renderSpec`, consistency profileRefs, styleFingerprint, driftCheck, component blueprints, text policies, layout constraints, and QA expectations.
 6. Pass `consistencyMode=profile-locked` to pm08.
-7. Record Done, Failed, Skipped, profile/fingerprint/drift, and manual-check results.
+7. Record Done, Failed, Skipped, profile/fingerprint/drift, layoutBudget, duplicateAudit, post-render QA, and manual-check results.
 
 Keep the process deterministic and resumable. Do not compress all pages into a simplified payload, ignore renderSpec or consistency, or replace pm08 recursive rendering with a shared template.

@@ -13,7 +13,7 @@ Rules:
 - Preserve and pass through `renderSpec`, `consistency`, profileRefs, styleFingerprint, driftCheck, component blueprint references, text policies, layout constraints, and QA expectations.
 - Use `consistencyMode=profile-locked` for pm08 restoration.
 - Keep default-state-only behavior.
-- Update task status as work proceeds.
+- Update task status as work proceeds, and do not mark a task Done when pm08 post-render QA reports failed root bounds, shell collision, text overflow, blocking duplicate action, renderer loss, or layoutBudget failure.
 - Continue after individual task failures unless the user asked to stop on first failure.
 
 Do not directly invent a different batch conversion flow or a shared rendering template.

@@ -11,7 +11,7 @@ Execution requirements:
 5. Render through component adapters for common UI controls before falling back to generic editable frames; when available, fallback structure must come from `component-blueprints.json`.
 6. Apply two-pass layout: create nodes and local sizes first, then set fill/hug sizing after append.
 7. Skip non-default states.
-8. Run key semantic-region QA, fingerprint/drift QA, and screenshot or structural QA.
+8. Run key semantic-region QA, fingerprint/drift QA, layout-budget/root-bounds/shell-collision QA, duplicate-action QA, and screenshot or structural QA.
 9. Write `figma-restore-report.md` beside the source JSON.
 
 Do not infer extra states, extra pages, unrelated design variants, or a replacement fixed page template. Do not ignore `consistency`, profileRefs, styleFingerprint, or driftCheck. If append/no-overwrite is requested, always create a new root frame in empty canvas space while still using JSON profile-locked styling.

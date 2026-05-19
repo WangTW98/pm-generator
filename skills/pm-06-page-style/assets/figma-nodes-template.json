@@ -17,7 +17,10 @@
     "componentRules": "design/{{设计规范目录名}}/component-rules.json",
     "componentBlueprints": "design/{{设计规范目录名}}/component-blueprints.json",
     "figmaRenderRules": "design/{{设计规范目录名}}/figma-render-rules.json",
-    "aiGenerationRules": "design/{{设计规范目录名}}/ai-generation-rules.json"
+    "aiGenerationRules": "design/{{设计规范目录名}}/ai-generation-rules.json",
+    "consistencyRules": "design/{{设计规范目录名}}/consistency-rules.json",
+    "layoutProfileSchema": "design/{{设计规范目录名}}/layout-profile-schema.json",
+    "pageIntentPatterns": "design/{{设计规范目录名}}/page-intent-patterns.json"
   },
   "sourcePage": {
     "layoutFile": "product/pages/**/layout.md",
@@ -63,7 +66,26 @@
     "conflicts": [],
     "warnings": [],
     "criticalMissing": [],
-    "autoFixes": []
+    "autoFixes": [],
+    "semanticOwnershipAudit": {
+      "status": "{{pass|warning|failed}}",
+      "globalShellDuplicates": [],
+      "pageBodyRegions": [],
+      "notes": []
+    },
+    "duplicateAudit": {
+      "status": "{{pass|warning|failed}}",
+      "duplicateTexts": [],
+      "duplicateActions": [],
+      "blockingIssues": []
+    },
+    "layoutBudgetAudit": {
+      "status": "{{pass|warning|failed}}",
+      "availableContentHeight": 0,
+      "estimatedContentHeight": 0,
+      "compressionApplied": [],
+      "warnings": []
+    }
   },
   "layoutShell": {
     "source": "sourceSitemap",
@@ -122,6 +144,15 @@
       "avoidClipping": true,
       "minClickableTarget": 32
     },
+    "layoutBudget": {
+      "availableContentHeight": 0,
+      "estimatedContentHeight": 0,
+      "maxPrimaryPanelHeight": null,
+      "compressionOrder": [],
+      "compressionApplied": [],
+      "scrollContainers": [],
+      "status": "{{pass|warning|failed}}"
+    },
     "componentInstances": [
       {
         "sourceNodeId": "{{component-node-id}}",
@@ -161,6 +192,27 @@
         "alignment": "{{start|center|stretch}}"
       }
     ],
+    "slotContracts": [
+      {
+        "slotId": "{{slot-id}}",
+        "slotName": "{{slot-name}}",
+        "scope": "{{layout|pageIntent|stateGroup|page}}",
+        "required": true,
+        "variableByState": false,
+        "allowedComponents": [],
+        "sizing": {},
+        "overflow": "{{visible|wrap|scroll|clip}}"
+      }
+    ],
+    "duplicateAudit": [
+      {
+        "type": "{{text|actionIntent|region}}",
+        "value": "{{visible-text-or-action-intent}}",
+        "severity": "{{info|warning|blocking}}",
+        "nodes": [],
+        "resolution": "{{allowed-role-difference|renamed|deduped|failed}}"
+      }
+    ],
     "qaExpectations": {
       "keyRegions": [],
       "forbiddenRegions": [],
@@ -174,6 +226,9 @@
       "structuralChecks": [
         "no-overlap",
         "no-text-overflow",
+        "no-root-clipping",
+        "no-shell-collision",
+        "no-blocking-duplicate-action",
         "semantic-key-regions-present"
       ]
     }

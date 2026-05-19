@@ -20,6 +20,9 @@
 - semanticValidation：
 - renderSpec：
 - consistency：
+- layoutBudget：
+- duplicateAudit：
+- slotContracts：
 - 执行时间：
 
 ## 还原结果
@@ -36,6 +39,9 @@
 - profile 缺失数量：
 - fingerprint 匹配：
 - driftCheck：
+- layoutBudget：
+- root/shell collision：
+- duplicateAudit：
 - 关键语义区校验：
 - 截图 QA：
 
@@ -50,6 +56,9 @@
 | 合并 renderSpec.componentInstances |  |  |
 | 合并 renderSpec.textPolicies |  |  |
 | 合并 renderSpec.constraints |  |  |
+| 合并 renderSpec.layoutBudget |  |  |
+| 合并 renderSpec.slotContracts |  |  |
+| 合并 renderSpec.duplicateAudit |  |  |
 | 合并 consistency profiles |  |  |
 | 应用 locked properties |  |  |
 | pageIntent 仅用于校验 |  |  |
@@ -130,11 +139,27 @@
 | 第一阶段尺寸计算完成 |  |  |
 | 第二阶段 append 后 fill/hug 设置完成 |  |  |
 | 主要容器高度正常 |  |  |
+| Hug 容器未异常拉伸 |  |  |
+| Root bounds 未越界 |  |  |
+| Shell/Header/Footer 未与内容冲突 |  |  |
+| layoutBudget 命中 |  |  |
+| 压缩/滚动策略执行 |  |  |
 | 文本未明显挤压或溢出 |  |  |
 | 组件最小尺寸与文本策略已应用 |  |  |
 | Profile locked 尺寸/间距已应用 |  |  |
 | 主要容器无明显堆叠 |  |  |
 | 空白位置追加且未覆盖原内容 |  |  |
+
+## 重复语义与动作 QA
+
+| 项目 | 结果 | 说明 |
+| --- | --- | --- |
+| duplicateAudit 已读取 |  |  |
+| 重复可见文本 |  |  |
+| 重复 actionIntent |  |  |
+| 重复 primary action |  |  |
+| 允许的角色差异 |  |  |
+| Renderer 是否引入新重复 |  |  |
 
 ## 关键语义区校验
 
