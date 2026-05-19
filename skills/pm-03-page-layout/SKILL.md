@@ -1,6 +1,6 @@
 ---
 name: pm-03-page-layout
-description: "Generate or update one Chinese page layout specification from a specified application sitemap file and page-list ID. Use when an AI assistant needs to read product/layout/<应用端>-sitemap.md, select exactly one PAGE ID, and create product/pages/<来源Sitemap Layout>/<完整父子目录链>/layout.md with reference-only sitemap/layout metadata, default-state-first visible page content, a default-state page structure diagram, detailed atomic page UI element tables, and mock data that covers controls, table columns, row actions, options, and page states. Do not inline global layout/sitemap shell elements; downstream skills should merge them later by reading 来源Sitemap and 使用Layout. Also supports single-page dry-run or directory-only checks that compute the canonical path and create zero-byte Markdown placeholders without page content. Always read page metadata and path IDs from 2.2.页面清单 and generate paths from the page-list parent tree. pm-02-sitemap must keep that list tree synchronized with 2.1.sitemap思维导图. State groups are used for baseline reuse and consistency only; they must not collapse, replace, or override the list/mind-map directory tree."
+description: "Generate or update one Chinese page layout specification from a specified application sitemap file and page-list ID. Use when an AI assistant needs to read product/layout/<应用端>-sitemap.md, select exactly one PAGE ID, and create or patch product/pages/<来源Sitemap Layout>/<完整父子目录链>/layout.md with reference-only sitemap/layout metadata, default-state-first visible page content, a default-state page structure diagram, detailed atomic page UI element tables, and mock data that covers controls, table columns, row actions, options, and page states. When updating existing layout documents from user edits or natural-language change requests, apply cross-section sync patch rules so page descriptions, state deltas, structure diagram, element table, and mock data remain consistent. Do not inline global layout/sitemap shell elements; downstream skills should merge them later by reading 来源Sitemap and 使用Layout. Also supports single-page dry-run or directory-only checks that compute the canonical path and create zero-byte Markdown placeholders without page content. Always read page metadata and path IDs from 2.2.页面清单 and generate paths from the page-list parent tree. pm-02-sitemap must keep that list tree synchronized with 2.1.sitemap思维导图. State groups are used for baseline reuse and consistency only; they must not collapse, replace, or override the list/mind-map directory tree."
 ---
 
 # PM 03 Page Layout
@@ -416,6 +416,80 @@ The only protected part is the document structure:
 
 When updating an existing Development document, treat direct edits in sections `1` and `2` as already-approved page layout content unless they conflict with newer user instructions or source documents. Continue to use sections `3` and `4` as optional structured review channels, not as the only valid editing locations.
 
+## Cross-Section Sync Patch Rule
+
+When updating an existing Development document, any user-requested visible-content change must be handled as a structured patch, not as an isolated text edit in one section.
+
+This rule applies when the change comes from:
+
+- The current user prompt.
+- Direct edits in sections `1` or `2`.
+- Resolved items from section `3.待确认与假设`.
+- Notes in section `4.用户补充说明`.
+
+Before writing the updated document, build an internal patch plan. Do not output the plan unless the user asks for it.
+
+The patch plan must identify:
+
+- Change type: `add`, `update`, `delete`, `rename`, `reorder`, `replace`, or `state-delta change`.
+- Scope: default state, non-default state, state group, or both.
+- Affected sections: `1.3.1`, `1.3.2`, `1.3.3`, `1.3.4`, `1.4`, `1.5`, `2.1`, `2.2`, `3`, or `4`.
+- Affected IDs: `PGR-xxx`, `PEL-xxx`, `PLE-xxx`, `MOCK-xxx`, and state IDs when present.
+- New IDs required.
+- References that must be removed or rewritten.
+
+### Section Sync Matrix
+
+Apply these propagation rules before the final quality checklist:
+
+| User-visible change | Required synchronized sections |
+|---|---|
+| Add a default-state visible element, such as a button, input, table column, card field, tab, filter, row action, or status chip | `1.3.1`, `1.3.2`, `1.4`, `1.5`, and `2.2` when the element carries data, options, state, permission, validation, or feedback |
+| Add a non-default state element, such as an error message, success alert, loading indicator, disabled action, empty-state action, toast, modal, or drawer | `1.3.3`, `1.3.4`, `1.5`, and `2.2` when the state element carries data, copy, status, permission, validation, or feedback |
+| Change an element label, button text, field label, placeholder, helper text, option label, table header, status text, or visible value | `1.3.2`, `1.5`, and `2.2`; also update `1.3.1` and regenerate `1.4` when the visible page structure or group label changes |
+| Change a table column, filter, form field, card field, list item field, timeline node, stepper item, tab, option set, or enum | `1.3.1`, `1.3.2`, `1.5`, `2.1`, and `2.2`; update `1.3.3` and `1.3.4` if the change introduces or removes state variants |
+| Change interaction, validation, permission, enabled/disabled behavior, loading behavior, destination, or state transition | `1.3.2`, `1.3.3` when a state is added/removed/renamed, `1.3.4`, `1.5`, and `2.2` for feedback or example data; record unresolved permission or routing assumptions in `3` |
+| Delete a visible element, group, state, option, table column, or mock-backed value | Remove or rewrite all references in `1.3.1`, `1.3.2`, `1.3.3`, `1.3.4`, `1.4`, `1.5`, `2.1`, and `2.2`; no stale IDs may remain |
+| Reorder visible groups, controls, table columns, tabs, cards, or actions | Update order in `1.3.1`, `1.3.2`, `1.4`, and `1.5`; update `2.2` notes only when sample order affects rendering |
+| Replace the default page structure or a major content group | Treat `1.3.1` as the source of truth, regenerate `1.4`, then synchronize `1.3.2`, `1.5`, `2.1`, and `2.2`; state deltas in `1.3.4` must remain deltas from the new default |
+| Change a state definition, trigger condition, affected area, or default/non-default state relationship | Update `1.3.3`, `1.3.4`, `1.5` Derived State rows, and `2.2` state mock rows; update `1.3.1` and `1.4` only if the default state itself changed |
+
+### Section Responsibilities During Patches
+
+- `1.3.1` is the source of truth for the default-state visual body structure.
+- `1.3.2` contains concrete default-state element details, labels, options, validation, and interactions.
+- `1.3.3` contains the state inventory, trigger conditions, affected areas, and default/non-default classification.
+- `1.3.4` contains only non-default state deltas from the default state.
+- `1.4` must be regenerated from `1.3.1` only; never use `1.5` as its source of truth.
+- `1.5` is the atomic element table and must include every visible control, data-bearing item, complex-container child, and state-difference element.
+- `2.1` lists the mock data categories implied by `1.5`.
+- `2.2` is derived from data-bearing rows, options, enums, statuses, feedback, and validation examples in `1.5`; it must not reference deleted or nonexistent `PLE` or `PEL` IDs.
+- `3` records only unresolved assumptions, conflicts, or source gaps introduced or left by the patch.
+- `4` is cleared back to the standard placeholder after its notes are incorporated.
+
+### Patch ID Handling
+
+- Preserve existing `PLE`, `PGR`, `PEL`, and `MOCK` IDs when the same semantic element still exists.
+- Do not renumber the whole document after a small patch.
+- New groups use the next available `PGR-xxx`.
+- New elements use the next available `PEL-xxx`.
+- New element-table rows use the next available `PLE-xxx`.
+- New mock rows use the next available `MOCK-xxx`.
+- When deleting or replacing an element, remove or rewrite every mock row, state delta, structure description, and diagram reference that points to it.
+- Never leave orphan references in `1.3`, `1.4`, `1.5`, or `2.2`.
+
+### Patch Example: Adding a Button
+
+If the user asks to add a `导出订单` button to the default order-table toolbar:
+
+- Add the button to the table-toolbar structure in `1.3.1`.
+- Add its label, position, enabled/disabled rule, permission rule, click behavior, and success/failure feedback in `1.3.2`.
+- Regenerate `1.4` from the updated `1.3.1` so the toolbar contains the new action.
+- Add one atomic `1.5` row with `元素来源 = Page Content`, `类型 = 按钮`, `元素 = 导出订单按钮`, and concrete interaction rules.
+- Add `2.2` mock rows only when export behavior needs visible sample data, a filename, permission status, success copy, failure copy, or other renderable feedback.
+- If export can fail or show async feedback, add or update the relevant state row in `1.3.3`, describe the failure/loading/success delta in `1.3.4`, add Derived State rows in `1.5`, and add feedback mock rows in `2.2`.
+- If permission behavior or export scope is inferred, record the assumption in section `3`.
+
 ## Output Structure
 
 Use exactly these top-level sections for Development documents:
@@ -741,11 +815,15 @@ Before finishing:
 - Ensure `1.4` is a Mermaid `flowchart TB` default-state page structure diagram generated from `1.3.1.默认状态页面结构`.
 - Ensure `1.4` contains only current page body structure and does not include global layout/sitemap shell nodes.
 - Ensure `1.4` is not treated as a synchronized mirror of `1.5`; do not block updates or ask priority questions because the diagram and element table differ in granularity.
+- When updating an existing document, ensure every visible-content patch was propagated according to the Cross-Section Sync Patch Rule.
+- Ensure every default-state visible element added to `1.3.1` has concrete details in `1.3.2` and atomic rows in `1.5`.
+- Ensure every non-default state element added to `1.3.3` or `1.3.4` has corresponding Derived State rows in `1.5` and mock rows in `2.2` when it has visible copy, data, options, status, validation, or feedback.
 - Ensure `1.5` uses the exact element table columns and stable `PLE/PGR/PEL` IDs.
 - Ensure `1.5` does not include `元素来源 = Sitemap Layout` and does not include global layout/sitemap shell rows.
 - Ensure `1.5` decomposes every visible control and complex container to the required granularity: buttons, inputs, selects, radio/checkbox options, tabs, table container, table columns, row actions, status chips, modal fields, empty/loading/error/success states.
 - Ensure `2.2` mock data is derived from `状态/数据分类` values in `1.5`.
 - Ensure `2.2` mock data covers every data-bearing default-state element, every table column, every option/enum/status value, and every current-page state example; every `关联元素ID` must exist in `1.5`.
+- Ensure deleted elements, groups, states, options, and mock-backed values leave no stale references in `1.3`, `1.4`, `1.5`, `2.1`, or `2.2`.
 - Ensure default-state mock data appears first and non-default state mock data only records deltas.
 - Ensure no mock row references global layout/sitemap shell elements.
 - Ensure no existing element, mock item, state, layout decision, or ID was dropped without incorporating it or preserving it as an open item.
